@@ -1,3 +1,4 @@
+import { AuthGuard } from './services/auth.guard';
 import { LurahModule } from './User-layout/lurah/lurah.module';
 import { AdminModule } from './User-layout/admin/admin.module';
 import { LoginComponent } from './auth/login/login.component';
@@ -6,6 +7,7 @@ import { RegisterModule } from './auth/register/register.module';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { Role } from './models/Role';
 
 const routes: Routes = [
   {
@@ -31,6 +33,8 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () =>
       import('./User-layout/admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [AuthGuard],
+    data: { roles: [Role.admin] },
   },
   {
     path: 'lurah',

@@ -6,20 +6,20 @@
 
       <a mat-list-item routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i> Perlombaan</a>
 
-      <a mat-list-item *ngIf='this.tokenService.isLogin' routerLinkActive="list-item-active" routerLink="/register/registerPeserta"><i class="fas fa-futbol mr-2"></i>Register</a>
-      <a mat-list-item  routerLinkActive="list-item-active" routerLink="login"><i class="fas fa-futbol mr-2"></i>Login</a>
+      <a mat-list-item *ngIf='!this.tokenService.isLogin || this.tokenService.isLogin == null' routerLinkActive="list-item-active" routerLink="/register/registerPeserta"><i class="fas fa-futbol mr-2"></i>Register</a>
+      <a mat-list-item *ngIf='!this.tokenService.isLogin || this.tokenService.isLogin == null' routerLinkActive="list-item-active" routerLink="login"><i class="fas fa-futbol mr-2"></i>Login</a>
       <!-- *ngIf='this.tokenService.isLogin' -->
-      <ul *ngIf='!this.tokenService.isLogin'>
+      <ul *ngIf='this.tokenService.isLogin'>
         <li>
-      <a mat-list-item *ngIf="this.userService.userPayloadValue.roles[0] == 'admin'" routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>admin button </a>
-      <a mat-list-item *ngIf="this.userService.userPayloadValue.roles[0] == 'lurah'" routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>lurah button </a>
-      <a mat-list-item *ngIf="this.userService.userPayloadValue.roles[0] == 'panitia'" routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>panitia button </a>
-      <a mat-list-item *ngIf="this.userService.userPayloadValue.roles[0] == 'peserta'" routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>peserta button </a>
-    </li>
-    </ul>
+          <a mat-list-item *ngIf="!this.tokenService.isLogin || this.userService.userPayloadValue.roles[0] == 'admin'" routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>admin button </a>
+          <a mat-list-item *ngIf="!this.tokenService.isLogin || this.userService.userPayloadValue.roles[0] == 'lurah'" routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>lurah button </a>
+          <a mat-list-item *ngIf="!this.tokenService.isLogin || this.userService.userPayloadValue.roles[0] == 'panitia'" routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>panitia button </a>
+          <a mat-list-item *ngIf="!this.tokenService.isLogin || this.userService.userPayloadValue.roles[0] == 'peserta'" routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>peserta button </a>
+        </li>
+      </ul>
       <!-- admin -->
-      <ul *ngIf='!this.tokenService.isLogin'>
-        <li *ngIf="this.userService.userPayloadValue.roles[0] == 'admin'">
+      <ul *ngIf='this.tokenService.isLogin || this.tokenService.isLogin == null '>
+        <li *ngIf="!this.tokenService.isLogin || this.userService.userPayloadValue.roles[0] == 'admin'">
           <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/createLurah">Create Lurah</a>
           <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/getLurah">Data Lurah</a>
           <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/adminProfile/:id'">Profil Admin</a>
@@ -27,8 +27,8 @@
           <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/getDistrict">Data Distrik</a>
           <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/getAllUser">Data semua pengguna</a>
         </li>
-        <li *ngIf="this.userService.userPayloadValue.roles[0] == 'peserta'">
-          <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/createLurah">create lurah</a>
+        <li *ngIf="!this.tokenService.isLogin || this.userService.userPayloadValue.roles[0] == 'peserta'">
+          <a mat-list-item routerLinkActive="list-item-active" routerLink="/lurah/createLurah">create Panitia</a>
           <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/getLurah">Data lurah</a>
           <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/adminProfile/:id'">Profil Admin</a>
           <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/createDistrict">buat distrik</a>

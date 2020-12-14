@@ -176,4 +176,21 @@ export class UserService implements OnInit {
   private respondGetAllUser(response: any) {
     return response.user;
   }
+
+  createLurah(user: User) {
+    return this.http
+      .post<any>(`${environment.baseUrl}/admin/create-lurah`, user)
+      .subscribe(
+        (success) => {
+          Swal.fire('Berhasil membuat', success);
+        },
+        (err) => {
+          Swal.fire(
+            'Maaf anda tidak berhasil membuat lurah',
+            err.error.message,
+            'error'
+          );
+        }
+      );
+  }
 }

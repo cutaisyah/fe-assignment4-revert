@@ -1,3 +1,5 @@
+import { UserService } from 'src/app/services/user.service';
+import { User } from './../../../../models/User';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
@@ -13,7 +15,7 @@ export class CreateLurahComponent implements OnInit {
   user: any;
   createDistrictForm: FormGroup;
   createLurahForm: FormGroup;
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder, public userService: UserService) {
     this.createLurahForm = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
@@ -32,6 +34,10 @@ export class CreateLurahComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  createLurah() {}
+  createLurah() {
+    this.user = this.createLurahForm.value;
+    console.log(this.user);
+    this.userService.createLurah(this.user);
+  }
   createDistrict() {}
 }
