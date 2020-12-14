@@ -22,7 +22,7 @@ const routes: Routes = [
         component: GetLurahComponent,
       },
       {
-        path: 'adminProfile',
+        path: 'adminProfile/:id',
         component: AdminProfileComponent,
       },
       {

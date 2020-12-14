@@ -1,4 +1,5 @@
-import { UserService } from './../../services/user.service';
+import { UserService } from 'src/app/services/user.service';
+import { TokenService } from './../../services/token.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from 'src/app/auth/login/login.component';
@@ -14,11 +15,17 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    public userService: UserService
+    public userService: UserService,
+    public tokenService: TokenService
   ) {}
 
   ngOnInit(): void {
     this.userData = this.userService.userPayloadValue;
+  }
+
+  checkAuth() {
+    this.userService.userPayloadValue();
+    console.log(this.userService.userPayloadValue());
   }
 
   openFormModal() {
