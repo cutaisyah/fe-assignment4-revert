@@ -31,7 +31,6 @@
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/sass/paper-kit.scss"
-
             ],
             "scripts": []
           },
@@ -127,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "akhiran"
+  "defaultProject": "akhiran",
+  "cli": {
+    "analytics": "3b52c456-4506-4093-b18c-5ce4e4cfe3f7"
+  }
 }

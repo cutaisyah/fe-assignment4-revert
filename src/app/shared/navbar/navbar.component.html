@@ -14,20 +14,20 @@
             <i class="fas fa-futbol"></i> Perlombaan
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="margin-custom">
-            <button class="btn btn-round btn-outline-neutral btn-sm margin-custom"
+        <li  class="nav-item ">
+          <a  class="margin-custom">
+            <button *ngIf='!this.tokenService.isLogin' class="btn btn-round btn-outline-neutral btn-sm margin-custom"
               (click)="openFormModal()">Masuk</button>
           </a>
         </li>
         <li  class="nav-item" >
           <div ngbDropdown class="dropdown" placement="bottom-left">
-            <a *ngIf='!this.tokenService.isLogin' class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
+            <a *ngIf='this.tokenService.isLogin' class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
               <i class="fas fa-user"></i> Profil
             </a>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-danger dropdown-menu-right">
               <a  routerLink='' class="dropdown-item">Profile Dashboard</a>
-              <a  routerLink='signup' class="dropdown-item">Logout</a>
+              <a  routerLink='' (click)="this.userService.logout()" class="dropdown-item">Logout</a>
             </div>
           </div>
         </li>
