@@ -1,2 +1,65 @@
-<p>create-lurah works!</p>
+  <h3 class="title mt-0 pt-3">Buat Lurah</h3>
+  <form class="register-form" [formGroup]="createLurahForm" (ngSubmit)="createLurah()">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Email :</label>
+      <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <input formControlName="email" type="text" class="form-control mb-3" placeholder="Email" (focus)="focus=true"
+        (blur)="focus=false">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Nama Pengguna :</label>
+      <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <input formControlName="username" type="text" class="form-control mb-3" placeholder="Nama Pengguna"
+        (focus)="focus1=true" (blur)="focus1=false">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Kata sandi :</label>
+      <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <input formControlName="password" type="password" class="form-control mb-3" placeholder="Kata sandi" (focus)="focus=true"
+        (blur)="focus=false">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Tanggal lahir :</label>
+      <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <input formControlName="birthdate" type="date" class="form-control mb-3" placeholder="Tanggal lahir"
+        (focus)="focus1=true" (blur)="focus1=false">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">No telefon :</label>
+      <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <input formControlName="phone" type="text" class="form-control mb-3" placeholder="No telefon" (focus)="focus=true"
+        (blur)="focus=false">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Distrik :</label>
+      <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <input formControlName="districts" type="text" class="form-control mb-3" placeholder=" Distrik" (focus)="focus=true"
+        (blur)="focus=false">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Roles :</label>
+      <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <input formControlName="roles" type="text" class="form-control mb-3" placeholder="Roles" (focus)="focus=true"
+        (blur)="focus=false">
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-primary margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">Buat lurah baru</button>
+    </div>
+  </form>
+
+
 

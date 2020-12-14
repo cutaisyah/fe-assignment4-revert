@@ -1,3 +1,4 @@
+import { DataPanitiaComponent } from './lurah-component/data-panitia/data-panitia.component';
 import { CreatePanitiaComponent } from './lurah-component/create-panitia/create-panitia.component';
 import { LurahComponent } from './lurah.component';
 import { NgModule } from '@angular/core';
@@ -12,26 +13,14 @@ const routes: Routes = [
         path: 'createPanitia',
         component: CreatePanitiaComponent,
       },
-      // {
-      //   path: 'getLurah',
-      //   component: GetLurahComponent,
-      // },
-      // {
-      //   path: 'adminProfile',
-      //   component: AdminProfileComponent,
-      // },
-      // {
-      //   path: 'createDistrict',
-      //   component: CreateDistrictComponent,
-      // },
-      // {
-      //   path: 'getDistrict',
-      //   component: GetDistrictComponent,
-      // },
-      // {
-      //   path: 'getAllUser',
-      //   component: GetAllUsersComponent,
-      // },
+      {
+        path: 'getLurah/:id',
+        component: LurahComponent,
+      },
+      {
+        path: 'dataPanitia',
+        component: DataPanitiaComponent,
+      },
     ],
   },
 ];
