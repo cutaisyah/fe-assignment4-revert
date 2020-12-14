@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg bg-danger">
+  <div class="container">
+    <a class="navbar-brand" routerLink="home">Assignment4</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isMenuCollapsed = !isMenuCollapsed"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-bar"></span>
+      <span class="navbar-toggler-bar"></span>
+      <span class="navbar-toggler-bar"></span>
+    </button>
+    <div class="navbar-collapse" [ngbCollapse]="isMenuCollapsed">
+      <ul class="navbar-nav ml-auto mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" routerLink="/tournament/list">
+            <i class="fas fa-futbol"></i> Perlombaan
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="margin-custom">
+            <button class="btn btn-round btn-outline-neutral btn-sm margin-custom"
+              (click)="openFormModal()">Masuk</button>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <div ngbDropdown class="dropdown" placement="bottom-left">
+            <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
+              <i class="fas fa-user"></i> Profil
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-danger dropdown-menu-right">
+              <a routerLink='' class="dropdown-item">User Dashboard</a>
+              <a routerLink='signup' class="dropdown-item">Logout</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register/registerAdmin">
+              Tertarik menjadi admin ?
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- <a routerLink='home'>home</a>
+<a routerLink='login'>login</a>
+<a routerLink='admin/layout'>admin</a>
+<a routerLink='lurah/lurahLayout'>lurah</a> -->
