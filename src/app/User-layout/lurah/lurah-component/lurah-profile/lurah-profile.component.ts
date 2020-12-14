@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+
 @Component({
-  selector: 'app-create-panitia',
-  templateUrl: './create-panitia.component.html',
-  styleUrls: ['./create-panitia.component.scss'],
+  selector: 'app-lurah-profile',
+  templateUrl: './lurah-profile.component.html',
+  styleUrls: ['./lurah-profile.component.scss'],
 })
-export class CreatePanitiaComponent implements OnInit {
+export class LurahProfileComponent implements OnInit {
+  test: Date = new Date();
   focus;
   focus1;
   user: any;
-  createPanitiaForm: FormGroup;
+  lurahProfileForm: FormGroup;
   constructor(public fb: FormBuilder) {
-    this.createPanitiaForm = new FormGroup({
+    this.lurahProfileForm = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
 
@@ -25,5 +27,5 @@ export class CreatePanitiaComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  createPanitia() {}
+  updateLurah() {}
 }

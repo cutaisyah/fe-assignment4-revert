@@ -26,8 +26,8 @@
               <i class="fas fa-user"></i> Profil
             </a>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-danger dropdown-menu-right">
-              <a  routerLink='' class="dropdown-item">Profile Dashboard</a>
-              <a  routerLink='' (click)="this.userService.logout()" class="dropdown-item">Logout</a>
+              <a  routerLink='/admin/layout/adminProfile/:id' class="dropdown-item">Profile Dashboard</a>
+              <a (click)="this.userService.logout()" class="dropdown-item">Logout</a>
             </div>
           </div>
         </li>

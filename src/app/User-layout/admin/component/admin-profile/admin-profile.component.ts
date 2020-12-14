@@ -11,9 +11,9 @@ export class AdminProfileComponent implements OnInit {
   focus;
   focus1;
   user: any;
-  signUpForm: FormGroup;
+  adminProfileForm: FormGroup;
   constructor(public fb: FormBuilder) {
-    this.signUpForm = new FormGroup({
+    this.adminProfileForm = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
 

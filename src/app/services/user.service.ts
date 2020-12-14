@@ -16,7 +16,7 @@ import { User } from '../models/User';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService implements OnInit {
+export class UserService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   private userPayload: BehaviorSubject<any>;
   public currentUserValue: Observable<any>;
@@ -28,8 +28,6 @@ export class UserService implements OnInit {
     console.log(this.userPayload);
     this.currentUserValue = this.userPayload.asObservable();
   }
-
-  ngOnInit() {}
 
   get userPayloadValue(): any {
     return this.userPayload.value;
@@ -80,12 +78,12 @@ export class UserService implements OnInit {
           localStorage.setItem('Payload_Token', JSON.stringify(success));
           this.userPayload.next(success);
           if (success.roles[0] === 'admin') {
-            this.router.navigate(['/admin/layout']);
-          } else if (success === 'peserta') {
+            this.router.navigate(['/admin/layout/adminProfile/:id']);
+          } else if (success.roles[0] === 'peserta') {
             this.router.navigate(['/pesertaLayout/peserta']);
-          } else if (success === 'lurah') {
+          } else if (success.roles[0] === 'lurah') {
             this.router.navigate(['/lurahLayout/lurah']);
-          } else if (success === 'panitia') {
+          } else if (success.roles[0] === 'panitia') {
             this.router.navigate(['/panitiaLayout/panitia']);
           }
           Swal.fire('Anda sudah login');
@@ -156,5 +154,10 @@ export class UserService implements OnInit {
         return res || {};
       })
     );
+  }
+
+  getAllProfile(): Observable<any> {
+    let endpoint = environment.baseUrl + '/admin' + '/data-user';
+    return this.http.get(endpoint, { headers: this.headers });
   }
 }
