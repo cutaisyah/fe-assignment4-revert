@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
@@ -11,10 +12,10 @@ export class RegisterAdminComponent implements OnInit {
   focus;
   focus1;
   user: any;
-  signUpForm: FormGroup;
-  // public userService : UserService
-  constructor(public fb: FormBuilder) {
-    this.signUpForm = new FormGroup({
+  signUpAdminForm: FormGroup;
+
+  constructor(public fb: FormBuilder, public userService: UserService) {
+    this.signUpAdminForm = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
       username: new FormControl(),
@@ -27,9 +28,8 @@ export class RegisterAdminComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  signUp() {
-    // this.user = this.signUpForm.value;
-    // console.log(this.user)
-    //   this.userService.signUp(this.user)
+  signUpAdmin() {
+    this.user = this.signUpAdminForm.value;
+    this.userService.signUpAdmin(this.user);
   }
 }

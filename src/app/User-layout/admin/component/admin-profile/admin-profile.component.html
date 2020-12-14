@@ -1,1 +1,37 @@
-<p>admin-profile works!</p>
+<div class="container">
+  <div class="row">
+        <div class="container">
+            <h3 class="title mt-5 mb-4 text-center">Informasi Profil</h3>
+            <form class="register-form" [formGroup]="signUpForm" (ngSubmit)="updateAdmin()">
+
+                <label>Email :</label>
+                <div  class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                    <input formControlName="email" type="text" class="form-control mb-3" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
+                </div>
+
+                <label>Password  :</label>
+                <div  class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                    <input formControlName="email" type="text" class="form-control mb-3" placeholder="password" (focus)="focus=true" (blur)="focus=false" >
+                </div>
+
+                <label>username</label>
+                <div  class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                    <input formControlName="username" type="text" class="form-control mb-3" placeholder="username" (focus)="focus1=true" (blur)="focus1=false" >
+                </div>
+
+                <label>birthdate</label>
+                <div  class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                    <input formControlName="birthdate" type="date" class="form-control mb-3" placeholder="birthdate" (focus)="focus1=true" (blur)="focus1=false" >
+                </div>
+
+                <label>phone</label>
+                <div  class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                    <input formControlName="phone" type="text" class="form-control mb-3" placeholder="phone" (focus)="focus=true" (blur)="focus=false" >
+                </div>
+
+                <button class="btn btn-primary btn-block btn-round mt-5">Update</button>
+          </form>
+        </div>
+      </div>
+  </div>
+

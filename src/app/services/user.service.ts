@@ -1,6 +1,6 @@
 import { Team } from './../models/Team';
 import { Login } from './../models/Login';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import {
   HttpClient,
@@ -16,7 +16,7 @@ import { User } from '../models/User';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService implements OnInit {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   private userPayload: BehaviorSubject<any>;
   public currentUserValue: Observable<any>;
@@ -25,8 +25,11 @@ export class UserService {
     this.userPayload = new BehaviorSubject<any>(
       JSON.parse(localStorage.getItem('Payload_Token'))
     );
+    console.log(this.userPayload);
     this.currentUserValue = this.userPayload.asObservable();
   }
+
+  ngOnInit() {}
 
   get userPayloadValue(): any {
     return this.userPayload.value;
@@ -58,6 +61,7 @@ export class UserService {
           Swal.fire('Terimakasih sudah mendaftar sebagai admin');
         },
         (err) => {
+          console.log(err);
           Swal.fire(
             'Maaf ada yang salah dengan proses registrasi',
             err.error.message,
@@ -75,6 +79,15 @@ export class UserService {
           localStorage.setItem('Token', success.access_token);
           localStorage.setItem('Payload_Token', JSON.stringify(success));
           this.userPayload.next(success);
+          if (success.roles[0] === 'admin') {
+            this.router.navigate(['/admin/layout']);
+          } else if (success === 'peserta') {
+            this.router.navigate(['/pesertaLayout/peserta']);
+          } else if (success === 'lurah') {
+            this.router.navigate(['/lurahLayout/lurah']);
+          } else if (success === 'panitia') {
+            this.router.navigate(['/panitiaLayout/panitia']);
+          }
           Swal.fire('Anda sudah login');
         },
         (err) => {

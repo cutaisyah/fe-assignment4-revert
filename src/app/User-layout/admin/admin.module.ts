@@ -11,9 +11,24 @@ import { AdminProfileComponent } from './component/admin-profile/admin-profile.c
 import { CreateDistrictComponent } from './component/create-district/create-district.component';
 import { GetDistrictComponent } from './component/get-district/get-district.component';
 import { GetAllUsersComponent } from './component/get-all-users/get-all-users.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AdminComponent, CreateLurahComponent, SidebarComponent, GetLurahComponent, AdminProfileComponent, CreateDistrictComponent, GetDistrictComponent, GetAllUsersComponent],
-  imports: [CommonModule, AdminRoutingModule, RouterModule],
+  declarations: [
+    AdminComponent,
+    CreateLurahComponent,
+    SidebarComponent,
+    GetLurahComponent,
+    AdminProfileComponent,
+    CreateDistrictComponent,
+    GetDistrictComponent,
+    GetAllUsersComponent,
+  ],
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    RouterModule,
+    ReactiveFormsModule,
+  ],
 })
 export class AdminModule {}
