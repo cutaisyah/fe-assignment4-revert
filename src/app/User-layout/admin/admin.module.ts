@@ -1,9 +1,11 @@
 import { RouterModule } from '@angular/router';
+import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { CreateLurahComponent } from './component/create-lurah/create-lurah.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 import { GetLurahComponent } from './component/get-lurah/get-lurah.component';
 import { AdminProfileComponent } from './component/admin-profile/admin-profile.component';
 import { CreateDistrictComponent } from './component/create-district/create-district.component';
@@ -13,7 +15,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
+    AdminComponent,
     CreateLurahComponent,
+    SidebarComponent,
     GetLurahComponent,
     AdminProfileComponent,
     CreateDistrictComponent,

@@ -80,12 +80,12 @@ export class UserService implements OnInit {
           localStorage.setItem('Payload_Token', JSON.stringify(success));
           this.userPayload.next(success);
           if (success.roles[0] === 'admin') {
-            this.router.navigate(['/home']);
-          } else if (success.roles[0] === 'peserta') {
+            this.router.navigate(['/admin/layout']);
+          } else if (success === 'peserta') {
             this.router.navigate(['/pesertaLayout/peserta']);
-          } else if (success.roles[0] === 'lurah') {
+          } else if (success === 'lurah') {
             this.router.navigate(['/lurahLayout/lurah']);
-          } else if (success.roles[0] === 'panitia') {
+          } else if (success === 'panitia') {
             this.router.navigate(['/panitiaLayout/panitia']);
           }
           Swal.fire('Anda sudah login');
@@ -149,15 +149,6 @@ export class UserService implements OnInit {
       });
   }
 
-  getUsers() {
-    let endpoint = environment.baseUrl + 'admin/data-user';
-    return this.http.get(endpoint, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        return res || {};
-      })
-    );
-  }
-
   getUserProfile(_id): Observable<any> {
     let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
     return this.http.get(endpoint, { headers: this.headers }).pipe(
@@ -165,32 +156,5 @@ export class UserService implements OnInit {
         return res || {};
       })
     );
-  }
-
-  public getAllUser(): Observable<any> {
-    return this.http
-      .get<any>(`${environment.baseUrl}/admin/data-user`)
-      .pipe(map(this.respondGetAllUser));
-  }
-
-  private respondGetAllUser(response: any) {
-    return response.user;
-  }
-
-  createLurah(user: User) {
-    return this.http
-      .post<any>(`${environment.baseUrl}/admin/create-lurah`, user)
-      .subscribe(
-        (success) => {
-          Swal.fire('Berhasil membuat', success);
-        },
-        (err) => {
-          Swal.fire(
-            'Maaf anda tidak berhasil membuat lurah',
-            err.error.message,
-            'error'
-          );
-        }
-      );
   }
 }

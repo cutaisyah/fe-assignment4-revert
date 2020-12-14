@@ -4,33 +4,40 @@ import { CreateDistrictComponent } from './component/create-district/create-dist
 import { AdminProfileComponent } from './component/admin-profile/admin-profile.component';
 import { GetLurahComponent } from './component/get-lurah/get-lurah.component';
 import { CreateLurahComponent } from './component/create-lurah/create-lurah.component';
+import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'createLurah',
-    component: CreateLurahComponent,
-  },
-  {
-    path: 'getLurah',
-    component: GetLurahComponent,
-  },
-  {
-    path: 'adminProfile/:id',
-    component: AdminProfileComponent,
-  },
-  {
-    path: 'createDistrict',
-    component: CreateDistrictComponent,
-  },
-  {
-    path: 'getDistrict',
-    component: GetDistrictComponent,
-  },
-  {
-    path: 'getAllUser',
-    component: GetAllUsersComponent,
+    path: 'layout',
+    component: AdminComponent,
+    children: [
+      {
+        path: 'createLurah',
+        component: CreateLurahComponent,
+      },
+      {
+        path: 'getLurah',
+        component: GetLurahComponent,
+      },
+      {
+        path: 'adminProfile/:id',
+        component: AdminProfileComponent,
+      },
+      {
+        path: 'createDistrict',
+        component: CreateDistrictComponent,
+      },
+      {
+        path: 'getDistrict',
+        component: GetDistrictComponent,
+      },
+      {
+        path: 'getAllUser',
+        component: GetAllUsersComponent,
+      },
+    ],
   },
 ];
 

@@ -15,11 +15,10 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.userService.userPayloadValue;
-    console.log(route.data.roles.indexOf(currentUser.roles[0]));
     if (currentUser) {
       if (
         route.data.roles &&
-        route.data.roles.indexOf(currentUser.roles[0]) === -1
+        route.data.roles.indexOf(currentUser.role) === -1
       ) {
         this.router.navigate['/home'];
         return false;

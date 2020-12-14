@@ -7,9 +7,6 @@ import { AdminModule } from './User-layout/admin/admin.module';
 import { TournamentModule } from './tournament/tournament.module';
 import { RegisterModule } from './auth/register/register.module';
 import { RouterModule } from '@angular/router';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatListModule } from '@angular/material/list';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -23,8 +20,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HeaderComponent } from './shared/header/header.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +27,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     HomepageComponent,
     LoginComponent,
-    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,9 +40,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSidenavModule,
-    MatListModule,
-    BrowserAnimationsModule,
   ],
   providers: [
     {
