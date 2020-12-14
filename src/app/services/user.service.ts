@@ -149,6 +149,15 @@ export class UserService implements OnInit {
       });
   }
 
+  getUsers() {
+    let endpoint = environment.baseUrl + 'admin/data-user';
+    return this.http.get(endpoint, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {};
+      })
+    );
+  }
+
   getUserProfile(_id): Observable<any> {
     let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
     return this.http.get(endpoint, { headers: this.headers }).pipe(

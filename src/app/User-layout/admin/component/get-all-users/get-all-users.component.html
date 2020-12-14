@@ -1,1 +1,35 @@
-<p>get-all-users works!</p>
+<div class="container">
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Roles</th>
+        <th scope="col">Email</th>
+        <th scope="col">Username</th>
+        <th scope="col">Birthdate</th>
+        <th scope="col">Distrik</th>
+        <th scope="col">Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <th scope="row">1</th>
+        <td>{{user.role}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.birthdate}}</td>
+        <td>{{user.districts}}</td>
+        <td>{{user.phone}}</td>
+      </tr>
+      <!-- <tr>
+        <th scope="row">1</th>
+        <td>Admin</td>
+        <td>Email</td>
+        <td>username</td>
+        <td>birthdate</td>
+        <td>distrik</td>
+        <td>phone</td>
+      </tr> -->
+    </tbody>
+  </table>
+</div>

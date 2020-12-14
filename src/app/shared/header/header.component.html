@@ -1,0 +1,35 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer-content>
+    <mat-nav-list>
+      <h2 matSubheader>Pages</h2>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>Beranda</a>
+
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i> Perlombaan</a>
+
+      <a mat-list-item *ngIf="this.userService.userPayloadValue.roles[0] == 'admin'" routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>admin button </a>
+      <a mat-list-item *ngIf="this.userService.userPayloadValue.roles[0] == 'lurah'" routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>lurah button </a>
+      <a mat-list-item *ngIf="this.userService.userPayloadValue.roles[0] == 'panitia'" routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>panitia button </a>
+      <a mat-list-item *ngIf="this.userService.userPayloadValue.roles[0] == 'peserta'" routerLinkActive="list-item-active" routerLink="/tournament/list"><i class="fas fa-futbol mr-2"></i>peserta button </a>
+
+      <!-- admin -->
+      <ul>
+        <li *ngIf="this.userService.userPayloadValue.roles[0] == 'admin'">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/createLurah">Create Lurah</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/getLurah">Data Lurah</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/adminProfile/:id'">Profil Admin</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/createDistrict">Buat Distrik</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/getDistrict">Data Distrik</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/getAllUser">Data semua pengguna</a>
+    </li>
+    <li *ngIf="this.userService.userPayloadValue.roles[0] == 'peserta'">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/createLurah">create lurah</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/getLurah">Data lurah</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/adminProfile/:id'">Profil Admin</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/createDistrict">buat distrik</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/getDistrict">data distrik</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/getAllUser">data semua pengguna</a>
+    </li>
+    </ul>
+    </mat-nav-list>
+  </mat-drawer-content>
+</mat-drawer-container>
