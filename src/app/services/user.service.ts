@@ -80,12 +80,12 @@ export class UserService implements OnInit {
           localStorage.setItem('Payload_Token', JSON.stringify(success));
           this.userPayload.next(success);
           if (success.roles[0] === 'admin') {
-            this.router.navigate(['/admin/layout']);
-          } else if (success === 'peserta') {
+            this.router.navigate(['/home']);
+          } else if (success.roles[0] === 'peserta') {
             this.router.navigate(['/pesertaLayout/peserta']);
-          } else if (success === 'lurah') {
+          } else if (success.roles[0] === 'lurah') {
             this.router.navigate(['/lurahLayout/lurah']);
-          } else if (success === 'panitia') {
+          } else if (success.roles[0] === 'panitia') {
             this.router.navigate(['/panitiaLayout/panitia']);
           }
           Swal.fire('Anda sudah login');
@@ -165,5 +165,15 @@ export class UserService implements OnInit {
         return res || {};
       })
     );
+  }
+
+  public getAllUser(): Observable<any> {
+    return this.http
+      .get<any>(`${environment.baseUrl}/admin/data-user`)
+      .pipe(map(this.respondGetAllUser));
+  }
+
+  private respondGetAllUser(response: any) {
+    return response.user;
   }
 }

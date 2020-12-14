@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { TokenService } from './../../services/token.service';
+import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from 'src/app/auth/login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +10,12 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  // events: string[] = [];
-  // opened: boolean;
   public userData: any;
-  constructor(public userService: UserService) {}
+
+  constructor(
+    public tokenService: TokenService,
+    public userService: UserService
+  ) {}
   typesOfShoes: string[] = [
     'Boots',
     'Clogs',
@@ -20,7 +25,6 @@ export class HeaderComponent implements OnInit {
   ];
 
   ngOnInit(): void {}
-
   checkRole() {
     this.userData = this.userService.userPayloadValue.roles[0];
     console.log(this.userData);

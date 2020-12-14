@@ -9,6 +9,6 @@ export interface User {
   password: string;
   birthdate: Date;
   phone: string;
-  role: Role;
+  role: Role[];
   districts: District;
 }

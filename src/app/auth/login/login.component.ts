@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -8,11 +9,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  @Input() id: number;
+  user: any;
   myForm: FormGroup;
   constructor(
-    public activeModal: NgbActiveModal,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public userService: UserService
   ) {
     this.createForm();
   }
@@ -23,14 +24,11 @@ export class LoginComponent implements OnInit {
       password: '',
     });
   }
-
-  submitForm() {
-    this.activeModal.close(this.myForm.value);
-  }
-
   ngOnInit(): void {}
 
-  closeModal() {
-    this.activeModal.close('Modal Closed');
+  signIn() {
+    this.user = this.myForm.value;
+    console.log(this.user);
+    this.userService.signIn(this.user);
   }
 }
