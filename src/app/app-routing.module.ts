@@ -1,6 +1,9 @@
+
 import { LoginComponent } from './auth/login/login.component';
+
 import { HomepageComponent } from './homepage/homepage.component';
-import { NgModule, Component } from '@angular/core';
+import { LoginComponent } from './auth/login/login.component';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
@@ -34,9 +37,17 @@ const routes: Routes = [
       import('./User-layout/lurah/lurah.module').then((m) => m.LurahModule),
   },
   {
+
+    path: 'panitia',
+    loadChildren: () =>
+      import('./User-layout/panitia/panitia.module').then(
+        (m) => m.PanitiaModule
+      ),
+  },{
     path: 'peserta',
     loadChildren: () =>
       import('./User-layout/peserta/peserta.module').then((m) => m.PesertaModule),
+
   },
 ];
 

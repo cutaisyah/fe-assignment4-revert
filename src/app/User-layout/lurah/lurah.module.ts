@@ -1,4 +1,5 @@
-import { ReactiveFormsModule } from '@angular/forms';
+import { LurahProfileComponent } from './lurah-component/lurah-profile/lurah-profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LurahComponent } from './lurah.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,12 +16,14 @@ import { DataPanitiaComponent } from './lurah-component/data-panitia/data-paniti
     CreatePanitiaComponent,
     LurahSidebarComponent,
     DataPanitiaComponent,
+    LurahProfileComponent,
   ],
   imports: [
     CommonModule,
     LurahRoutingModule,
     RouterModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
 })
 export class LurahModule {}
