@@ -1,5 +1,5 @@
 <h3 class="title mt-0 pt-3">Informasi Pengguna</h3>
-<form class="register-form" [formGroup]="lurahProfileForm" (ngSubmit)=" updateLurah()">
+<form class="register-form" [formGroup]="panitiaProfileForm" (ngSubmit)="updatePanitia()">
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Email :</label>
     <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
@@ -36,23 +36,6 @@
     <label class="col-sm-2 col-form-label">No telefon :</label>
     <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
       <input formControlName="phone" type="text" class="form-control mb-3" placeholder="No telefon" (focus)="focus=true"
-      (blur)="focus=false">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">roles :</label>
-    <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
-      <input formControlName="roles" type="text" class="form-control mb-3" placeholder="roles" (focus)="focus=true"
-      (blur)="focus=false">
-    </div>
-  </div>
-
-
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Distrik :</label>
-    <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
-      <input formControlName="districts" type="text" class="form-control mb-3" placeholder="distrik" (focus)="focus=true"
       (blur)="focus=false">
     </div>
   </div>

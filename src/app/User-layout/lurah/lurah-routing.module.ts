@@ -1,3 +1,5 @@
+import { LurahProfileComponent } from './lurah-component/lurah-profile/lurah-profile.component';
+import { GetLurahComponent } from './../admin/component/get-lurah/get-lurah.component';
 import { DataPanitiaComponent } from './lurah-component/data-panitia/data-panitia.component';
 import { CreatePanitiaComponent } from './lurah-component/create-panitia/create-panitia.component';
 import { LurahComponent } from './lurah.component';
@@ -15,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'getLurah/:id',
-        component: LurahComponent,
+        component: LurahProfileComponent,
       },
       {
         path: 'dataPanitia',

@@ -20,7 +20,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { PanitiaComponent } from './user-layout/panitia/panitia.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +28,6 @@ import { PanitiaComponent } from './user-layout/panitia/panitia.component';
     FooterComponent,
     HomepageComponent,
     LoginComponent,
-    PanitiaComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,6 @@
-import { LurahModule } from './User-layout/lurah/lurah.module';
-import { AdminModule } from './User-layout/admin/admin.module';
-import { LoginComponent } from './auth/login/login.component';
-import { TournamentModule } from './tournament/tournament.module';
-import { RegisterModule } from './auth/register/register.module';
 import { HomepageComponent } from './homepage/homepage.component';
-import { NgModule, Component } from '@angular/core';
+import { LoginComponent } from './auth/login/login.component';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
@@ -36,6 +32,13 @@ const routes: Routes = [
     path: 'lurah',
     loadChildren: () =>
       import('./User-layout/lurah/lurah.module').then((m) => m.LurahModule),
+  },
+  {
+    path: 'panitia',
+    loadChildren: () =>
+      import('./User-layout/panitia/panitia.module').then(
+        (m) => m.PanitiaModule
+      ),
   },
 ];
 
