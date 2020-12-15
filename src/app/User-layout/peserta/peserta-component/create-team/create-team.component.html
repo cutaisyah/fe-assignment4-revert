@@ -1,0 +1,15 @@
+<h3 class="title mt-0 pt-3">Buat Team</h3>
+  <form class="register-form" [formGroup]="createTeamForm" (ngSubmit)="createTeam()">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Nama Team :</label>
+      <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <input formControlName="team_name" type="text" class="form-control mb-3" placeholder="Team" (focus)="focus=true"
+        (blur)="focus=false">
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-primary margin-custom btn-block btn-custom btn-round mt-3 custom justify-content-center">Buat Team baru</button>
+    </div>
+  </form>
+

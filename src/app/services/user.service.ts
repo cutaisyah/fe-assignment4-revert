@@ -80,7 +80,7 @@ export class UserService {
           if (success.roles[0] === 'admin') {
             this.router.navigate(['/admin/layout/adminProfile/:id']);
           } else if (success.roles[0] === 'peserta') {
-            this.router.navigate(['/pesertaLayout/peserta']);
+            this.router.navigate(['/peserta/pesertaLayout/getPeserta/:id']);
           } else if (success.roles[0] === 'lurah') {
             this.router.navigate(['/lurahLayout/lurah']);
           } else if (success.roles[0] === 'panitia') {
@@ -97,6 +97,7 @@ export class UserService {
   logout() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('Payload_Token');
+    this.router.navigate(['/']);
   }
 
   updatePesertaProfile(user: User) {
