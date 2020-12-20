@@ -50,25 +50,6 @@ export class UserService {
       );
   }
 
-  signUpAdmin(user: User) {
-    return this.http
-      .post<any>(`${environment.baseUrl}/admin/signup`, user)
-      .subscribe(
-        (success) => {
-          console.log(success);
-          Swal.fire('Terimakasih sudah mendaftar sebagai admin');
-        },
-        (err) => {
-          console.log(err);
-          Swal.fire(
-            'Maaf ada yang salah dengan proses registrasi',
-            err.error.message,
-            'error'
-          );
-        }
-      );
-  }
-
   signIn(login: Login) {
     return this.http
       .post<any>(`${environment.baseUrl}/auth/signin`, login)
@@ -101,13 +82,26 @@ export class UserService {
     this.router.navigate(['/']);
   }
 
-  // updatePesertaProfile(user: User) {
-  //   return this.http
-  //     .put<any>(`${environment.baseUrl}/peserta/update/${user._id}`, user)
-  //     .subscribe((res: any) => {
-  //       Swal.fire('Berhasil memperbarui profil');
-  //     });
-  // }
+
+  // admin
+  signUpAdmin(user: User) {
+    return this.http
+      .post<any>(`${environment.baseUrl}/admin/signup`, user)
+      .subscribe(
+        (success) => {
+          console.log(success);
+          Swal.fire('Terimakasih sudah mendaftar sebagai admin');
+        },
+        (err) => {
+          console.log(err);
+          Swal.fire(
+            'Maaf ada yang salah dengan proses registrasi',
+            err.error.message,
+            'error'
+          );
+        }
+      );
+  }
 
   // updateAdminProfile(user: User) {
   //   return this.http
@@ -117,7 +111,73 @@ export class UserService {
   //     });
   // }
 
-  // getPesertarProfile(user: User): Observable<any> {
+  getAdminProfile(_id: string): Observable<any> {
+    let endpoint = environment.baseUrl + '/admin/get/' + `${_id}`;
+    return this.http.get(endpoint, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {};
+      })
+    );
+    // return this.http.get<{ _id: string, username: string, email: string, password: string, birthdate: Date }>(
+    //   environment.baseUrl + '/admin/get/' + `${_id}`
+    // );
+  }
+
+//-----------------------------
+
+  // Lurah
+  createLurah(user: User) {
+    return this.http
+      .post<any>(`${environment.baseUrl}/admin/create-lurah`, user)
+      .subscribe(
+        (success) => {
+          console.log(success);
+          Swal.fire('Lurah berhasil dibuat!');
+        },
+        (err) => {
+          console.log(err);
+          Swal.fire(
+            'Maaf ada yang salah dengan proses registrasi',
+            err.error.message,
+            'error'
+          );
+        }
+      );
+  }
+
+  //-----------------------------
+
+  // panitia
+  createPanitia(user: User) {
+    return this.http
+      .post<any>(`${environment.baseUrl}/lurah/create-panitia`, user)
+      .subscribe(
+        (success) => {
+          console.log(success);
+          Swal.fire('Panitia berhasil dibuat!');
+        },
+        (err) => {
+          console.log(err);
+          Swal.fire(
+            'Maaf ada yang salah dengan proses registrasi',
+            err.error.message,
+            'error'
+          );
+        }
+      );
+  }
+
+  //----------------------------
+
+  // updatePesertaProfile(user: User) {
+  //   return this.http
+  //     .put<any>(`${environment.baseUrl}/peserta/update/${user._id}`, user)
+  //     .subscribe((res: any) => {
+  //       Swal.fire('Berhasil memperbarui profil');
+  //     });
+  // }
+
+    // getPesertarProfile(user: User): Observable<any> {
   //   let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${user._id}`;
   //   return this.http.get(endpoint, { headers: this.headers }).pipe(
   //     map((res: Response) => {
@@ -126,14 +186,7 @@ export class UserService {
   //   );
   // }
 
-  // getAdminProfile(_id): Observable<any> {
-  //   let endpoint = environment.baseUrl + '/admin' + '/get/' + `${_id}`;
-  //   return this.http.get(endpoint, { headers: this.headers }).pipe(
-  //     map((res: Response) => {
-  //       return res || {};
-  //     })
-  //   );
-  // }
+  //-------------------------------
 
   // createTeam(team: Team) {
   //   return this.http

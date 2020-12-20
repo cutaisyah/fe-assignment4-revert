@@ -1,7 +1,7 @@
 <h3 class="title mt-0 pt-3">Informasi Pengguna</h3>
 <form class="register-form" [formGroup]="adminProfileForm" (ngSubmit)="updateAdmin()">
   <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Email :</label>
+    <label class="col-sm-2 col-form-label">Email : {{adminProfileForm.value.email}}</label>
     <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
       <input formControlName="email" type="text" class="form-control mb-3" placeholder="Email" (focus)="focus=true"
       (blur)="focus=false">
