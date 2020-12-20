@@ -20,7 +20,7 @@ export class RegisterPesertaComponent implements OnInit {
       username: new FormControl(),
       birthdate: new FormControl(),
       phone: new FormControl(),
-      roles: new FormControl(),
+      // roles: new FormControl(),
       districts: new FormControl(),
     });
   }

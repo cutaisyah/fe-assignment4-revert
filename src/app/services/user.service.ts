@@ -74,18 +74,19 @@ export class UserService {
       .post<any>(`${environment.baseUrl}/auth/signin`, login)
       .subscribe(
         (success) => {
+          console.log(success);
           localStorage.setItem('access_token', success.access_token);
           localStorage.setItem('Payload_Token', JSON.stringify(success));
           this.userPayload.next(success);
-          if (success.roles[0] === 'admin') {
-            this.router.navigate(['/admin/layout/adminProfile/:id']);
-          } else if (success.roles[0] === 'peserta') {
-            this.router.navigate(['/peserta/pesertaLayout/getPeserta/:id']);
-          } else if (success.roles[0] === 'lurah') {
-            this.router.navigate(['/lurahLayout/lurah']);
-          } else if (success.roles[0] === 'panitia') {
-            this.router.navigate(['/panitiaLayout/panitia']);
-          }
+          // if (success.roles[0] === 'admin') {
+          //   this.router.navigate(['/admin/layout/adminProfile/:id']);
+          // } else if (success.roles[0] === 'peserta') {
+          //   this.router.navigate(['/peserta/pesertaLayout/getPeserta/:id']);
+          // } else if (success.roles[0] === 'lurah') {
+          //   this.router.navigate(['/lurahLayout/lurah']);
+          // } else if (success.roles[0] === 'panitia') {
+          //   this.router.navigate(['/panitiaLayout/panitia']);
+          // }
           Swal.fire('Anda sudah login');
         },
         (err) => {
@@ -100,62 +101,62 @@ export class UserService {
     this.router.navigate(['/']);
   }
 
-  updatePesertaProfile(user: User) {
-    return this.http
-      .put<any>(`${environment.baseUrl}/peserta/update/${user._id}`, user)
-      .subscribe((res: any) => {
-        Swal.fire('Berhasil memperbarui profil');
-      });
-  }
+  // updatePesertaProfile(user: User) {
+  //   return this.http
+  //     .put<any>(`${environment.baseUrl}/peserta/update/${user._id}`, user)
+  //     .subscribe((res: any) => {
+  //       Swal.fire('Berhasil memperbarui profil');
+  //     });
+  // }
 
-  updateAdminProfile(user: User) {
-    return this.http
-      .put<any>(`${environment.baseUrl}/admin/update/${user._id}`, user)
-      .subscribe((res: any) => {
-        Swal.fire('Berhasil memperbarui profil');
-      });
-  }
+  // updateAdminProfile(user: User) {
+  //   return this.http
+  //     .put<any>(`${environment.baseUrl}/admin/update/${user._id}`, user)
+  //     .subscribe((res: any) => {
+  //       Swal.fire('Berhasil memperbarui profil');
+  //     });
+  // }
 
-  getPesertarProfile(user: User): Observable<any> {
-    let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${user._id}`;
-    return this.http.get(endpoint, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        return res || {};
-      })
-    );
-  }
+  // getPesertarProfile(user: User): Observable<any> {
+  //   let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${user._id}`;
+  //   return this.http.get(endpoint, { headers: this.headers }).pipe(
+  //     map((res: Response) => {
+  //       return res || {};
+  //     })
+  //   );
+  // }
 
-  getAdminProfile(_id): Observable<any> {
-    let endpoint = environment.baseUrl + '/admin' + '/get/' + `${_id}`;
-    return this.http.get(endpoint, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        return res || {};
-      })
-    );
-  }
+  // getAdminProfile(_id): Observable<any> {
+  //   let endpoint = environment.baseUrl + '/admin' + '/get/' + `${_id}`;
+  //   return this.http.get(endpoint, { headers: this.headers }).pipe(
+  //     map((res: Response) => {
+  //       return res || {};
+  //     })
+  //   );
+  // }
 
-  createTeam(team: Team) {
-    return this.http
-      .post(`${environment.baseUrl}/peserta/create-team`, team, {
-        headers: this.headers,
-      })
-      .subscribe((res: any) => {
-        alert('Berhasil membuat tim!');
-        localStorage.setItem('teamId', res._id);
-        // this.getTeam().subscribe((res:any)=>{
-        //   console.log(res);
-        // })
-      });
-  }
+  // createTeam(team: Team) {
+  //   return this.http
+  //     .post(`${environment.baseUrl}/peserta/create-team`, team, {
+  //       headers: this.headers,
+  //     })
+  //     .subscribe((res: any) => {
+  //       alert('Berhasil membuat tim!');
+  //       localStorage.setItem('teamId', res._id);
+  //       // this.getTeam().subscribe((res:any)=>{
+  //       //   console.log(res);
+  //       // })
+  //     });
+  // }
 
-  getUserProfile(_id): Observable<any> {
-    let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
-    return this.http.get(endpoint, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        return res || {};
-      })
-    );
-  }
+  // getUserProfile(_id): Observable<any> {
+  //   let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
+  //   return this.http.get(endpoint, { headers: this.headers }).pipe(
+  //     map((res: Response) => {
+  //       return res || {};
+  //     })
+  //   );
+  // }
 
   getAllProfile(): Observable<any> {
     let endpoint = environment.baseUrl + '/admin' + '/data-user';
