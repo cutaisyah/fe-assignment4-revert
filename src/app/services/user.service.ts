@@ -124,6 +124,10 @@ export class UserService {
     // );
   }
 
+  getAllDataLurah(){
+    
+  }
+
 //-----------------------------
 
   // Lurah
