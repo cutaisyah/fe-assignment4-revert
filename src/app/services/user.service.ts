@@ -115,6 +115,7 @@ export class UserService {
     let endpoint = environment.baseUrl + '/admin/get/' + `${_id}`;
     return this.http.get(endpoint, { headers: this.headers }).pipe(
       map((res: Response) => {
+        console.log(res)
         return res || {};
       })
     );

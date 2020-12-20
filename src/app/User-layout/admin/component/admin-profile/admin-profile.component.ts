@@ -35,23 +35,17 @@ export class AdminProfileComponent implements OnInit {
     //  if (paramMap.has('id')) {
         // this.mode = 'edit';
         this.adminId = paramMap.get('id');
+        console.log(this.adminId);
         this.userService.getAdminProfile(this.adminId).subscribe(userData => {
-          this.user = {
-            _id: userData._id, 
-            username: userData.username, 
-            email: userData.email, 
-            password: userData.password,
-            birthdate: userData.birthdate,
-            phone: userData.phone,
-            role: userData.role,
-            districts: userData.districts
-          };
+          this.user = userData.data;
+          console.log(this.user);
           this.adminProfileForm.setValue({ 
             email: this.user.email, 
             username: this.user.username,
             password: this.user.password, 
             birthdate: this.user.birthdate,
             phone: this.user.phone,
+            districts: this.user.districts.district_name
           });
         });
       // }
