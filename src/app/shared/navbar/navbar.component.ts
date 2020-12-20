@@ -28,6 +28,10 @@ export class NavbarComponent implements OnInit {
     console.log(this.userService.userPayloadValue());
   }
 
+  getiduser(){
+    
+  }
+
   openFormModal() {
     const modalRef = this.modalService.open(LoginComponent);
     modalRef.componentInstance.id = 10;
