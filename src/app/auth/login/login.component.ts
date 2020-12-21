@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
   myForm: FormGroup;
   constructor(
     public activeModal: NgbActiveModal,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
   ) {
     this.createForm();
   }
@@ -25,7 +27,14 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
-    this.activeModal.close(this.myForm.value);
+    this.spinner.show();
+ 
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.activeModal.close(this.myForm.value);
+      this.spinner.hide();
+    }, 5000);
+    
   }
 
   ngOnInit(): void {}

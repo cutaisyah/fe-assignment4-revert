@@ -14,26 +14,59 @@
             <i class="fas fa-futbol"></i> Perlombaan
           </a>
         </li>
-        <li  class="nav-item ">
+
+        <ng-container *ngIf="!this.tokenService.isLogin; then notLogin; else login">
+        </ng-container>
+        <ng-template #notLogin>
+          <li  class="nav-item ">
+            <a  class="margin-custom">
+              <button *ngIf='!this.tokenService.isLogin' class="btn btn-round btn-outline-neutral btn-sm margin-custom"
+                (click)="openFormModal()">Masuk</button>
+            </a>
+          </li>
+        </ng-template>
+        <ng-template #login>
+            <!-- <div *ngIf="this.tokenService.isLogin"> -->
+              <li  class="nav-item" >
+                <div ngbDropdown class="dropdown" placement="bottom-left">
+                  <a *ngIf='this.tokenService.isLogin' class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
+                    <i class="fas fa-user"></i> Profil
+                  </a>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-danger dropdown-menu-right">
+                    <a *ngIf='this.userData.roles === "admin"' routerLink='/admin/layout/adminProfile/5fdf4e8b8670f62818b09d02' class="dropdown-item">Admin Dashboard</a>
+                    <!-- <a  [routerLink]="['/admin/layout/adminProfile/', this.userData.id]" class="dropdown-item">Admin Dashboard</a> -->
+                    <a *ngIf='this.userData.roles === "lurah"' [routerLink]="['/lurah/lurahLayout/getLurah/', this.userData.id]" class="dropdown-item">Lurah Dashboard</a>
+                    <a *ngIf='this.userData.roles === "panitia"' [routerLink]="['/panitia/panitiaLayout/getPanitia/', this.userData.id]" class="dropdown-item">Panitia Dashboard</a>
+                    <a *ngIf='this.userData.roles === "peserta"' [routerLink]="['/peserta/pesertaLayout/getPeserta/', this.userData.id]" class="dropdown-item">Peserta dashboard</a>
+                    <a *ngIf='this.tokenService.isLogin' (click)="this.userService.logout()" class="dropdown-item">Logout</a>
+                  </div>
+                </div>
+              </li>
+            <!-- </div> -->
+        </ng-template>
+
+        <!-- <li  class="nav-item ">
           <a  class="margin-custom">
             <button *ngIf='!this.tokenService.isLogin' class="btn btn-round btn-outline-neutral btn-sm margin-custom"
               (click)="openFormModal()">Masuk</button>
           </a>
-        </li>
-        <li  class="nav-item" >
+        </li> -->
+        
+        <!-- <li  class="nav-item" >
           <div ngbDropdown class="dropdown" placement="bottom-left">
             <a *ngIf='this.tokenService.isLogin' class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
               <i class="fas fa-user"></i> Profil
             </a>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-danger dropdown-menu-right">
-              <a  routerLink='/admin/layout/adminProfile/5fdf4e8b8670f62818b09d02' class="dropdown-item">Admin Dashboard</a>
-              <a  routerLink='/lurah/lurahLayout/getLurah/:id' class="dropdown-item">Lurah Dashboard</a>
-              <a  routerLink='/panitia/panitiaLayout/getPanitia/:id' class="dropdown-item">Panitia Dashboard</a>
-              <a  routerLink='/peserta/pesertaLayout/getPeserta/:id' class="dropdown-item">Peserta dashboard</a>
-              <a (click)="this.userService.logout()" class="dropdown-item">Logout</a>
+              <a *ngIf='this.userData.roles === "admin"' routerLink='/admin/layout/adminProfile/5fdf4e8b8670f62818b09d02' class="dropdown-item">Admin Dashboard</a> -->
+              <!-- <a  [routerLink]="['/admin/layout/adminProfile/', this.userData.id]" class="dropdown-item">Admin Dashboard</a> -->
+              <!-- <a *ngIf='this.userData.roles === "lurah"' [routerLink]="['/lurah/lurahLayout/getLurah/', this.userData.id]" class="dropdown-item">Lurah Dashboard</a>
+              <a *ngIf='this.userData.roles === "panitia"' [routerLink]="['/panitia/panitiaLayout/getPanitia/', this.userData.id]" class="dropdown-item">Panitia Dashboard</a>
+              <a *ngIf='this.userData.roles === "peserta"' [routerLink]="['/peserta/pesertaLayout/getPeserta/', this.userData.id]" class="dropdown-item">Peserta dashboard</a>
+              <a *ngIf='this.tokenService.isLogin' (click)="this.userService.logout()" class="dropdown-item">Logout</a>
             </div>
           </div>
-        </li>
+        </li> -->
       </ul>
       <!-- <ul class="navbar-nav mr-0">
         <li class="nav-item">

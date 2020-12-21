@@ -20,15 +20,19 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.checkAuth();
+    
+
+  }
+
+  async checkAuth() {
     this.userData = this.userService.userPayloadValue;
+    console.log(this.userData);
+    // this.userService.userPayloadValue();
+    // console.log(this.userService.userPayloadValue);
   }
 
-  checkAuth() {
-    this.userService.userPayloadValue();
-    console.log(this.userService.userPayloadValue());
-  }
-
-  getiduser(){
+  getUserId(){
     
   }
 

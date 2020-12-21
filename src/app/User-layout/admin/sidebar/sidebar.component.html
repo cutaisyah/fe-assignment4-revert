@@ -6,7 +6,7 @@
 
   <ul class="list-unstyled">
     <li class="m-3">
-      <a routerLink='adminProfile/5fdf4e8b8670f62818b09d02'>Profil admin</a>
+      <a [routerLink]="['adminProfile/', this.userData.id]">Profil admin</a>
     </li>
     <li class="m-3">
       <a routerLink='createLurah'>Membuat lurah</a>
