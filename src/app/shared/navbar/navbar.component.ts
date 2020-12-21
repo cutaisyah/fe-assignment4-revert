@@ -25,9 +25,10 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  async checkAuth() {
+  checkAuth() {
+    
     this.userData = this.userService.userPayloadValue;
-    console.log(this.userData);
+    // console.log(this.userData);
     // this.userService.userPayloadValue();
     // console.log(this.userService.userPayloadValue);
   }
