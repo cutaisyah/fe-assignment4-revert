@@ -12,6 +12,7 @@ import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 import { UpdateUser, UpdateUserPassword, User } from '../models/User';
+import { Tournament } from '../models/Tournament';
 
 @Injectable({
   providedIn: 'root',
@@ -135,11 +136,11 @@ export class UserService {
     // );
   }
 
-  getAllDataLurah(){
-    
+  getAllDataLurah() {
+
   }
 
-//-----------------------------
+  //-----------------------------
 
   // Lurah
   createLurah(user: User) {
@@ -187,16 +188,16 @@ export class UserService {
 
   updatePesertaProfile(user: UpdateUser) {
     let endpoint = `${environment.baseUrl}/peserta/update`;
-    return this.http.put<any>(endpoint, user).pipe(map(result =>  true))
+    return this.http.put<any>(endpoint, user).pipe(map(result => true))
   }
 
   updatePesertaPassword(password: UpdateUserPassword) {
     let endpoint = `${environment.baseUrl}/peserta/update-password`;
-    return this.http.put<any>(endpoint, password).pipe(map(result =>  true))
+    return this.http.put<any>(endpoint, password).pipe(map(result => true))
   }
 
 
-    getPesertaProfile(_id: string): Observable<any> {
+  getPesertaProfile(_id: string): Observable<any> {
     let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
     return this.http.get(endpoint, { headers: this.headers }).pipe(
       map((res: Response) => {
@@ -207,6 +208,27 @@ export class UserService {
   }
 
   //-------------------------------
+
+  createTournament(tournament_name: string, permalink: string, categories: string, total_participant: string, age_minimum: string, description: string, image: File ) {
+    let endpoint = environment.baseUrl + '/panitia' + '/create-tournament/';
+    const tournamentData = new FormData();
+    tournamentData.append("tournament_name", tournament_name);
+    tournamentData.append("permalink", permalink);
+    tournamentData.append("categories", categories);
+    tournamentData.append("total_participant", total_participant);
+    tournamentData.append("age_minimum", age_minimum);
+    tournamentData.append("description", description);
+    tournamentData.append("image", image, tournament_name);
+    this.http
+      .post<{ message: string; tournament: Tournament }>(
+        endpoint,
+        tournamentData
+      )
+      .subscribe(responseData => {
+        console.log(responseData)
+        // this.router.navigate(["/"]);
+      });
+  }
 
   // createTeam(team: Team) {
   //   return this.http

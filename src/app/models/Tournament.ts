@@ -3,12 +3,13 @@ export interface Tournament {
   id: number;
   idPanitia: User;
   tournament_name: string;
-  image: string;
+  permalink: string;
+  categories: string;
   total_participant: number;
   age_minimum: number;
   description: string;
+  image: string;
   // is_started: number
-  // categories: string
   // id_prize: string
   // first_winner: string
   // second_winner: string
