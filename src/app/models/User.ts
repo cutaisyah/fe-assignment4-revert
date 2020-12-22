@@ -11,4 +11,15 @@ export interface User {
   phone: string;
   role: Role;
   districts: District;
+  old_password: string;
 }
+
+export class UpdateUser {
+  username: string
+}
+
+export class UpdateUserPassword {
+  password: string;
+  old_password: string;
+}
+

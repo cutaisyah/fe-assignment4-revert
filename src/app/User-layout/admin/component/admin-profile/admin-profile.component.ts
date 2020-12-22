@@ -15,7 +15,6 @@ export class AdminProfileComponent implements OnInit {
   focus1;
   user: User;
   adminProfileForm: FormGroup;
-  private mode = "create";
   private adminId: string;
   constructor(public fb: FormBuilder, public route: ActivatedRoute, public userService: UserService) {
     this.adminProfileForm = new FormGroup({

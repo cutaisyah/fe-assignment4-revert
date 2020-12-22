@@ -3,6 +3,7 @@ import { TokenService } from './../../services/token.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from 'src/app/auth/login/login.component';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-navbar',
@@ -21,12 +22,17 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkAuth();
-    
-
+    // this.userService.userPayloadValue;
   }
 
   checkAuth() {
-    
+    // if(this.tokenService.isLogin)
+    // this.userService.userPayloadValue.subscribe(userData => {
+    //   this.userData = userData.data;
+    //   console.log("dinavbar", this.userData)
+    // });
+
+
     this.userData = this.userService.userPayloadValue;
     // console.log(this.userData);
     // this.userService.userPayloadValue();

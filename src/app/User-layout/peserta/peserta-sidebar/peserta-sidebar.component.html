@@ -6,7 +6,7 @@
 
   <ul class="list-unstyled">
     <li class="m-3">
-      <a routerLink='getPeserta/:id'>Profil Peserta</a>
+      <a [routerLink]="['getPeserta/', this.userData?.id]">Profil Peserta</a>
     </li>
     <li class="m-3">
       <a routerLink='createTeam'>Membuat Team</a>

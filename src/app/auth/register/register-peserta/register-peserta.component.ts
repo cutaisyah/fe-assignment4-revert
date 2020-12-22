@@ -1,6 +1,6 @@
 import { UserService } from './../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-peserta',
@@ -15,13 +15,12 @@ export class RegisterPesertaComponent implements OnInit {
   signUpForm: FormGroup;
   constructor(public fb: FormBuilder, public userService: UserService) {
     this.signUpForm = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl(),
-      username: new FormControl(),
-      birthdate: new FormControl(),
-      phone: new FormControl(),
-      // roles: new FormControl(),
-      districts: new FormControl(),
+      username: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
+      email: new FormControl(null, { validators: [Validators.required,] }),
+      password: new FormControl(null, { validators: [Validators.required, Validators.minLength(6)] }),
+      birthdate: new FormControl(null, { validators: [Validators.required]}),
+      phone: new FormControl(null, { validators: [Validators.required] }),
+      districts: new FormControl(null, { validators: [Validators.required] }),
     });
   }
 

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
-import { User } from '../models/User';
+import { UpdateUser, UpdateUserPassword, User } from '../models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -25,13 +25,19 @@ export class UserService {
     this.userPayload = new BehaviorSubject<any>(
       JSON.parse(localStorage.getItem('Payload_Token'))
     );
-    console.log(this.userPayload);
+    // console.log(this.userPayload);
     this.currentUserValue = this.userPayload.asObservable();
   }
 
   get userPayloadValue(): any {
+    // let endpoint = environment.baseUrl + '/auth/userid';
+    // return this.http.get(endpoint).pipe(
+    //   map((res: Response) => {
+    //     console.log(res);
+    //     return res || {};
+    //   })
+    // );
     return this.userPayload.value;
-    //get ke backend
   }
 
   signUp(user: User) {
@@ -42,9 +48,10 @@ export class UserService {
           Swal.fire('Terimakasih sudah mendaftar');
         },
         (err) => {
+          console.log(err);
           Swal.fire(
             'Maaf ada yang salah dengan proses registrasi',
-            err.error.message,
+            err.message,
             'error'
           );
         }
@@ -56,7 +63,7 @@ export class UserService {
       .post<any>(`${environment.baseUrl}/auth/signin`, login)
       .subscribe(
         (success) => {
-          console.log(success);
+          // console.log(success);
           localStorage.setItem('access_token', success.access_token);
           localStorage.setItem('Payload_Token', JSON.stringify(success));
           this.userPayload.next(success);
@@ -80,6 +87,9 @@ export class UserService {
   logout() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('Payload_Token');
+    // setTimeout(() => {
+    // window.location.reload(); 
+    // }, 1000);
     this.router.navigate(['/']);
   }
 
@@ -144,7 +154,7 @@ export class UserService {
           console.log(err);
           Swal.fire(
             'Maaf ada yang salah dengan proses registrasi',
-            err.error.message,
+            err.message,
             'error'
           );
         }
@@ -166,7 +176,7 @@ export class UserService {
           console.log(err);
           Swal.fire(
             'Maaf ada yang salah dengan proses registrasi',
-            err.error.message,
+            err.message,
             'error'
           );
         }
@@ -175,22 +185,26 @@ export class UserService {
 
   //----------------------------
 
-  // updatePesertaProfile(user: User) {
-  //   return this.http
-  //     .put<any>(`${environment.baseUrl}/peserta/update/${user._id}`, user)
-  //     .subscribe((res: any) => {
-  //       Swal.fire('Berhasil memperbarui profil');
-  //     });
-  // }
+  updatePesertaProfile(user: UpdateUser) {
+    let endpoint = `${environment.baseUrl}/peserta/update`;
+    return this.http.put<any>(endpoint, user).pipe(map(result =>  true))
+  }
 
-    // getPesertarProfile(user: User): Observable<any> {
-  //   let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${user._id}`;
-  //   return this.http.get(endpoint, { headers: this.headers }).pipe(
-  //     map((res: Response) => {
-  //       return res || {};
-  //     })
-  //   );
-  // }
+  updatePesertaPassword(password: UpdateUserPassword) {
+    let endpoint = `${environment.baseUrl}/peserta/update-password`;
+    return this.http.put<any>(endpoint, password).pipe(map(result =>  true))
+  }
+
+
+    getPesertaProfile(_id: string): Observable<any> {
+    let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
+    return this.http.get(endpoint, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        console.log(res)
+        return res || {};
+      })
+    );
+  }
 
   //-------------------------------
 
