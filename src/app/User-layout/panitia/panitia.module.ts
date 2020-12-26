@@ -11,6 +11,8 @@ import { CreateTournamentComponent } from './component/create-tournament/create-
 import { UpdateTournamentComponent } from './component/update-tournament/update-tournament.component';
 import { CreateWinnerComponent } from './component/create-winner/create-winner.component';
 import { CreatePrizesComponent } from './component/create-prizes/create-prizes.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { CreatePrizesComponent } from './component/create-prizes/create-prizes.c
     CommonModule,
     PanitiaRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    AngularEditorModule
   ]
 })
 export class PanitiaModule {}
