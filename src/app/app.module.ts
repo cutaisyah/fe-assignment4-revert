@@ -46,7 +46,6 @@ import { from } from 'rxjs';
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule,
-
     BrowserAnimationsModule
   ],
   providers: [

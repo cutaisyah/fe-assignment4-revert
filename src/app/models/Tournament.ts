@@ -1,18 +1,24 @@
 import { User } from './User';
+import { Game } from './Game';
+import { District } from './District';
+import { IsStarted } from './IsStarted';
+import { CategoriesTournament } from './CategoriesTournament';
+
 export interface Tournament {
   id: number;
   idPanitia: User;
   tournament_name: string;
   permalink: string;
-  categories: string;
-  total_participant: number;
+  categories: CategoriesTournament;
+  register_total_participant: number;
+  max_total_participant: number;
   age_minimum: number;
   description: string;
+  is_started: IsStarted;
+  districts: District;
   image: string;
-  // is_started: number
-  // id_prize: string
-  // first_winner: string
-  // second_winner: string
-  // third_winner: string
-  // districts: string
+  first_prize: string,  
+  second_prize: string,  
+  third_prize: string, 
+  game: Game,
 }

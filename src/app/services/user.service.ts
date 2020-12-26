@@ -209,16 +209,21 @@ export class UserService {
 
   //-------------------------------
 
-  createTournament(tournament_name: string, permalink: string, categories: string, total_participant: string, age_minimum: string, description: string, image: File ) {
+  createTournament(tournament_name: string, permalink: string, categories: string, max_total_participant: string, age_minimum: string, description: string, image: File,  first_prize: string, second_prize: string, third_prize: string, game: string) {
     let endpoint = environment.baseUrl + '/panitia' + '/create-tournament/';
     const tournamentData = new FormData();
     tournamentData.append("tournament_name", tournament_name);
     tournamentData.append("permalink", permalink);
     tournamentData.append("categories", categories);
-    tournamentData.append("total_participant", total_participant);
+    tournamentData.append("max_total_participant", max_total_participant);
     tournamentData.append("age_minimum", age_minimum);
     tournamentData.append("description", description);
-    tournamentData.append("image", image, tournament_name);
+    tournamentData.append("image", image);
+    tournamentData.append("first_prize", first_prize);
+    tournamentData.append("second_prize", second_prize);
+    tournamentData.append("third_prize", third_prize);
+    tournamentData.append("game", game);
+
     this.http
       .post<{ message: string; tournament: Tournament }>(
         endpoint,

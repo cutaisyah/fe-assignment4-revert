@@ -1,4 +1,4 @@
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PanitiaComponent } from './panitia.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,7 @@ import { UpdateTournamentComponent } from './component/update-tournament/update-
 import { CreateWinnerComponent } from './component/create-winner/create-winner.component';
 import { CreatePrizesComponent } from './component/create-prizes/create-prizes.component';
 
+
 @NgModule({
   declarations: [
     PanitiaComponent,
@@ -23,6 +24,11 @@ import { CreatePrizesComponent } from './component/create-prizes/create-prizes.c
     CreateWinnerComponent,
     CreatePrizesComponent,
   ],
-  imports: [CommonModule, PanitiaRoutingModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    PanitiaRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
+  ]
 })
 export class PanitiaModule {}

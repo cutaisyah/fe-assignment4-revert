@@ -15,15 +15,20 @@ export class CreateTournamentComponent implements OnInit {
   createTournamentForm: FormGroup;
   imagePreview: string;
   isImageError = false;
+
   constructor(public userService: UserService) {
     this.createTournamentForm = new FormGroup({
       tournament_name: new FormControl(null, { validators: [Validators.required] }),
       permalink: new FormControl(null, { validators: [Validators.required] }),
       categories: new FormControl(null, { validators: [Validators.required] }),
-      total_participant: new FormControl(null, { validators: [Validators.required] }),
+      max_total_participant: new FormControl(null, { validators: [Validators.required] }),
       age_minimum: new FormControl(null, { validators: [Validators.required] }),
       description: new FormControl(null, { validators: [Validators.required] }),
-      image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] })
+      image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] }),
+      first_prize:new FormControl(null, { validators: [Validators.required] }),  
+      second_prize:new FormControl(null, { validators: [Validators.required] }),  
+      third_prize: new FormControl(null, { validators: [Validators.required] }), 
+      game: new FormControl(null, { validators: [Validators.required] }),
     });
   }
 
@@ -51,11 +56,16 @@ export class CreateTournamentComponent implements OnInit {
         this.createTournamentForm.value.tournament_name,
         this.createTournamentForm.value.permalink,
         this.createTournamentForm.value.categories,
-        this.createTournamentForm.value.total_participant,
+        this.createTournamentForm.value.max_total_participant,
         this.createTournamentForm.value.age_minimum,
         this.createTournamentForm.value.description,
         this.createTournamentForm.value.image,
+        this.createTournamentForm.value.first_prize,
+        this.createTournamentForm.value.second_prize,
+        this.createTournamentForm.value.third_prize,
+        this.createTournamentForm.value.game,
       );
     this.createTournamentForm.reset();
   }
+
 }
