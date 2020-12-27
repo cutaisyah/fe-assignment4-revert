@@ -12,7 +12,11 @@ import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 import { UpdateUser, UpdateUserPassword, User } from '../models/User';
-import { Tournament } from '../models/Tournament';
+import { Tournament, UpdateIsStarted, UpdateTournament } from '../models/Tournament';
+
+import jwt_decode from "jwt-decode";
+import { TokenService } from './token.service';
+import { IsStarted } from '../models/IsStarted';
 
 @Injectable({
   providedIn: 'root',
@@ -20,24 +24,19 @@ import { Tournament } from '../models/Tournament';
 export class UserService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   private userPayload: BehaviorSubject<any>;
-  public currentUserValue: Observable<any>;
+  // public currentUserValue: Observable<any>;
+  public authDecoded: any;
+  token;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, public tokenService: TokenService) {
+    this.token = this.tokenService.getToken();
+    this.authDecoded = jwt_decode(this.token);
     this.userPayload = new BehaviorSubject<any>(
-      JSON.parse(localStorage.getItem('Payload_Token'))
+      this.authDecoded
     );
-    // console.log(this.userPayload);
-    this.currentUserValue = this.userPayload.asObservable();
   }
 
   get userPayloadValue(): any {
-    // let endpoint = environment.baseUrl + '/auth/userid';
-    // return this.http.get(endpoint).pipe(
-    //   map((res: Response) => {
-    //     console.log(res);
-    //     return res || {};
-    //   })
-    // );
     return this.userPayload.value;
   }
 
@@ -68,7 +67,7 @@ export class UserService {
           localStorage.setItem('access_token', success.access_token);
           // localStorage.setItem('Payload_Token', JSON.stringify(success));
           this.userPayload.next(success);
-          console.log(success);
+          // console.log(success);
           if (success.roles === 'admin') {
             this.router.navigate(['/admin/layout/adminProfile/' + success.id]);
           } else if (success.roles === 'peserta') {
@@ -76,7 +75,7 @@ export class UserService {
           } else if (success.roles === 'lurah') {
             this.router.navigate(['/lurah/lurahLayout/getLurah/'+ success.id]);
           } else if (success.roles === 'panitia') {
-            this.router.navigate(['/panitia/panitiaLayout/getPanitia' + success.id]);
+            this.router.navigate(['/panitia/panitiaLayout/getPanitia/' + success.id]);
           }
           Swal.fire('Anda sudah login');
         },
@@ -94,7 +93,6 @@ export class UserService {
     // }, 1000);
     this.router.navigate(['/']);
   }
-
 
   // admin
   signUpAdmin(user: User) {
@@ -234,6 +232,71 @@ export class UserService {
         console.log(responseData)
         // this.router.navigate(["/"]);
       });
+  }
+
+  getAllDataTournamentBasedOnDistrict(): Observable<any> {
+    let endpoint = environment.baseUrl + '/panitia/allbaseondistrict';
+    return this.http.get(endpoint, { headers: this.headers });
+  }
+
+  changeTournamentStatusOngoing(_id: string){
+    let tournamentData: UpdateIsStarted;
+    let endpoint = environment.baseUrl + '/panitia/edit-status-tournament-to-ongoing/' + `${_id}`
+    tournamentData = {
+      _id: _id,
+      is_started: "ongoing",
+    };
+    
+    this.http
+      .put(endpoint, tournamentData)
+      .subscribe(response => {
+        this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
+      });
+  }
+
+  changeTournamentStatusCompleted(_id: string){
+    let tournamentData: UpdateIsStarted;
+    let endpoint = environment.baseUrl + '/panitia/edit-status-tournament-to-completed/' + `${_id}`
+    tournamentData = {
+      _id: _id,
+      is_started: "completed",
+    };
+    
+    this.http
+      .put(endpoint, tournamentData)
+      .subscribe(response => {
+        this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
+      });
+  }
+
+  updateTournament(_id: string, categories: string, max_total_participant: number, age_minimum: number, description: string, first_prize: string, second_prize: string, third_prize: string){
+    let endpoint = `${environment.baseUrl}/panitia/edit-tournament/${_id}`;
+    let tournamentData: UpdateTournament;
+    tournamentData = {
+      _id: _id,
+      categories: categories,
+      max_total_participant: max_total_participant,
+      age_minimum: age_minimum,
+      description: description,
+      first_prize: first_prize,
+      second_prize: second_prize,
+      third_prize: third_prize,
+    };
+    this.http.put<any>(endpoint, tournamentData)
+    .subscribe(response => {
+      // this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
+    });
+    
+  }
+
+  getTournamentById(_id: string): Observable<any>{
+    let endpoint = environment.baseUrl + '/panitia/findtournamentbyid/' + `${_id}`;
+    return this.http.get(endpoint, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        // console.log("respon gettournamentbyid:", res)
+        return res || {};
+      })
+    );
   }
 
   // createTeam(team: Team) {

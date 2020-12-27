@@ -16,7 +16,7 @@ export class AdminProfileComponent implements OnInit {
   user: User;
   adminProfileForm: FormGroup;
   private adminId: string;
-  constructor(public fb: FormBuilder, public route: ActivatedRoute, public userService: UserService) {
+  constructor(public route: ActivatedRoute, public userService: UserService) {
     this.adminProfileForm = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
@@ -34,7 +34,7 @@ export class AdminProfileComponent implements OnInit {
     //  if (paramMap.has('id')) {
         // this.mode = 'edit';
         this.adminId = paramMap.get('id');
-        console.log(this.adminId);
+        
         this.userService.getAdminProfile(this.adminId).subscribe(userData => {
           this.user = userData.data;
           console.log(this.user);

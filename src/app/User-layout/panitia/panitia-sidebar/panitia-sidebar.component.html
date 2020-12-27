@@ -6,13 +6,16 @@
 
   <ul class="list-unstyled">
     <li class="m-3">
+      <a [routerLink]="['getPanitia/', userData?.id]">Profil Panitia</a>
+    </li>
+    <li class="m-3">
       <a routerLink='createTournament'>Membuat Tournamen</a>
     </li>
     <li class="m-3">
-      <a routerLink='getPanitia/:id'>Profil panitia</a>
+      <a routerLink='dataPeserta'>Data Peserta</a>
     </li>
     <li class="m-3">
-      <a routerLink='dataPeserta'>Daftar peserta</a>
+      <a routerLink='dataTournament'>Data Tournament</a>
     </li>
   </ul>
 </div>

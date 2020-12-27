@@ -9,7 +9,7 @@
       <a routerLink='createPanitia'>Membuat Panitia</a>
     </li>
     <li class="m-3">
-      <a routerLink='getLurah/:id'>Profil lurah</a>
+      <a [routerLink]="['getLurah/', userData?.id]">Profil lurah</a>
     </li>
     <li class="m-3">
       <a routerLink='dataPanitia'>Data panitia</a>

@@ -1,0 +1,43 @@
+<table style="width:100%">
+  
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Categories</th>
+      <th>Tipe Game</th>
+      <!-- <th>register_total_participant</th>
+      <th>max_total_participant</th>
+      <th>age_minimum</th> -->
+      <!-- <th>description</th> -->
+      <th>Districts</th>
+      <th>Status</th>
+      <th>Change Status</th>
+      <th>Edit Data</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tournament of allTournament; let i = index" >
+    <td>{{i+1}}</td>
+    <td>{{tournament.tournament_name}}</td>
+    <td>{{tournament.categories}}</td>
+    <td>{{tournament.game}}</td>
+    <td>{{tournament.districts.district_name}}</td>
+    <td>{{tournament.is_started}}</td>
+    <td><button type="button" class="btn btn-success" aria-label="Change"
+      [routerLink]="['/panitia/panitiaLayout/dataTournament/', tournament._id ]">change
+     </button></td>
+    <td><button type="button" class="btn btn-success" aria-label="Edit"
+      [routerLink]="['/panitia/panitiaLayout/dataTournament/edit', tournament._id ]" [disabled]="tournament.is_started !== 'pending'">edit
+     </button></td>
+  </tr>
+</tbody>
+  <!-- <tr>
+    <td>2</td>
+    <td>basket01</td>
+    <td>free for all</td>
+    <td>basket</td>
+    <td>P. PANGGANG</td>
+    <td>pending</td>
+  </tr> -->
+</table> 

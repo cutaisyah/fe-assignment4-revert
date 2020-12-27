@@ -13,7 +13,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = this.userService.userPayloadValue;
-    console.log(this.userData);
+    // console.log(this.userData);
   }
 
 }

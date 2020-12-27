@@ -5,7 +5,7 @@ import { IsStarted } from './IsStarted';
 import { CategoriesTournament } from './CategoriesTournament';
 
 export interface Tournament {
-  id: number;
+  _id: string;
   idPanitia: User;
   tournament_name: string;
   permalink: string;
@@ -17,8 +17,24 @@ export interface Tournament {
   is_started: IsStarted;
   districts: District;
   image: string;
-  first_prize: string,  
-  second_prize: string,  
-  third_prize: string, 
-  game: Game,
+  first_prize: string;  
+  second_prize: string;  
+  third_prize: string; 
+  game: Game;
+}
+
+export interface UpdateTournament{
+  _id: string;
+  categories: string;
+  max_total_participant: number;
+  age_minimum: number;
+  description: string;
+  first_prize: string;  
+  second_prize: string;  
+  third_prize: string; 
+}
+
+export class UpdateIsStarted {
+  _id: string;
+  is_started: string;
 }

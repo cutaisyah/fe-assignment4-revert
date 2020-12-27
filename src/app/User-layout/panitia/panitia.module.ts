@@ -13,6 +13,9 @@ import { CreateWinnerComponent } from './component/create-winner/create-winner.c
 import { CreatePrizesComponent } from './component/create-prizes/create-prizes.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { HttpClientModule } from '@angular/common/http';
+import { DataTournamentComponent } from './component/data-tournament/data-tournament.component';
+import { ChangeDataTournamentComponent } from './component/change-data-tournament/change-data-tournament.component';
+import { ChangeStatusTournamentComponent } from './component/change-status-tournament/change-status-tournament.component';
 
 
 @NgModule({
@@ -21,10 +24,13 @@ import { HttpClientModule } from '@angular/common/http';
     PanitiaSidebarComponent,
     PanitiaProfileComponent,
     DataPesertaComponent,
+    DataTournamentComponent,
     CreateTournamentComponent,
     UpdateTournamentComponent,
     CreateWinnerComponent,
     CreatePrizesComponent,
+    ChangeStatusTournamentComponent,
+    ChangeDataTournamentComponent,
   ],
   imports: [
     CommonModule,
