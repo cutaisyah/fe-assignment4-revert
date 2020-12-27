@@ -5,6 +5,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from 'src/app/auth/login/login.component';
 import { User } from 'src/app/models/User';
 
+import jwt_decode from "jwt-decode";
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -12,35 +14,32 @@ import { User } from 'src/app/models/User';
 })
 export class NavbarComponent implements OnInit {
   public isMenuCollapsed = true;
-  public userData: any;
+  public authDecoded: any;
+  token;
 
   constructor(
     private modalService: NgbModal,
     public userService: UserService,
     public tokenService: TokenService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.checkAuth();
-    // this.userService.userPayloadValue;
   }
 
   checkAuth() {
-    // if(this.tokenService.isLogin)
-    // this.userService.userPayloadValue.subscribe(userData => {
-    //   this.userData = userData.data;
-    //   console.log("dinavbar", this.userData)
-    // });
-
-
-    this.userData = this.userService.userPayloadValue;
-    // console.log(this.userData);
-    // this.userService.userPayloadValue();
-    // console.log(this.userService.userPayloadValue);
+    // this.userData = this.userService.userPayloadValue;
+    // console.log(this.tokenService.isLogin);
+    if (this.tokenService.isLogin) {
+      this.token = this.tokenService.getToken();
+      this.authDecoded = jwt_decode(this.token);
+    }else{
+      console.log(`Status Login: ${this.tokenService.isLogin}`);
+    }
   }
 
-  getUserId(){
-    
+  getUserId() {
+
   }
 
   openFormModal() {
