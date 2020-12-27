@@ -66,17 +66,18 @@ export class UserService {
         (success) => {
           // console.log(success);
           localStorage.setItem('access_token', success.access_token);
-          localStorage.setItem('Payload_Token', JSON.stringify(success));
+          // localStorage.setItem('Payload_Token', JSON.stringify(success));
           this.userPayload.next(success);
-          // if (success.roles[0] === 'admin') {
-          //   this.router.navigate(['/admin/layout/adminProfile/:id']);
-          // } else if (success.roles[0] === 'peserta') {
-          //   this.router.navigate(['/peserta/pesertaLayout/getPeserta/:id']);
-          // } else if (success.roles[0] === 'lurah') {
-          //   this.router.navigate(['/lurahLayout/lurah']);
-          // } else if (success.roles[0] === 'panitia') {
-          //   this.router.navigate(['/panitiaLayout/panitia']);
-          // }
+          console.log(success);
+          if (success.roles === 'admin') {
+            this.router.navigate(['/admin/layout/adminProfile/' + success.id]);
+          } else if (success.roles === 'peserta') {
+            this.router.navigate(['/peserta/pesertaLayout/getPeserta/' + success.id]);
+          } else if (success.roles === 'lurah') {
+            this.router.navigate(['/lurah/lurahLayout/getLurah/'+ success.id]);
+          } else if (success.roles === 'panitia') {
+            this.router.navigate(['/panitia/panitiaLayout/getPanitia' + success.id]);
+          }
           Swal.fire('Anda sudah login');
         },
         (err) => {
@@ -87,7 +88,7 @@ export class UserService {
 
   logout() {
     localStorage.removeItem('access_token');
-    localStorage.removeItem('Payload_Token');
+    // localStorage.removeItem('Payload_Token');
     // setTimeout(() => {
     // window.location.reload(); 
     // }, 1000);
