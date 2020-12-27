@@ -35,9 +35,7 @@ export class ChangeDataTournamentComponent implements OnInit {
       this.tournamentId = paramMap.get('tournamentId');
       console.log(this.tournamentId);
       this.userService.getTournamentById(this.tournamentId).subscribe(tournamentData => {
-        console.log(tournamentData);
         this.tournament = tournamentData.tournament;
-        console.log("DATA TOURNAMENT", this.tournament);
         this.updateTournamentForm.setValue({ 
           tournament_name: this.tournament.tournament_name, 
           categories: this.tournament.categories,

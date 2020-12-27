@@ -284,7 +284,7 @@ export class UserService {
     };
     this.http.put<any>(endpoint, tournamentData)
     .subscribe(response => {
-      // this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
+      this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
     });
     
   }
