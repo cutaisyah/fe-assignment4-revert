@@ -30,7 +30,7 @@ const routes: Routes = [
         component: FilterAvailableComponent,
       },
       {
-        path: 'detail/:id',
+        path: 'detail/:permalink',
         component: TournamentDetailComponent,
       },
       

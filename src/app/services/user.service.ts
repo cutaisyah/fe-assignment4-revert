@@ -399,6 +399,11 @@ export class UserService {
     return this.http.get(endpoint, { headers: this.headers });
   }
 
+  getDetailTournament(permalink: string): Observable<any>{
+    let endpoint = environment.baseUrl + '/tournament/detail/'+`${permalink}`;
+    return this.http.get(endpoint, { headers: this.headers });
+  }
+
   //===========================================================
 
   //--------------------------- other -----------------------------
