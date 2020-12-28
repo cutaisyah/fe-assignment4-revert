@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
-import { UpdatePanitia, UpdateUser, UpdateUserPassword, User } from '../models/User';
+import { UpdateApproved, UpdatePanitia, UpdateUser, UpdateUserPassword, User } from '../models/User';
 import { Tournament, UpdateIsStarted, UpdateTournament } from '../models/Tournament';
 
 import jwt_decode from "jwt-decode";
@@ -325,6 +325,27 @@ export class UserService {
       })
     );
   }
+
+  getDataPesertaRegistered(): Observable<any> {
+    let endpoint = environment.baseUrl + '/panitia/data-peserta';
+    return this.http.get(endpoint, { headers: this.headers });
+  }
+
+  changeStatusApproved(_id: string){
+    let usertData: UpdateApproved;
+    let endpoint = environment.baseUrl + '/panitia/edit-status-to-approved/' + `${_id}`
+    usertData = {
+      _id: _id
+    };
+    
+    this.http
+      .put(endpoint, usertData)
+      .subscribe(response => {
+        this.router.navigate(["/panitia/panitiaLayout/dataPeserta"]);
+      });
+  }
+
+  //==========================================
 
   // createTeam(team: Team) {
   //   return this.http

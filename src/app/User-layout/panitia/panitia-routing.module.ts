@@ -8,6 +8,7 @@ import { DataTournamentComponent } from './component/data-tournament/data-tourna
 import { CommonModule } from '@angular/common';
 import { ChangeStatusTournamentComponent } from './component/change-status-tournament/change-status-tournament.component';
 import { ChangeDataTournamentComponent } from './component/change-data-tournament/change-data-tournament.component';
+import { ChangeStatusApprovedComponent } from './component/change-status-approved/change-status-approved.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         path: 'dataPeserta',
         component: DataPesertaComponent,
+      },
+      {
+        path: 'dataPeserta/edit/:userId',
+        component: ChangeStatusApprovedComponent,
       },
       {
         path: 'dataTournament',

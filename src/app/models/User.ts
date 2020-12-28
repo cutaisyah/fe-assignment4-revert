@@ -12,6 +12,7 @@ export interface User {
   role: Role;
   districts: District;
   old_password: string;
+  tournament_approved: string;
 }
 
 
@@ -31,4 +32,8 @@ export interface UpdatePanitia {
   password: string;
   birthdate: string;
   phone: string;
+}
+
+export interface UpdateApproved{
+  _id: string;
 }

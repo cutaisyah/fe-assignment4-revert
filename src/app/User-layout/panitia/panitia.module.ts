@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataTournamentComponent } from './component/data-tournament/data-tournament.component';
 import { ChangeDataTournamentComponent } from './component/change-data-tournament/change-data-tournament.component';
 import { ChangeStatusTournamentComponent } from './component/change-status-tournament/change-status-tournament.component';
+import { ChangeStatusApprovedComponent } from './component/change-status-approved/change-status-approved.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ChangeStatusTournamentComponent } from './component/change-status-tourn
     CreatePrizesComponent,
     ChangeStatusTournamentComponent,
     ChangeDataTournamentComponent,
+    ChangeStatusApprovedComponent,
   ],
   imports: [
     CommonModule,
