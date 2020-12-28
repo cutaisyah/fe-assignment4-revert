@@ -1,16 +1,24 @@
-import { TournamentDetailComponent } from './tournament-detail/tournament-detail.component';
-import { TournamentListComponent } from './tournament-list/tournament-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { TournamentDetailComponent } from './component/tournament-detail/tournament-detail.component';
+import { TournamentListComponent } from './component/tournament-list/tournament-list.component';
+import { TournamentComponent } from './tournament.component';
+
 const routes: Routes = [
   {
-    path: 'list',
-    component: TournamentListComponent,
-  },
-  {
-    path: 'detail/:id',
-    component: TournamentDetailComponent,
+    path: '',
+    component: TournamentComponent,
+    children: [
+      {
+        path: 'list',
+        component: TournamentListComponent,
+      },
+      {
+        path: 'detail/:id',
+        component: TournamentDetailComponent,
+      },
+    ],
   },
 ];
 
@@ -18,4 +26,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TournamentRoutingModule {}
+export class TournamentRoutingModule { }
