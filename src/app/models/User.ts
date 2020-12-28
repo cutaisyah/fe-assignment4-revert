@@ -14,6 +14,7 @@ export interface User {
   old_password: string;
 }
 
+
 export class UpdateUser {
   username: string
 }
@@ -23,3 +24,11 @@ export class UpdateUserPassword {
   old_password: string;
 }
 
+export interface UpdatePanitia {
+  _id: string;
+  username: string;
+  email: string;
+  password: string;
+  birthdate: string;
+  phone: string;
+}

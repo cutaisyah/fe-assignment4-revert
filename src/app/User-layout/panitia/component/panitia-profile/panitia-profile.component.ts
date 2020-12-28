@@ -1,5 +1,7 @@
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-panitia-profile',
@@ -9,22 +11,51 @@ import { Component, OnInit } from '@angular/core';
 export class PanitiaProfileComponent implements OnInit {
   focus;
   focus1;
-  user: any;
+  data: any;
   panitiaProfileForm: FormGroup;
-  constructor(public fb: FormBuilder) {
-    this.panitiaProfileForm = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl(),
+  private panitiaId: string;
 
+  constructor(public route: ActivatedRoute, public userService: UserService) {
+    this.panitiaProfileForm = new FormGroup({
+      email: new FormControl({value: '', disabled: true}, [Validators.required],),
+      // password: new FormControl(),
       username: new FormControl(),
-      birthdate: new FormControl(),
+      birthdate: new FormControl(null, [Validators.required],),
       phone: new FormControl(),
-      roles: new FormControl(),
-      districts: new FormControl(),
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+          this.panitiaId = paramMap.get('id');
+          let birth: any = {};
+          this.userService.getPanitiaProfile(this.panitiaId).subscribe(userData => {
+            // console.log("panitiaData", panitiaData);
+            this.data = userData.data;
+            this.panitiaProfileForm.setValue({ 
+              email: this.data.email, 
+              username: this.data.username,
+              // password: this.data.data.password, 
+              birthdate: this.data.birthdate,
+              phone: this.data.phone
+            });
+          });
+      });
+  }
 
-  updatePanitia() {}
+  updatePanitia() {
+    if (this.panitiaProfileForm.invalid) {
+      return;
+    }
+    this.userService.updatePanitiaProfile(
+      this.panitiaId,
+      this.panitiaProfileForm.value.email,
+      this.panitiaProfileForm.value.username,
+      this.panitiaProfileForm.value.password,
+      this.panitiaProfileForm.value.birthdate,
+      this.panitiaProfileForm.value.phone,
+    );
+    this.panitiaProfileForm.reset();
+  }
 }

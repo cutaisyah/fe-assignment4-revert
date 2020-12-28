@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
-import { UpdateUser, UpdateUserPassword, User } from '../models/User';
+import { UpdatePanitia, UpdateUser, UpdateUserPassword, User } from '../models/User';
 import { Tournament, UpdateIsStarted, UpdateTournament } from '../models/Tournament';
 
 import jwt_decode from "jwt-decode";
@@ -181,6 +181,33 @@ export class UserService {
           );
         }
       );
+  }
+
+  getPanitiaProfile(_id: string): Observable<any>{
+    let endpoint = environment.baseUrl + '/panitia/get/' + `${_id}`;
+    return this.http.get(endpoint, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        console.log("respon getPanitiaProfile:", res)
+        return res || {};
+      })
+    );
+  }
+
+  updatePanitiaProfile(_id: string, email: string, username: string, password: string, birthdate: string, phone: string){
+    let endpoint = `${environment.baseUrl}/panitia/update/${_id}`;
+    let panitiaData: UpdatePanitia;
+    panitiaData = {
+      _id: _id,
+      email: email,
+      username: username,
+      password: password,
+      birthdate: birthdate,
+      phone: phone
+    };
+    this.http.put<any>(endpoint, panitiaData)
+    .subscribe(response => {
+      this.router.navigate([`/panitia/panitiaLayout/getPanitia/${_id}`]).then(()=>  {window.location.reload();});
+    });
   }
 
   //----------------------------

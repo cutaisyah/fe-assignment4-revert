@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       /** spinner ends after 5 seconds */
       this.activeModal.close(this.myForm.value);
       this.spinner.hide();
-    }, 5000);
+    }, 3000);
     
   }
 

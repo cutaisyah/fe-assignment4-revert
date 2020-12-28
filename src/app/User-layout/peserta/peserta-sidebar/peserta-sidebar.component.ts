@@ -13,7 +13,7 @@ export class PesertaSidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = this.userService.userPayloadValue;
-    console.log(this.userData);
+    console.log("user", this.userData);
   }
 
 }
