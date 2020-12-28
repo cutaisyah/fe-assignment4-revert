@@ -1,0 +1,15 @@
+.dropdown-container{
+    overflow: scroll;
+    height: 200px;
+}
+
+.dropdown .dropdown-menu {
+    position: relative;
+}
+
+.dropdown .dropdown-menu:last-child {
+    position: relative !important;
+}
+.dropdown .dropdown-menu .dropdown-item {
+    font-size: 12px;
+}

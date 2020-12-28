@@ -384,9 +384,33 @@ export class UserService {
     return this.http.get(endpoint, { headers: this.headers });
   }
 
+  getAllTournamentBasedOnGame(game: string): Observable<any>{
+    let endpoint = environment.baseUrl + '/tournament/filter-game/' + `${game}`;
+    return this.http.get(endpoint, { headers: this.headers });
+  }
 
+  getAllTournamentBasedOnDistrict(district: string): Observable<any>{
+    let endpoint = environment.baseUrl + '/tournament/filter-district/' + `${district}`;
+    return this.http.get(endpoint, { headers: this.headers });
+  }
 
+  getAllTournamentBasedOnAvailable(): Observable<any>{
+    let endpoint = environment.baseUrl + '/tournament/pending';
+    return this.http.get(endpoint, { headers: this.headers });
+  }
 
+  //===========================================================
 
+  //--------------------------- other -----------------------------
+
+  getallDistrict(): Observable<any>{
+    let endpoint = environment.baseUrl + '/tournament/getalldistrict';
+    return this.http.get(endpoint, { headers: this.headers });
+  }
+
+  getallGame(): Observable<any>{
+    let endpoint = environment.baseUrl + '/tournament/getallgame';
+    return this.http.get(endpoint, { headers: this.headers });
+  }
 
 }

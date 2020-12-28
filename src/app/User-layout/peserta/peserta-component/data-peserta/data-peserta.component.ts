@@ -18,7 +18,7 @@ export class DataPesertaComponent implements OnInit {
   pesertaProfileForm: FormGroup;
   pesertaPasswordForm: FormGroup;
   private pesertaId: string;
-  constructor(public fb: FormBuilder, public route: ActivatedRoute, public userService: UserService) {
+  constructor(public route: ActivatedRoute, public userService: UserService) {
     this.pesertaProfileForm = new FormGroup({
       email: new FormControl({ disabled: true }, Validators.required),
       username: new FormControl(),

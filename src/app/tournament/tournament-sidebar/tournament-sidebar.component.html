@@ -1,3 +1,30 @@
-<p>
-  tournament-sidebar works!
-</p>
+<div class=" container container-border">
+  <div class="text-center mt-10">
+    <h4>Filter</h4>
+  </div>
+
+  <ul class="list-unstyled">
+    <li class="m-3">
+      <a [routerLink]="['list']">Semua Tournament</a>
+    </li>
+    <li class="m-3">
+      <a [routerLink]="['available']">Available to Join</a>
+    </li>
+    <li class="dropdown-container m-3">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Pilih Game</button>
+        <div ngbDropdownMenu *ngFor="let game of gameData" aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem [routerLink]="['game/', game.game_name]">{{game.game_name}}</button>
+        </div>
+      </div>
+    </li>
+    <li class="dropdown-container m-3">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Pilih District</button>
+        <div ngbDropdownMenu *ngFor="let district of districtData" aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem [routerLink]="['district/', district._id]">{{district.district_name}}</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
