@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-4" *ngFor="let tournament of tournamentData;">
+  <div class="col-md-4" *ngFor="let tournament of tournamentData | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
     <div class="row">
       <div class="card shadow-sm mx-2 my-3">
         <img
@@ -13,12 +13,17 @@
           <div class="card-title text-center border-bottom border-white">
             <h5>{{tournament.tournament_name}}</h5>
           </div>
-          <div class="card-body text-center">
-            <p class="card-text">deskripsi</p>
-            <p class="card-text">waktu</p>
+          <div class="card-body text-left">
+            <p class="card-text"><b>Game</b>: {{tournament.game}}</p>
+            <p class="card-text"><b>Kapasitas</b>: {{tournament.register_total_participant}}/{{tournament.max_total_participant}}</p>
+            <p class="card-text"><b>Status</b>: {{tournament.is_started}}</p>
+            <p class="card-text"><b>Umur diatas</b>: {{tournament.age_minimum}}+</p>
           </div>
         </div>
       </div>
+      <!-- <p>{{tournament.Name}}</p> -->
     </div>
   </div>
 </div>
+
+<ngb-pagination [collectionSize]="tournamentData.length" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>

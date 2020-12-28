@@ -7,6 +7,7 @@ import { TournamentDetailComponent } from './component/tournament-detail/tournam
 import { RouterModule } from '@angular/router';
 import { TournamentSidebarComponent } from './tournament-sidebar/tournament-sidebar.component';
 import { TournamentComponent } from './tournament.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -15,11 +16,13 @@ import { TournamentComponent } from './tournament.component';
     TournamentListComponent,
     TournamentDetailComponent,
     TournamentSidebarComponent,
+    
   ],
   imports: [
     CommonModule,
     TournamentRoutingModule,
     RouterModule,
-  ]
+    NgbModule,
+  ],
 })
 export class TournamentModule { }
