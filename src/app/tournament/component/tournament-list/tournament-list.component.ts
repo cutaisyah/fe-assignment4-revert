@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-tournament-list',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TournamentListComponent implements OnInit {
 
-  constructor() { }
+  tournamentData: any;
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
+    this.showAllTournament();
+  }
+
+  showAllTournament(){
+    this.userService.getAllTournament().subscribe(
+      (data) => {
+        this.tournamentData = data.tournament;
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 }

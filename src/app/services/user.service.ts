@@ -139,7 +139,7 @@ export class UserService {
 
   }
 
-  //-----------------------------
+  //============================================
 
   // Lurah
   createLurah(user: User) {
@@ -161,9 +161,9 @@ export class UserService {
       );
   }
 
-  //-----------------------------
+  //======================================================================
 
-  // panitia
+  //============================================ panitia - profile
   createPanitia(user: User) {
     return this.http
       .post<any>(`${environment.baseUrl}/lurah/create-panitia`, user)
@@ -210,30 +210,7 @@ export class UserService {
     });
   }
 
-  //----------------------------
-
-  updatePesertaProfile(user: UpdateUser) {
-    let endpoint = `${environment.baseUrl}/peserta/update`;
-    return this.http.put<any>(endpoint, user).pipe(map(result => true))
-  }
-
-  updatePesertaPassword(password: UpdateUserPassword) {
-    let endpoint = `${environment.baseUrl}/peserta/update-password`;
-    return this.http.put<any>(endpoint, password).pipe(map(result => true))
-  }
-
-
-  getPesertaProfile(_id: string): Observable<any> {
-    let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
-    return this.http.get(endpoint, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        console.log(res)
-        return res || {};
-      })
-    );
-  }
-
-  //-------------------------------
+  //------------------------------- panitia - tournament
 
   createTournament(tournament_name: string, permalink: string, categories: string, max_total_participant: string, age_minimum: string, description: string, image: File,  first_prize: string, second_prize: string, third_prize: string, game: string) {
     let endpoint = environment.baseUrl + '/panitia' + '/create-tournament/';
@@ -345,7 +322,30 @@ export class UserService {
       });
   }
 
-  //==========================================
+  //===================================================================================
+
+  //---------------------------- peserta
+
+  updatePesertaProfile(user: UpdateUser) {
+    let endpoint = `${environment.baseUrl}/peserta/update`;
+    return this.http.put<any>(endpoint, user).pipe(map(result => true))
+  }
+
+  updatePesertaPassword(password: UpdateUserPassword) {
+    let endpoint = `${environment.baseUrl}/peserta/update-password`;
+    return this.http.put<any>(endpoint, password).pipe(map(result => true))
+  }
+
+
+  getPesertaProfile(_id: string): Observable<any> {
+    let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
+    return this.http.get(endpoint, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        console.log(res)
+        return res || {};
+      })
+    );
+  }
 
   // createTeam(team: Team) {
   //   return this.http
@@ -374,4 +374,19 @@ export class UserService {
     let endpoint = environment.baseUrl + '/admin' + '/data-user';
     return this.http.get(endpoint, { headers: this.headers });
   }
+
+  //========================================================
+
+  //------------------- Tournament-------------------------
+
+  getAllTournament(): Observable<any>{
+    let endpoint = environment.baseUrl + '/tournament/all';
+    return this.http.get(endpoint, { headers: this.headers });
+  }
+
+
+
+
+
+
 }

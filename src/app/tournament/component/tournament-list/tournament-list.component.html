@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-4" *ngFor="let tournament of tournamentData;">
     <div class="row">
       <div class="card shadow-sm mx-2 my-3">
         <img
-          src="https://img.okezone.com/content/2020/06/17/481/2231827/new-normal-ini-4-panduan-renang-di-kolam-umum-BuZqviPiTW.jpg"
+          [src]="tournament.image"
           alt=""
           width="200px"
           class="card-img-top"
@@ -11,51 +11,7 @@
         />
         <div class="card-header bg-custom">
           <div class="card-title text-center border-bottom border-white">
-            <h5>Renang</h5>
-          </div>
-          <div class="card-body text-center">
-            <p class="card-text">deskripsi</p>
-            <p class="card-text">waktu</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="row">
-      <div class="card shadow-sm mx-2 my-3">
-        <img
-          src="https://img.okezone.com/content/2020/06/17/481/2231827/new-normal-ini-4-panduan-renang-di-kolam-umum-BuZqviPiTW.jpg"
-          alt=""
-          width="200px"
-          class="card-img-top"
-          style="cursor: pointer"
-        />
-        <div class="card-header bg-custom">
-          <div class="card-title text-center border-bottom border-white">
-            <h5>Renang</h5>
-          </div>
-          <div class="card-body text-center">
-            <p class="card-text">deskripsi</p>
-            <p class="card-text">waktu</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="row">
-      <div class="card shadow-sm mx-2 my-3">
-        <img
-          src="https://img.okezone.com/content/2020/06/17/481/2231827/new-normal-ini-4-panduan-renang-di-kolam-umum-BuZqviPiTW.jpg"
-          alt=""
-          width="200px"
-          class="card-img-top"
-          style="cursor: pointer"
-        />
-        <div class="card-header bg-custom">
-          <div class="card-title text-center border-bottom border-white">
-            <h5>Renang</h5>
+            <h5>{{tournament.tournament_name}}</h5>
           </div>
           <div class="card-body text-center">
             <p class="card-text">deskripsi</p>
