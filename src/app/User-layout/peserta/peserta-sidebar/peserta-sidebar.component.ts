@@ -8,12 +8,18 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class PesertaSidebarComponent implements OnInit {
 
+  user: any;
   public userData: any;
+
+
   constructor(public userService: UserService,) { }
 
   ngOnInit(): void {
     this.userData = this.userService.userPayloadValue;
-    console.log("user", this.userData);
+    this.userService.getPesertaProfile(this.userData.id).subscribe(userData => {
+      this.user = userData.data;
+      // console.log(this.user)
+    });
   }
 
 }

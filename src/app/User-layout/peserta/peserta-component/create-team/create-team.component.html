@@ -1,9 +1,14 @@
 <h3 class="title mt-0 pt-3">Buat Team</h3>
-  <form class="register-form" [formGroup]="createTeamForm" (ngSubmit)="createTeam()">
+  <form class="register-form" [formGroup]="createTeamForm" (ngSubmit)="create()">
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Nama Team :</label>
       <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
         <input formControlName="team_name" type="text" class="form-control mb-3" placeholder="Team" (focus)="focus=true"
+        (blur)="focus=false">
+      </div>
+      <label class="col-sm-2 col-form-label">Team Phone :</label>
+      <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <input formControlName="team_phone" type="text" class="form-control mb-3" placeholder="Phone" (focus)="focus=true"
         (blur)="focus=false">
       </div>
     </div>

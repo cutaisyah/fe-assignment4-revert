@@ -20,7 +20,7 @@ const routes: Routes = [
         component: DataPesertaComponent,
       },
       {
-        path: 'registerTeam/:id',
+        path: 'registerTeam',
         component: RegisterTeamComponent,
       },
     ],

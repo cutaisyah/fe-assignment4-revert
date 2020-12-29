@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
-import { RegisterTournament, UpdateApproved, UpdatePanitia, UpdateUser, UpdateUserPassword, User } from '../models/User';
+import { RegisterOtherMember, RegisterTournament, UpdateApproved, UpdatePanitia, UpdateUser, UpdateUserPassword, User } from '../models/User';
 import { Tournament, UpdateIsStarted, UpdateTournament } from '../models/Tournament';
 
 import jwt_decode from "jwt-decode";
@@ -108,7 +108,7 @@ export class UserService {
           console.log(err);
           Swal.fire(
             'Maaf ada yang salah dengan proses registrasi',
-            err.error.message,
+            err.message,
             'error'
           );
         }
@@ -342,7 +342,7 @@ export class UserService {
     let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
     return this.http.get(endpoint, { headers: this.headers }).pipe(
       map((res: Response) => {
-        console.log(res)
+        // console.log(res)
         return res || {};
       })
     );
@@ -372,19 +372,50 @@ export class UserService {
       );
   }
 
-  // createTeam(team: Team) {
-  //   return this.http
-  //     .post(`${environment.baseUrl}/peserta/create-team`, team, {
-  //       headers: this.headers,
-  //     })
-  //     .subscribe((res: any) => {
-  //       alert('Berhasil membuat tim!');
-  //       localStorage.setItem('teamId', res._id);
-  //       // this.getTeam().subscribe((res:any)=>{
-  //       //   console.log(res);
-  //       // })
-  //     });
-  // }
+  pesertaRegisterOtherPesertaToTeam(username: string){
+    let userData: RegisterOtherMember;
+    let endpoint = environment.baseUrl + '/peserta/add-member'
+    userData = {
+      username: username
+    };
+    this.http
+      .put(endpoint, userData)
+      .subscribe(response => {
+        Swal.fire('Terimakasih sudah Mendaftar Tournament');
+          this.router.navigate(["/peserta/pesertaLayout/registerTeam"]).then(()=> {window.location.reload();});
+        },
+        err => {
+          // console.log(err);
+          Swal.fire(
+            'Maaf, Peserta tersebut tidak tervalidasi',
+            err.message,
+            'error'
+          );
+      });
+  }
+
+  createTeam(team_name: string, team_phone: string) {
+    let teamData: Team;
+    let endpoint = `${environment.baseUrl}/peserta/create-team`
+    teamData = {
+      team_name: team_name,
+      team_phone: team_phone
+    };
+    return this.http.post(endpoint, teamData)
+      .subscribe((response) => {
+          Swal.fire('Team Berhasil Didaftarkan');
+          this.router.navigate(["/peserta/pesertaLayout/createTeam"]).then(()=> {window.location.reload();});
+        },
+        err => {
+          // console.log(err);
+          Swal.fire(
+            'Pendaftaran Team tidak tervalidasi',
+            err.message,
+            'error'
+          );
+        }
+      );
+  }
 
   // getUserProfile(_id): Observable<any> {
   //   let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;

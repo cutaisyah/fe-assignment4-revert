@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-create-team',
@@ -13,14 +14,21 @@ export class CreateTeamComponent implements OnInit {
   user: any;
   createTeamForm: FormGroup;
   registerTeamForm: FormGroup;
-  constructor(public fb: FormBuilder) {
+
+  constructor(public userService: UserService) {
     this.createTeamForm = new FormGroup({
       team_name: new FormControl(),
+      team_phone: new FormControl(),
     });
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  create(){
+    this.userService.createTeam(
+      this.createTeamForm.value.team_name,
+      this.createTeamForm.value.team_phone
+    );
   }
-  createTeam(){}
 
 }

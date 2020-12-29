@@ -41,3 +41,7 @@ export interface UpdateApproved{
 export interface RegisterTournament{
   game: string;
 }
+
+export interface RegisterOtherMember{
+  username: string;
+}
