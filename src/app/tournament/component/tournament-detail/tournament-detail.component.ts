@@ -20,7 +20,7 @@ export class TournamentDetailComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.permalink = paramMap.get('permalink');
       this.userService.getDetailTournament(this.permalink).subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.tournamentData = data;
       });
 

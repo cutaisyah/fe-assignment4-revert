@@ -21,9 +21,9 @@ export class FilterAvailableComponent implements OnInit {
   showAvailable(){
     this.userService.getAllTournamentBasedOnAvailable().subscribe(
       (data) => {
-        console.log(data);
+        // console.log(data);
         this.tournamentData = data;
-        console.log("tournamentData",this.tournamentData);
+        // console.log("tournamentData",this.tournamentData);
       },
       (error) => {
         console.log(error);
