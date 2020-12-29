@@ -24,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { from } from 'rxjs';
+import { ScrollToTopComponent } from './shared/scroll-to-top/scroll-to-top.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { from } from 'rxjs';
     FooterComponent,
     HomepageComponent,
     LoginComponent,
+    ScrollToTopComponent,
   ],
   imports: [
     BrowserModule,

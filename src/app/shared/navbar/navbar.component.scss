@@ -19,8 +19,14 @@
   }
 }
 
-@media only screen and (min-width: 425px) {
+@media only screen and (min-width: 376px) {
   .dropdown-menu-right{
     margin-right: 200px;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .dropdown-menu-right{
+    margin-right: 0;
   }
 }
