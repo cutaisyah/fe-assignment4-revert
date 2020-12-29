@@ -16,19 +16,11 @@ const TOKEN_HEADER_KEY = 'access_token';
   providedIn: 'root',
 })
 export class AuthInterceptorService {
-  constructor(private token: TokenService) {}
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    let authReq = req;
-    const token = this.token.getToken();
-    if (token != null) {
-      authReq = req.clone({
-        headers: req.headers.set(TOKEN_HEADER_KEY, token),
-      });
-    }
-    return next.handle(authReq);
+  constructor(private tokenService: TokenService) {}
+  intercept( req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const authToken = this.tokenService.getToken();
+    let authRequest = authToken ? req.clone({headers: req.headers.set(TOKEN_HEADER_KEY, authToken)}) : req;
+    return next.handle(authRequest);
   }
 }
 
