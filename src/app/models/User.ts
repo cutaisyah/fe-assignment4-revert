@@ -37,3 +37,7 @@ export interface UpdatePanitia {
 export interface UpdateApproved{
   _id: string;
 }
+
+export interface RegisterTournament{
+  game: string;
+}

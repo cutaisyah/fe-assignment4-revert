@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
-import { UpdateApproved, UpdatePanitia, UpdateUser, UpdateUserPassword, User } from '../models/User';
+import { RegisterTournament, UpdateApproved, UpdatePanitia, UpdateUser, UpdateUserPassword, User } from '../models/User';
 import { Tournament, UpdateIsStarted, UpdateTournament } from '../models/Tournament';
 
 import jwt_decode from "jwt-decode";
@@ -30,7 +30,15 @@ export class UserService {
 
   constructor(private http: HttpClient, private router: Router, public tokenService: TokenService) {
     this.token = this.tokenService.getToken();
-    this.authDecoded = jwt_decode(this.token);
+    try {
+      this.authDecoded = jwt_decode(this.token);
+    } catch (error) {
+      console.log('👾 invalid token format', error);
+      // Swal.fire(
+      //   'Login Terlebih dahulu'
+      // );
+    }
+    
     this.userPayload = new BehaviorSubject<any>(
       this.authDecoded
     );
@@ -87,10 +95,6 @@ export class UserService {
 
   logout() {
     localStorage.removeItem('access_token');
-    // localStorage.removeItem('Payload_Token');
-    // setTimeout(() => {
-    // window.location.reload(); 
-    // }, 1000);
     this.router.navigate(['/']);
   }
 
@@ -309,14 +313,14 @@ export class UserService {
   }
 
   changeStatusApproved(_id: string){
-    let usertData: UpdateApproved;
+    let userData: UpdateApproved;
     let endpoint = environment.baseUrl + '/panitia/edit-status-to-approved/' + `${_id}`
-    usertData = {
+    userData = {
       _id: _id
     };
     
     this.http
-      .put(endpoint, usertData)
+      .put(endpoint, userData)
       .subscribe(response => {
         this.router.navigate(["/panitia/panitiaLayout/dataPeserta"]);
       });
@@ -345,6 +349,30 @@ export class UserService {
         return res || {};
       })
     );
+  }
+
+  pesertaRegisterTournament(game: string) {
+    let userData: RegisterTournament;
+    let endpoint = environment.baseUrl + '/peserta/register-tournament/' + `${game}`;
+    userData = {
+      game: game
+    };
+    
+    return this.http.put(endpoint, userData)
+      .subscribe(
+        response => {
+          Swal.fire('Terimakasih sudah Mendaftar Tournament');
+          this.router.navigate([`/peserta/tournament/detail/${game}`]).then(()=>  {window.location.reload();});
+        },
+        err => {
+          console.log(err);
+          Swal.fire(
+            'Maaf, Proses Pendaftaran Tournament tidak tervalidasi',
+            err.message,
+            'error'
+          );
+        }
+      );
   }
 
   // createTeam(team: Team) {
