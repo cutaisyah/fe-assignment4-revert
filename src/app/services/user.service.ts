@@ -34,9 +34,6 @@ export class UserService {
       this.authDecoded = jwt_decode(this.token);
     } catch (error) {
       console.log('👾 invalid token format', error);
-      // Swal.fire(
-      //   'Login Terlebih dahulu'
-      // );
     }
     
     this.userPayload = new BehaviorSubject<any>(
@@ -362,7 +359,7 @@ export class UserService {
       .subscribe(
         response => {
           Swal.fire('Terimakasih sudah Mendaftar Tournament');
-          this.router.navigate([`/peserta/tournament/detail/${game}`]).then(()=>  {window.location.reload();});
+          this.router.navigate([`/detail/${game}`]).then(()=>  {window.location.reload();});
         },
         err => {
           console.log(err);
