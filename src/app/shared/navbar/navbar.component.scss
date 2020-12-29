@@ -2,13 +2,25 @@
   margin-top: 1.6em;
 }
 
-.navbar{
-  background-color: #1a191a;
+.logo{
+  height: 3.25em;
+  width: 3.25em;
 }
 
-.navbar .navbar-brand{
-  color: #ffffff;
+@media only screen and (min-width: 320px) {
+  .dropdown-menu-right{
+    margin-right: 100px;
+  }
 }
-.navbar .navbar-nav .nav-item .nav-link {
-  color: #ffffff;
+
+@media only screen and (min-width: 375px) {
+  .dropdown-menu-right{
+    margin-right: 150px;
+  }
+}
+
+@media only screen and (min-width: 425px) {
+  .dropdown-menu-right{
+    margin-right: 200px;
+  }
 }
