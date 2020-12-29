@@ -13,7 +13,7 @@
     <li class="m-3" *ngIf="user?.teams == null" >
       <a routerLink='createTeam'>Membuat Team</a>
     </li>
-    <li class="m-3">
+    <li class="m-3" *ngIf="user?.teams !== null">
       <a [routerLink]="['registerTeam/']">Daftarkan Temanmu dalam Team!</a>
     </li>
   </ul>

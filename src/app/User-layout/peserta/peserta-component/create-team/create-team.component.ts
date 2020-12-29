@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-team',
@@ -29,6 +30,8 @@ export class CreateTeamComponent implements OnInit {
       this.createTeamForm.value.team_name,
       this.createTeamForm.value.team_phone
     );
+    Swal.fire('Silahkan Login Lagi');
+    this.userService.logout();
   }
 
 }

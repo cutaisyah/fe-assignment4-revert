@@ -13,3 +13,12 @@
       <button class="btn btn-primary margin-custom btn-block btn-custom btn-round mt-3 custom justify-content-center" (click)="registerTeam()">Daftarkan</button>
     </div>
   </form>
+  <h3>TEAM {{ peserta?.teams.team_name }}</h3>
+  <table class="table table-bordered mt-3">
+    <tr>
+      <th>Member Joined</th>
+    </tr>
+    <tr *ngFor="let peserta of pesertaTeam">
+      <td>{{peserta.username}}</td>
+    </tr>
+  </table>

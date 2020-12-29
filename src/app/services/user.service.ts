@@ -417,6 +417,11 @@ export class UserService {
       );
   }
 
+  getPesertaTeam(){
+    let endpoint = `${environment.baseUrl}/peserta/getTeamPeserta`;
+    return this.http.get(endpoint, { headers: this.headers });
+  }
+
   // getUserProfile(_id): Observable<any> {
   //   let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
   //   return this.http.get(endpoint, { headers: this.headers }).pipe(
@@ -427,7 +432,7 @@ export class UserService {
   // }
 
   getAllProfile(): Observable<any> {
-    let endpoint = environment.baseUrl + '/admin' + '/data-user';
+    let endpoint = `${environment.baseUrl}/admin/data-user`;
     return this.http.get(endpoint, { headers: this.headers });
   }
 

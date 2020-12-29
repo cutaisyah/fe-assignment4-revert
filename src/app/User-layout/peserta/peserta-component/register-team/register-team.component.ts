@@ -11,6 +11,8 @@ export class RegisterTeamComponent implements OnInit {
   focus;
   focus1;
   user: any;
+  peserta: any;
+  pesertaTeam: any;
   createTeamForm: FormGroup;
   registerTeamForm: FormGroup;
 
@@ -23,6 +25,18 @@ export class RegisterTeamComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.userService.userPayloadValue;
+    console.log(this.user)
+
+    this.userService.getPesertaProfile(this.user.id).subscribe(userData =>{
+      console.log(userData)
+      this.peserta = userData.data;
+    })
+
+    this.userService.getPesertaTeam().subscribe(pesertaTeamData =>{
+      this.pesertaTeam = pesertaTeamData
+      console.log(this.pesertaTeam)
+    });
   }
 
   registerTeam(){
