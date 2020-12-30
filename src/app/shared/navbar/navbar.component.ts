@@ -4,14 +4,18 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from 'src/app/auth/login/login.component';
 import { User } from 'src/app/models/User';
+import { HostListener } from '@angular/core';
 
 import jwt_decode from "jwt-decode";
+
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
+
+
 export class NavbarComponent implements OnInit {
   public isMenuCollapsed = true;
   public authDecoded: any;
@@ -52,5 +56,15 @@ export class NavbarComponent implements OnInit {
       .catch((error) => {
         console.log(error);
       });
+  }
+  @HostListener('window:scroll', ['$event'])
+
+  onWindowScroll(e) {
+    let element = document.querySelector('.navbar');
+    if (window.pageYOffset > element.clientHeight) {
+      element.classList.add('bg-danger');
+    } else {
+      element.classList.remove('bg-danger');
+    }
   }
 }
