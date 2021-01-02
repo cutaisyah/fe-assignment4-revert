@@ -30,9 +30,13 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/sass/paper-kit.scss"
+              "src/assets/sass/paper-kit.scss",
+              "node_modules/jquery-bracket/dist/jquery.bracket.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-bracket/dist/jquery.bracket.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -93,9 +97,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/jquery-bracket/dist/jquery.bracket.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-bracket/dist/jquery.bracket.min.js"
+            ]
           }
         },
         "lint": {

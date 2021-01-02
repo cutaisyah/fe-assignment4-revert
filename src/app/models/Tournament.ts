@@ -21,6 +21,7 @@ export interface Tournament {
   second_prize: string;  
   third_prize: string; 
   game: Game;
+  match_round: number;
 }
 
 export interface UpdateTournament{

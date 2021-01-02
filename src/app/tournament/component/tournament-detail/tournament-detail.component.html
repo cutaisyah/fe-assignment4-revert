@@ -1,66 +1,103 @@
-<h1>{{ tournamentData?.tournament_name }}</h1>
-<table class="table table-bordered mt-3">
-  <tr>
-    <td>Tipe Game</td>
-    <td>{{ tournamentData?.game }}</td>
-  </tr>
-  <tr>
-    <td>Kategori</td>
-    <td>{{ tournamentData?.categories }}</td>
-  </tr>
-  <tr>
-    <td>Batasan Umur (batas bawah)</td>
-    <td>{{ tournamentData?.age_minimum }}</td>
-  </tr>
-  <tr>
-    <td>Kapasitas</td>
-    <td>{{ tournamentData?.register_total_participant }}/{{ tournamentData?.max_total_participant }}</td>
-  </tr>
-  <tr>
-    <td>District</td>
-    <td>{{ tournamentData?.districts.district_name }}</td>
-  </tr>
-  <tr>
-    <td>Status Available</td>
-    <td>{{ tournamentData?.is_started }}</td>
-  </tr>
-  
-  <tr>
-    <td colspan="2" class="text-center text-bold">Winner</td>
-  </tr>
-  <tr>
-    <td>1st</td>
-    <td class="text-center" *ngIf="tournamentData?.third_winner == null">-</td>
-    <td class="text-center" *ngIf="tournamentData?.third_winner !== null">{{ tournamentData?.first_winner }}</td>
-  </tr>
-  <tr>
-    <td>2nd</td>
-    <td class="text-center" *ngIf="tournamentData?.third_winner == null">-</td>
-    <td class="text-center" *ngIf="tournamentData?.third_winner !== null">{{ tournamentData?.second_winner }}</td>
-  </tr>
-  <tr>
-    <td>3rd</td>
-    <td class="text-center" *ngIf="tournamentData?.third_winner == null">-</td>
-    <td class="text-center" *ngIf="tournamentData?.third_winner !== null">{{ tournamentData?.third_winner }}</td>
-  </tr>
+<div class="container">
+  <h1>{{ tournamentData?.tournament_name }}</h1>
 
-  <tr>
-    <td colspan="2" class="text-center text-bold">Prize</td>
-  </tr>
-  <tr>
-    <td>1st</td>
-    <td class="text-center" >{{ tournamentData?.first_prize }}</td>
-  </tr>
-  <tr>
-    <td>2nd</td>
-    <td class="text-center" >{{ tournamentData?.second_prize }}</td>
-  </tr>
-  <tr>
-    <td>3rd</td>
-    <td class="text-center" >{{ tournamentData?.third_prize }}</td>
-  </tr>
-</table>
-<button type="button" class="btn btn-success" aria-label="Register" [disabled]="!this.tokenService.isLogin" *ngIf="this.userService.userPayloadValue?.roles === 'admin' &&  this.userService.userPayloadValue?.roles == 'lurah' && this.userService.userPayloadValue?.roles == 'panitia' || this.userService.userPayloadValue?.roles == 'peserta'"
-  (click)="register()">Register
- </button>
- <div class="text-danger" *ngIf="!this.tokenService.isLogin">Login Terlebih Dahulu</div>
+  <div id="minimal" style="width: 100%; height: 100%">
+    <div class="demo"></div>
+  </div>
+
+  <table class="table table-bordered mt-3">
+    <tr>
+      <td>Tipe Game</td>
+      <td>{{ tournamentData?.game }}</td>
+    </tr>
+    <tr>
+      <td>Kategori</td>
+      <td>{{ tournamentData?.categories }}</td>
+    </tr>
+    <tr>
+      <td>Batasan Umur (batas bawah)</td>
+      <td>{{ tournamentData?.age_minimum }}</td>
+    </tr>
+    <tr>
+      <td>Kapasitas</td>
+      <td>
+        {{ tournamentData?.register_total_participant }}/{{
+          tournamentData?.max_total_participant
+        }}
+      </td>
+    </tr>
+    <tr>
+      <td>District</td>
+      <td>{{ tournamentData?.districts.district_name }}</td>
+    </tr>
+    <tr>
+      <td>Status Available</td>
+      <td>{{ tournamentData?.is_started }}</td>
+    </tr>
+
+    <tr>
+      <td colspan="2" class="text-center text-bold">Winner</td>
+    </tr>
+    <tr>
+      <td>1st</td>
+      <td class="text-center" *ngIf="tournamentData?.third_winner == null">
+        -
+      </td>
+      <td class="text-center" *ngIf="tournamentData?.third_winner !== null">
+        {{ tournamentData?.first_winner }}
+      </td>
+    </tr>
+    <tr>
+      <td>2nd</td>
+      <td class="text-center" *ngIf="tournamentData?.third_winner == null">
+        -
+      </td>
+      <td class="text-center" *ngIf="tournamentData?.third_winner !== null">
+        {{ tournamentData?.second_winner }}
+      </td>
+    </tr>
+    <tr>
+      <td>3rd</td>
+      <td class="text-center" *ngIf="tournamentData?.third_winner == null">
+        -
+      </td>
+      <td class="text-center" *ngIf="tournamentData?.third_winner !== null">
+        {{ tournamentData?.third_winner }}
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="2" class="text-center text-bold">Prize</td>
+    </tr>
+    <tr>
+      <td>1st</td>
+      <td class="text-center">{{ tournamentData?.first_prize }}</td>
+    </tr>
+    <tr>
+      <td>2nd</td>
+      <td class="text-center">{{ tournamentData?.second_prize }}</td>
+    </tr>
+    <tr>
+      <td>3rd</td>
+      <td class="text-center">{{ tournamentData?.third_prize }}</td>
+    </tr>
+  </table>
+  <button
+    type="button"
+    class="btn btn-success"
+    aria-label="Register"
+    [disabled]="!this.tokenService.isLogin"
+    *ngIf="
+      (this.userService.userPayloadValue?.roles === 'admin' &&
+        this.userService.userPayloadValue?.roles == 'lurah' &&
+        this.userService.userPayloadValue?.roles == 'panitia') ||
+      this.userService.userPayloadValue?.roles == 'peserta'
+    "
+    (click)="register()"
+  >
+    Register
+  </button>
+  <div class="text-danger" *ngIf="!this.tokenService.isLogin">
+    Login Terlebih Dahulu
+  </div>
+</div>
