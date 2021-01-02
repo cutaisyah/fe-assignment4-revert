@@ -1,0 +1,53 @@
+<h3 class="title mt-0 pt-3">Edit Tournament</h3>
+<h5>Round: {{datatournament?.match_round}} <span *ngIf="lastround?.length == 2">(Last Round)</span></h5>
+
+<table class="table table-hover ">
+  <tr>
+    <th>TEAM</th>
+    <th>SCORE</th>
+    <th>ROUND</th>
+  </tr>
+  <tr *ngFor="let match of datamatch" [class]="['match-'+match.match_round]">
+    <td>{{match.team?.team_name}}</td>
+    <td>{{match?.score || 0}}</td>
+    <td>{{match?.match_round || 0}}</td>
+  </tr>
+</table>
+
+<form
+  class="register-form"
+  [formGroup]="updateMatchForm"
+  (ngSubmit)="submitScore()"
+>
+  <div class="form-group row">
+    <div class="col-sm-3">
+    <select formControlName="team">
+      <option *ngFor="let match of dataTeamMatch" [ngValue]="match.team?._id">
+        {{ match.team?.team_name }}
+      </option>
+    </select>
+    </div>
+    <div class="col-sm-3" [ngClass]="{ 'input-group-focus': focus === true }">
+      <input
+        formControlName="score"
+        type="text"
+        class="form-control mb-3"
+        placeholder="Input score here.."
+        (focus)="focus = true"
+        (blur)="focus = false"
+      />
+    </div>
+    <div class="col-sm-3">
+      <a class="btn" (click)="updateScore()">update score</a>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <button type="submit" *ngIf="lastround?.length > 2" class="btn btn-primary margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">
+      Update Manage Score
+    </button>
+    <a (click)="createThirdWinner()" *ngIf="dataTeamMatch?.length == 2" class="btn btn-primary margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">
+      Buat Juara 3
+    </a>
+  </div>
+</form>

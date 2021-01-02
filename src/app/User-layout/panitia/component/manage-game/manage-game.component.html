@@ -1,0 +1,39 @@
+<table style="width:100%">
+  
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Categories</th>
+      <th>Tipe Game</th>
+      <th>Terdaftar</th>
+      <th>Maksimum</th>
+      <th>Umur</th>
+      <th>Status</th>
+      <th>Manage Game</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tournament of allTournament; let i = index" >
+    <td>{{i+1}}</td>
+    <td>{{tournament.tournament_name}}</td>
+    <td>{{tournament.categories}}</td>
+    <td>{{tournament.game}}</td>
+    <td>{{tournament.register_total_participant}}</td>
+    <td>{{tournament.max_total_participant}}</td>
+    <td>{{tournament.age_minimum}}</td>
+    <td>{{tournament.is_started}}</td>
+    <td><button type="button" class="btn btn-success" aria-label="Edit"
+      [routerLink]="['/panitia/panitiaLayout/manageGame/', tournament._id, tournament.match_round ]" [disabled]="tournament.is_started == 'completed'">manage
+     </button></td>
+  </tr>
+</tbody>
+  <!-- <tr>
+    <td>2</td>
+    <td>basket01</td>
+    <td>free for all</td>
+    <td>basket</td>
+    <td>P. PANGGANG</td>
+    <td>pending</td>
+  </tr> -->
+</table> 
