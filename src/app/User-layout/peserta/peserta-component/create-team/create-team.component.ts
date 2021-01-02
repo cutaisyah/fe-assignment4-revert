@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -16,7 +18,7 @@ export class CreateTeamComponent implements OnInit {
   createTeamForm: FormGroup;
   registerTeamForm: FormGroup;
 
-  constructor(public userService: UserService) {
+  constructor(public userService: UserService, private router: Router, private spinner: NgxSpinnerService) {
     this.createTeamForm = new FormGroup({
       team_name: new FormControl(),
       team_phone: new FormControl(),
@@ -30,8 +32,13 @@ export class CreateTeamComponent implements OnInit {
       this.createTeamForm.value.team_name,
       this.createTeamForm.value.team_phone
     );
-    Swal.fire('Silahkan Login Lagi');
     this.userService.logout();
+    
+    this.spinner.show();
+    
+    setTimeout(() => {
+      this.router.navigate(["/home"]).then(()=> {window.location.reload();});
+    }, 3000);
   }
 
 }
