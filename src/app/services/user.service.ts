@@ -1,5 +1,6 @@
 import { Team } from './../models/Team';
 import { Login } from './../models/Login';
+import { Match, MatchId } from './../models/Match';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import {
@@ -244,6 +245,11 @@ export class UserService {
     return this.http.get(endpoint, { headers: this.headers });
   }
 
+  getAllDataTournamentBasedOnDistrictOngoing(): Observable<any> {
+    let endpoint = environment.baseUrl + '/panitia/allbaseondistrictongoing';
+    return this.http.get(endpoint, { headers: this.headers });
+  }
+
   changeTournamentStatusOngoing(_id: string){
     let tournamentData: UpdateIsStarted;
     let endpoint = environment.baseUrl + '/panitia/edit-status-tournament-to-ongoing/' + `${_id}`
@@ -320,6 +326,70 @@ export class UserService {
       .put(endpoint, userData)
       .subscribe(response => {
         this.router.navigate(["/panitia/panitiaLayout/dataPeserta"]);
+      });
+  }
+
+  getTheMatch(_id:string): Observable<any>{
+    let endpoint = environment.baseUrl + '/panitia/match/' + `${_id}`;
+    return this.http.get(endpoint, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        // console.log("respon match gettournamentbyid:", res)
+        return res || {};
+      })
+    );
+  }
+
+  getTheTeamMatch(_id:string, match_round: string): Observable<any>{
+    let endpoint = `${environment.baseUrl}/panitia/teamMatch/${_id}/${match_round}`;
+    return this.http.get(endpoint, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        // console.log("respon match gettournamentbyid:", res)
+        return res || {};
+      })
+    );
+  }
+
+  inputScoreMatch(team: string, score: string, match_round: string){
+    let endpoint = `${environment.baseUrl}/panitia/inputScoreMatch`;
+    let matchData: Match;
+    matchData = {
+      team: team,
+      score: score,
+      match_round: match_round
+    };
+    this.http.put<any>(endpoint, matchData)
+    .subscribe(response => {
+      window.location.reload();
+    });
+  }
+
+  checkEliminate(_id: string, match_round: string){
+    let endpoint = `${environment.baseUrl}/panitia/checkEliminate/${_id}`;
+    let matchData: MatchId;
+    matchData = {
+      _id: _id,
+      match_round: match_round
+    };
+
+    this.http.put<any>(endpoint, matchData)
+    .subscribe(response => {
+      // this.router.navigate([`/panitia/panitiaLayout/manageGame`]);
+        this.router.navigate([`/panitia/panitiaLayout/manageGame/${_id}/${match_round+1}`]).then(()=>  {window.location.reload()} );
+      });
+  }
+
+  thirdWinnerMatch(_id: string, match_round: string){
+    let endpoint = `${environment.baseUrl}/panitia/thirdwinner/${_id}`;
+    let matchData: MatchId;
+    matchData = {
+      _id: _id,
+      match_round: match_round
+    };
+
+    this.http.put<any>(endpoint, matchData)
+    .subscribe(response => {
+      // this.router.navigate([`/panitia/panitiaLayout/manageGame`]);
+        this.router.navigate([`/panitia/panitiaLayout/manageGame/${_id}/${match_round}`]).then(()=>  {window.location.reload()} );
       });
   }
 
@@ -403,8 +473,7 @@ export class UserService {
     };
     return this.http.post(endpoint, teamData)
       .subscribe((response) => {
-          Swal.fire('Team Berhasil Didaftarkan');
-          this.router.navigate(["/peserta/pesertaLayout/createTeam"]).then(()=> {window.location.reload();});
+          Swal.fire('Team Berhasil Didaftarkan, Silahkan Login Lagi');
         },
         err => {
           // console.log(err);
@@ -463,6 +532,15 @@ export class UserService {
   getDetailTournament(permalink: string): Observable<any>{
     let endpoint = environment.baseUrl + '/tournament/detail/'+`${permalink}`;
     return this.http.get(endpoint, { headers: this.headers });
+  }
+
+  getTheMatchScore(_id:string): Observable<any>{
+    let endpoint = environment.baseUrl + '/tournament/match/' + `${_id}`;
+    return this.http.get(endpoint, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {};
+      })
+    );
   }
 
   //===========================================================
