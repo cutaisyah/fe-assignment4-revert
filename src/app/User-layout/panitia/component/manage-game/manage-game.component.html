@@ -17,7 +17,8 @@
   <tr *ngFor="let tournament of allTournament; let i = index" >
     <td>{{i+1}}</td>
     <td>{{tournament.tournament_name}}</td>
-    <td>{{tournament.categories}}</td>
+    <td *ngIf="tournament.categories == 'single elimination'">S. Elimination</td>
+    <td *ngIf="tournament.categories == 'free for all'">FFA</td>
     <td>{{tournament.game}}</td>
     <td>{{tournament.register_total_participant}}</td>
     <td>{{tournament.max_total_participant}}</td>

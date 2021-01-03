@@ -1,6 +1,6 @@
 <div class="container">
   <h3 class="title mt-0 pt-3">Tabel Peserta {{authDecoded?.districts.district_name}}</h3>
-  <table class="table table-hover ">
+  <table class="table table-hover text-center">
     <thead class="table-dark">
       <tr>
         <th scope="col">No</th>
@@ -10,8 +10,8 @@
         <th scope="col">No telefon</th>
         <th scope="col">Team</th>
         <th scope="col">Reg. Tournament</th>
-        <th scope="col">Tournament Aprroved</th>
-        <th scope="col"></th>
+        <!-- <th scope="col">Tournament Aprroved</th> -->
+        <th scope="col">Approved</th>
       </tr>
     </thead>
     <tbody class="table-light">
@@ -23,8 +23,9 @@
         <td>{{peserta.phone}}</td>
         <td>{{peserta.teams?.team_name}}</td>
         <td>{{peserta.tournament_register?.tournament_name}}</td>
-        <td>{{peserta.tournament_approved?.tournament_name}}</td>
-        <td><button type="button" class="btn btn-success" aria-label="approve"
+        <td *ngIf="peserta.tournament_approved != null">✅</td>
+        <!-- <td>{{peserta.tournament_approved?.tournament_name}}</td> -->
+        <td  *ngIf="peserta.tournament_approved == null"><button type="button" class="btn btn-success" aria-label="approve"
           [routerLink]="['/panitia/panitiaLayout/dataPeserta/edit/', peserta._id ]" [disabled]="peserta.tournament_approved !== null">APPROVE
          </button></td>
       </tr>

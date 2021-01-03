@@ -1,4 +1,4 @@
-<table style="width:100%">
+<table class="table text-center" style="width:100%">
   
   <thead>
     <tr>
@@ -18,7 +18,8 @@
   <tr *ngFor="let tournament of allTournament; let i = index" >
     <td>{{i+1}}</td>
     <td>{{tournament.tournament_name}}</td>
-    <td>{{tournament.categories}}</td>
+    <td *ngIf="tournament.categories == 'single elimination'">S. Elimination</td>
+    <td *ngIf="tournament.categories == 'free for all'">FFA</td>
     <td>{{tournament.game}}</td>
     <td>{{tournament.register_total_participant}}</td>
     <td>{{tournament.max_total_participant}}</td>
@@ -27,8 +28,8 @@
     <td><button type="button" class="btn btn-success" aria-label="Change"
       [routerLink]="['/panitia/panitiaLayout/dataTournament/', tournament._id ]">change
      </button></td>
-    <td><button type="button" class="btn btn-success" aria-label="Edit"
-      [routerLink]="['/panitia/panitiaLayout/dataTournament/edit', tournament._id ]" [disabled]="tournament.is_started !== 'pending'">edit
+    <td><button type="button" class="btn btn-success" aria-label="Edit" *ngIf="tournament.is_started == 'pending'"
+      [routerLink]="['/panitia/panitiaLayout/dataTournament/edit', tournament._id ]">edit
      </button></td>
   </tr>
 </tbody>

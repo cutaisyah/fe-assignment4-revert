@@ -35,6 +35,13 @@ export interface UpdateTournament{
   third_prize: string; 
 }
 
+export interface setWinnerTournament{
+  _id: string;
+  first_winner: string;
+  second_winner: string;
+  third_winner: string;
+}
+
 export class UpdateIsStarted {
   _id: string;
   is_started: string;

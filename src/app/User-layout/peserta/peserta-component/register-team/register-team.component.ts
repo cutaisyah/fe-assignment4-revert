@@ -26,11 +26,11 @@ export class RegisterTeamComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userService.userPayloadValue;
-    console.log(this.user)
+    // console.log(this.user)
 
     this.userService.getPesertaProfile(this.user.id).subscribe(userData =>{
-      console.log(userData)
       this.peserta = userData.data;
+      console.log(this.peserta)
     })
 
     this.userService.getPesertaTeam().subscribe(pesertaTeamData =>{
