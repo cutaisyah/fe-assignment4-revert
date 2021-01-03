@@ -25,16 +25,18 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { from } from 'rxjs';
 import { ScrollToTopComponent } from './shared/scroll-to-top/scroll-to-top.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     NavbarComponent,
     FooterComponent,
     HomepageComponent,
     LoginComponent,
     ScrollToTopComponent,
-  ],
+      NotfoundComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
