@@ -41,8 +41,6 @@ import { ScrollToTopComponent } from './shared/scroll-to-top/scroll-to-top.compo
     RouterModule,
     RegisterModule,
     TournamentModule,
-    AdminModule,
-    LurahModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,

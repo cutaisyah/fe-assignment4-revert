@@ -1,63 +1,64 @@
-<h3 class="title mt-0 pt-3">Informasi Pengguna</h3>
-<form class="register-form" [formGroup]="pesertaProfileForm" (ngSubmit)="updateProfile()">
+<div class="container-custom">
+  <h3 class="title mt-0 pt-3 text-center mb-0">Informasi Pengguna</h3>
+  <form class="form-padding" [formGroup]="pesertaProfileForm" (ngSubmit)="updateProfile()">
   <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Email :</label>
-    <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+    <label class="col-md-4 col-sm-2 col-form-label">Email :</label>
+    <div class="col-md-8 col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
       <input formControlName="email" type="text" class="form-control mb-3" placeholder="Email" (focus)="focus=true"
       (blur)="focus=false">
     </div>
   </div>
-
   <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Nama Pengguna :</label>
-    <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+    <label class="col-md-4 col-sm-2 col-form-label">Nama Pengguna :</label>
+    <div class="col-md-8 col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
       <input formControlName="username" type="text" class="form-control mb-3" placeholder="Nama Pengguna"
       (focus)="focus1=true" (blur)="focus1=false">
     </div>
   </div>
-
   <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Tanggal lahir :</label>
-    <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+    <label class="col-md-4 col-sm-2 col-form-label">Tanggal lahir :</label>
+    <div class="col-md-8 col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
       <input formControlName="birthdate" type="date" class="form-control mb-3" placeholder="Tanggal lahir"
       (focus)="focus1=true" (blur)="focus1=false">
     </div>
   </div>
-
   <div class="form-group row">
-    <label class="col-sm-2 col-form-label">No telefon :</label>
-    <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+    <label class="col-md-4 col-sm-2 col-form-label">No telefon :</label>
+    <div class="col-md-8 col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
       <input formControlName="phone" type="text" class="form-control mb-3" placeholder="No telefon" (focus)="focus=true"
       (blur)="focus=false">
     </div>
   </div>
-
   <div class="d-flex justify-content-center">
-    <button class="btn btn-primary margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">Update profil</button>
+    <button class="btn btn-danger margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">Update profil</button>
   </div>
-</form>
+  </form>
+</div>
 
-<h3 class="title mt-0 pt-3">Ganti Password</h3>
+<div class="container-custom">
+  <h3 class="title mt-0 pt-3 text-center mb-0">Ganti Password</h3>
+  <form class="form-padding" [formGroup]="pesertaPasswordForm" (ngSubmit)="updatePassword()">
 
-<form class="register-form" [formGroup]="pesertaPasswordForm" (ngSubmit)="updatePassword()">
-
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Sandi lama :</label>
-    <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
-      <input formControlName="old_password" type="password" class="form-control mb-3" placeholder="Kata sandi lama" (focus)="focus=true"
-      (blur)="focus=false">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Sandi lama :</label>
+      <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <input formControlName="old_password" type="password" class="form-control mb-3" placeholder="Kata sandi lama" (focus)="focus=true"
+        (blur)="focus=false">
+      </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Sandi baru :</label>
-    <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
-      <input formControlName="password" type="password" class="form-control mb-3" placeholder="Kata sandi baru" (focus)="focus=true"
-      (blur)="focus=false">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Sandi baru :</label>
+      <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <input formControlName="password" type="password" class="form-control mb-3" placeholder="Kata sandi baru" (focus)="focus=true"
+        (blur)="focus=false">
+      </div>
     </div>
-  </div>
 
-  <div class="d-flex justify-content-center">
-    <button class="btn btn-primary margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">Update profil</button>
-  </div>
-</form>
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-danger margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">Update profil</button>
+    </div>
+  </form>
+</div>
+
+

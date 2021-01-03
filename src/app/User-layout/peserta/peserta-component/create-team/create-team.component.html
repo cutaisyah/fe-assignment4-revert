@@ -1,20 +1,23 @@
-<h3 class="title mt-0 pt-3">Buat Team</h3>
-  <form class="register-form" [formGroup]="createTeamForm" (ngSubmit)="create()">
+<div class="container-custom">
+  <h3 class="title mt-0 pt-3 text-center mb-0">Buat Team</h3>
+  <form class="form-padding" [formGroup]="createTeamForm" (ngSubmit)="create()">
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Nama Team :</label>
       <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
         <input formControlName="team_name" type="text" class="form-control mb-3" placeholder="Team" (focus)="focus=true"
         (blur)="focus=false">
       </div>
+    </div>
+    <div class="form-group row">
       <label class="col-sm-2 col-form-label">Team Phone :</label>
       <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
-        <input formControlName="team_phone" type="text" class="form-control mb-3" placeholder="Phone" (focus)="focus=true"
+        <input formControlName="team_phone" type="text" class="form-control mb-3" placeholder="Team Phone" (focus)="focus=true"
         (blur)="focus=false">
       </div>
     </div>
 
     <div class="d-flex justify-content-center">
-      <button class="btn btn-primary margin-custom btn-block btn-custom btn-round mt-3 custom justify-content-center">Buat Team baru</button>
+      <button class="btn btn-danger margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">Buat Team baru</button>
     </div>
   </form>
-
+</div>

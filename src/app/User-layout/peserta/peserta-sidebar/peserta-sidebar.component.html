@@ -1,20 +1,3 @@
-<div class=" container container-border">
-  <div class=" text-center image-margin">
-    <img class="mt-5 img-fluid custom-image" src="assets/img/round-account-button-with-user-inside.png" alt="">
-    <h4>{{userData.username}}</h4>
-    <h6>{{userData.districts.district_name}}</h6>
-    <h5>{{user?.teams?.team_name}}</h5>
-  </div>
-
-  <ul class="list-unstyled">
-    <li class="m-3">
-      <a [routerLink]="['getPeserta/', this.userData?.id]">Profil Peserta</a>
-    </li>
-    <li class="m-3" *ngIf="user?.teams == null" >
-      <a routerLink='createTeam'>Membuat Team</a>
-    </li>
-    <li class="m-3" *ngIf="user?.teams !== null">
-      <a [routerLink]="['registerTeam/']">Daftarkan Temanmu dalam Team!</a>
-    </li>
-  </ul>
-</div>
+<a mat-list-item [routerLink]="['getPeserta/', this.userData?.id]">Profil Peserta</a>
+<a mat-list-item routerLink='createTeam'>Membuat Team</a>
+<a mat-list-item [routerLink]="['registerTeam/']">Daftarkan Teman Ke Team</a>

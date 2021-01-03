@@ -11,6 +11,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilterGameComponent } from './component/filter/filter-game/filter-game.component';
 import { FilterDistrictComponent } from './component/filter/filter-district/filter-district.component';
 import { FilterAvailableComponent } from './component/filter/filter-available/filter-available.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -28,6 +34,12 @@ import { FilterAvailableComponent } from './component/filter/filter-available/fi
     TournamentRoutingModule,
     RouterModule,
     NgbModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
 })
 export class TournamentModule { }

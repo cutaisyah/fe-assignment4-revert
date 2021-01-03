@@ -12,6 +12,17 @@ import { CreateDistrictComponent } from './component/create-district/create-dist
 import { GetDistrictComponent } from './component/get-district/get-district.component';
 import { GetAllUsersComponent } from './component/get-all-users/get-all-users.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { ContohComponent } from './component/contoh/contoh.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -23,12 +34,23 @@ import { ReactiveFormsModule } from '@angular/forms';
     CreateDistrictComponent,
     GetDistrictComponent,
     GetAllUsersComponent,
+    ContohComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     RouterModule,
     ReactiveFormsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
   ],
 })
 export class AdminModule {}

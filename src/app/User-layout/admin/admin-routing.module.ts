@@ -1,3 +1,4 @@
+import { ContohComponent } from './component/contoh/contoh.component';
 import { GetAllUsersComponent } from './component/get-all-users/get-all-users.component';
 import { GetDistrictComponent } from './component/get-district/get-district.component';
 import { CreateDistrictComponent } from './component/create-district/create-district.component';
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: 'adminProfile/:id',
         component: AdminProfileComponent,
+      },
+      {
+        path: 'contoh',
+        component: ContohComponent,
       },
       {
         path: 'createDistrict',

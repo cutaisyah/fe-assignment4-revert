@@ -15,3 +15,9 @@ input[type="file"]{
     background-color: #ffffff;
 }
 
+@media only screen and (min-width: 768px) {
+  .btn-custom{
+    width: 50%;
+  }
+}
+

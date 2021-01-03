@@ -39,7 +39,7 @@
               <a *ngIf='authDecoded?.roles == "admin"' [routerLink]="['/admin/layout/adminProfile/', authDecoded?.id]" class="dropdown-item">Admin Dashboard</a>
               <a *ngIf='authDecoded?.roles == "lurah"' [routerLink]="['/lurah/lurahLayout/getLurah/', authDecoded?.id]" class="dropdown-item">Lurah Dashboard</a>
               <a *ngIf='authDecoded?.roles == "panitia"' [routerLink]="['/panitia/panitiaLayout/getPanitia/', authDecoded?.id]" class="dropdown-item">Panitia Dashboard</a>
-              <a *ngIf='authDecoded?.roles == "peserta"' [routerLink]="['/peserta/pesertaLayout/getPeserta/', authDecoded?.id]" class="dropdown-item">Peserta dashboard</a>
+              <a *ngIf='authDecoded?.roles == "peserta"' [routerLink]="['/peserta/pesertaLayout/getPeserta/', authDecoded?.id]"class="dropdown-item">Peserta dashboard</a>
               <a *ngIf='this.tokenService.isLogin' (click)="this.userService.logout()" class="dropdown-item">Logout</a>
             </div>
           </div>
