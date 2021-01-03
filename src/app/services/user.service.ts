@@ -1,6 +1,6 @@
 import { Team } from './../models/Team';
 import { Login } from './../models/Login';
-import { Match, MatchId } from './../models/Match';
+import { Match, MatchEliminate, MatchId } from './../models/Match';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import {
@@ -13,7 +13,7 @@ import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 import { RegisterOtherMember, RegisterTournament, UpdateApproved, UpdatePanitia, UpdateUser, UpdateUserPassword, User } from '../models/User';
-import { Tournament, UpdateIsStarted, UpdateTournament } from '../models/Tournament';
+import { setWinnerTournament, Tournament, UpdateIsStarted, UpdateTournament } from '../models/Tournament';
 
 import jwt_decode from "jwt-decode";
 import { TokenService } from './token.service';
@@ -297,7 +297,21 @@ export class UserService {
     .subscribe(response => {
       this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
     });
-    
+  }
+
+  setWinner(_id: string, first_winner: string, second_winner: string, third_winner: string){
+    let endpoint = `${environment.baseUrl}/panitia/edit-tournament/${_id}`;
+    let winnerData: setWinnerTournament;
+    winnerData = {
+      _id: _id,
+      first_winner: first_winner,
+      second_winner: second_winner,
+      third_winner: third_winner
+    };
+    this.http.put<any>(endpoint, winnerData)
+    .subscribe(response => {
+      this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
+    });
   }
 
   getTournamentById(_id: string): Observable<any>{
@@ -325,7 +339,16 @@ export class UserService {
     this.http
       .put(endpoint, userData)
       .subscribe(response => {
+        Swal.fire('Status berhasil diubah!');
         this.router.navigate(["/panitia/panitiaLayout/dataPeserta"]);
+      },
+      err => {
+        console.log(err);
+        Swal.fire(
+          'Maaf, Proses tidak tervalidasi',
+          err.message,
+          'error'
+        );
       });
   }
 
@@ -356,6 +379,18 @@ export class UserService {
       team: team,
       score: score,
       match_round: match_round
+    };
+    this.http.put<any>(endpoint, matchData)
+    .subscribe(response => {
+      window.location.reload();
+    });
+  }
+
+  changeStatusEliminate(team: string){
+    let endpoint = `${environment.baseUrl}/panitia/changeStatusEliminateTeam`;
+    let matchData: MatchEliminate;
+    matchData = {
+      team: team
     };
     this.http.put<any>(endpoint, matchData)
     .subscribe(response => {
@@ -418,7 +453,7 @@ export class UserService {
     );
   }
 
-  pesertaRegisterTournament(game: string) {
+  pesertaRegisterTournament(_id:string ,game: string) {
     let userData: RegisterTournament;
     let endpoint = environment.baseUrl + '/peserta/register-tournament/' + `${game}`;
     userData = {
@@ -429,7 +464,7 @@ export class UserService {
       .subscribe(
         response => {
           Swal.fire('Terimakasih sudah Mendaftar Tournament');
-          this.router.navigate([`/detail/${game}`]).then(()=>  {window.location.reload();});
+          this.router.navigate([`/detail/${game}/${_id}`]).then(()=>  {window.location.reload();});
         },
         err => {
           console.log(err);
