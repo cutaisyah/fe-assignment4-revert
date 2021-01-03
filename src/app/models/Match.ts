@@ -8,3 +8,7 @@ export interface Match {
     _id: string;
     match_round: string;
   }
+
+  export interface MatchEliminate{
+    team: string;
+  }

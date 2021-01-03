@@ -1,8 +1,26 @@
 <div class="container">
   <h1>{{ tournamentData?.tournament_name }}</h1>
 
-  <div id="minimal" style="width: 100%; height: 100%">
+  <div id="minimal" *ngIf="matches?.length > 0 && tournamentData?.categories == 'single elimination'" style="width: 100%; height: 100%">
     <div class="demo"></div>
+  </div>
+
+  <div id="ffa-score" *ngIf="matches?.length > 0 && tournamentData?.categories == 'free for all'">
+  <!-- <div id="ffa-score" *ngIf="matches?.length > 0" > -->
+    <table class="table table-bordered mt-3">
+      <tr>
+        <th>Team</th>
+        <th>Status</th>
+      </tr>
+      <tr *ngFor="let match of matches">
+        <td>{{match.team?.team_name}}</td>
+        <td *ngIf="match.isEliminate == false">in Match</td>
+        <td *ngIf="match.isEliminate == true">Eliminated</td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="description" [innerHTML]="htmldescription">
   </div>
 
   <table class="table table-bordered mt-3">
@@ -44,7 +62,7 @@
         -
       </td>
       <td class="text-center" *ngIf="tournamentData?.third_winner !== null">
-        {{ tournamentData?.first_winner }}
+        {{ tournamentData?.first_winner.team_name }}
       </td>
     </tr>
     <tr>
@@ -53,7 +71,7 @@
         -
       </td>
       <td class="text-center" *ngIf="tournamentData?.third_winner !== null">
-        {{ tournamentData?.second_winner }}
+        {{ tournamentData?.second_winner.team_name }}
       </td>
     </tr>
     <tr>
@@ -62,7 +80,7 @@
         -
       </td>
       <td class="text-center" *ngIf="tournamentData?.third_winner !== null">
-        {{ tournamentData?.third_winner }}
+        {{ tournamentData?.third_winner.team_name }}
       </td>
     </tr>
 
@@ -91,7 +109,8 @@
       (this.userService.userPayloadValue?.roles === 'admin' &&
         this.userService.userPayloadValue?.roles == 'lurah' &&
         this.userService.userPayloadValue?.roles == 'panitia') ||
-      this.userService.userPayloadValue?.roles == 'peserta'
+      this.userService.userPayloadValue?.roles == 'peserta' &&
+      this.userService.userPayloadValue?.register_total_participant != this.userService.userPayloadValue?.max_total_participant
     "
     (click)="register()"
   >
