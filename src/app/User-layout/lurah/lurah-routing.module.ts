@@ -5,6 +5,7 @@ import { CreatePanitiaComponent } from './lurah-component/create-panitia/create-
 import { LurahComponent } from './lurah.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DataTournamentComponent } from './lurah-component/data-tournament/data-tournament.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'dataPanitia',
         component: DataPanitiaComponent,
+      },
+      {
+        path: 'dataTournament',
+        component: DataTournamentComponent,
       },
     ],
   },

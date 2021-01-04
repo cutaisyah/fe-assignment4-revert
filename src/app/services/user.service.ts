@@ -163,6 +163,10 @@ export class UserService {
       );
   }
 
+  dataTournamentByDistrict(): Observable<any>{
+    return this.http.get(`${environment.baseUrl}/lurah/allbaseondistrict`, { headers: this.headers })
+  }
+
   //======================================================================
 
   //============================================ panitia - profile

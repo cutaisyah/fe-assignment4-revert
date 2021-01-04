@@ -9,6 +9,8 @@ import { LurahRoutingModule } from './lurah-routing.module';
 import { CreatePanitiaComponent } from './lurah-component/create-panitia/create-panitia.component';
 import { LurahSidebarComponent } from './lurah-sidebar/lurah-sidebar.component';
 import { DataPanitiaComponent } from './lurah-component/data-panitia/data-panitia.component';
+import { DataTournamentComponent } from './lurah-component/data-tournament/data-tournament.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { DataPanitiaComponent } from './lurah-component/data-panitia/data-paniti
     LurahSidebarComponent,
     DataPanitiaComponent,
     LurahProfileComponent,
+    DataTournamentComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +27,7 @@ import { DataPanitiaComponent } from './lurah-component/data-panitia/data-paniti
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbModule,
   ],
 })
 export class LurahModule {}
