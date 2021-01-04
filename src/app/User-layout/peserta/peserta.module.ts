@@ -9,6 +9,12 @@ import { DataPesertaComponent } from './peserta-component/data-peserta/data-pese
 import { RegisterTeamComponent } from './peserta-component/register-team/register-team.component';
 import { PesertaComponent } from './peserta.component';
 import { PesertaSidebarComponent } from './peserta-sidebar/peserta-sidebar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -23,6 +29,12 @@ import { PesertaSidebarComponent } from './peserta-sidebar/peserta-sidebar.compo
     PesertaRoutingModule,
     RouterModule,
     ReactiveFormsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
 })
 export class PesertaModule { }

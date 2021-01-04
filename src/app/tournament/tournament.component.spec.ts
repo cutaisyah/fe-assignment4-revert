@@ -1,7 +1,11 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { LayoutModule } from '@angular/cdk/layout';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { TournamentComponent } from './tournament.component';
 
@@ -9,11 +13,19 @@ describe('TournamentComponent', () => {
   let component: TournamentComponent;
   let fixture: ComponentFixture<TournamentComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TournamentComponent ]
-    })
-    .compileComponents();
+      declarations: [TournamentComponent],
+      imports: [
+        NoopAnimationsModule,
+        LayoutModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatSidenavModule,
+        MatToolbarModule,
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,7 +34,7 @@ describe('TournamentComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 });

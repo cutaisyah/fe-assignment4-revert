@@ -67,6 +67,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   z-index: 1;
 }
 
+.tournament-container{
+  margin: 20px;
+}
+
 .sidenav {
   width: 200px;
   background-color:#fde8cd;
@@ -104,6 +108,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
   .btn-custom{
     width: 50%;
+  }
+
+  .tournament-container{
+    margin: 50px;
   }
 
   .sidenav-container{
