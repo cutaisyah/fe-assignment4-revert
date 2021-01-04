@@ -21,9 +21,7 @@ export class TournamentListComponent implements OnInit {
   showAllTournament(){
     this.userService.getAllTournament().subscribe(
       (data) => {
-        // console.log(data);
         this.tournamentData = data;
-        // console.log("tournamentData",this.tournamentData);
       },
       (error) => {
         console.log(error);
