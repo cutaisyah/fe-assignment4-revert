@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-data-panitia',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataPanitiaComponent implements OnInit {
 
-  constructor() { }
+  panitia: any;
+
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getAllDataPanitia().subscribe(panitiaData =>{
+      this.panitia = panitiaData
+      console.log(this.panitia)
+    })
   }
+
+
 
 }

@@ -19,17 +19,10 @@ export class CreatePanitiaComponent implements OnInit {
       username: new FormControl(),
       birthdate: new FormControl(),
       phone: new FormControl(),
-      // roles: new FormControl(),
-      // districts: new FormControl(),
     });
-    // this.createPanitiaForm.patchValue({
-    //   districts: this.userService.userPayloadValue.districts
-    // })
   }
 
   ngOnInit(): void {
-    // this.userData = this.userService.userPayloadValue;
-    // console.log(this.userData);
   }
 
   createPanitia() {
