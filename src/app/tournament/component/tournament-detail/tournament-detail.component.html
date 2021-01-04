@@ -105,12 +105,8 @@
     class="btn btn-success"
     aria-label="Register"
     [disabled]="!this.tokenService.isLogin"
-    *ngIf="
-      (this.userService.userPayloadValue?.roles === 'admin' &&
-        this.userService.userPayloadValue?.roles == 'lurah' &&
-        this.userService.userPayloadValue?.roles == 'panitia') ||
-      this.userService.userPayloadValue?.roles == 'peserta' &&
-      this.userService.userPayloadValue?.register_total_participant != this.userService.userPayloadValue?.max_total_participant
+    *ngIf="this.userService.userPayloadValue?.roles == 'peserta' &&
+    tournamentData.register_total_participant !== tournamentData.max_total_participant
     "
     (click)="register()"
   >

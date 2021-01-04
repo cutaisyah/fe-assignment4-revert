@@ -23,7 +23,7 @@ export class TournamentSidebarComponent implements OnInit {
       (data) => {
         // console.log(data);
         this.districtData = data;
-        // console.log("districtData",this.districtData);
+        console.log("districtData",this.districtData);
       },
       (error) => {
         console.log(error);
