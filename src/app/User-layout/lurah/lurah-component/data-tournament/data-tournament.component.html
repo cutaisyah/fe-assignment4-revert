@@ -1,7 +1,7 @@
 <h4>Total Participant Registered: {{ countTournamentParticipant }}</h4>
 
-<a style="cursor: pointer" (click)="exportexcel()">
-  <button class="btn"> cloud_download</button>
+<a class="export-btn mb-4" style="cursor: pointer" (click)="exportexcel()">
+  <button class="btn">Export to Excel</button>
 </a>
 <table id="excel-table" class="table text-center mt-2" style="width: 100%">
   <thead>
@@ -14,8 +14,6 @@
       <th>Maksimum</th>
       <th>Umur</th>
       <th>Status</th>
-      <!-- <th>Change Status</th>
-      <th>Edit Data</th> -->
     </tr>
   </thead>
   <tbody>

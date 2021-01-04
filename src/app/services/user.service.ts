@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
-import { RegisterOtherMember, RegisterTournament, UpdateApproved, UpdatePanitia, UpdateUser, UpdateUserPassword, User } from '../models/User';
+import { createDistrict, RegisterOtherMember, RegisterTournament, UpdateApproved, UpdateProfile, UpdateUser, UpdateUserPassword, User } from '../models/User';
 import { setWinnerTournament, Tournament, UpdateIsStarted, UpdateTournament } from '../models/Tournament';
 
 import jwt_decode from "jwt-decode";
@@ -124,26 +124,10 @@ export class UserService {
   //     });
   // }
 
-  getAdminProfile(_id: string): Observable<any> {
-    let endpoint = environment.baseUrl + '/admin/get/' + `${_id}`;
-    return this.http.get(endpoint, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        console.log(res)
-        return res || {};
-      })
-    );
-    // return this.http.get<{ _id: string, username: string, email: string, password: string, birthdate: Date }>(
-    //   environment.baseUrl + '/admin/get/' + `${_id}`
-    // );
-  }
-
-  getAllDataLurah() {
-
-  }
-
   //============================================
 
-  // Lurah
+  // admin
+
   createLurah(user: User) {
     return this.http
       .post<any>(`${environment.baseUrl}/admin/create-lurah`, user)
@@ -163,8 +147,88 @@ export class UserService {
       );
   }
 
+  createDistrict(districts: string){
+    let district: createDistrict;
+    district = {
+      districts: districts,
+    }
+    return this.http.post<any>(`${environment.baseUrl}/admin/create-district`, district)
+      .subscribe(
+        (success) => {
+          console.log(success);
+          Swal.fire('District berhasil dibuat!');
+        },
+        (err) => {
+          console.log(err);
+          Swal.fire(
+            'Maaf ada yang salah dengan proses create',
+            err.message,
+            'error'
+          );
+        }
+      );
+  }
+
+  getAdminProfile(_id: string): Observable<any> {
+    let endpoint = environment.baseUrl + '/admin/get/' + `${_id}`;
+    return this.http.get(endpoint, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        console.log(res)
+        return res || {};
+      })
+    );
+  }
+
+  getAllDataLurah() {
+
+  }
+
+  updateAdminProfile(_id: string, email: string, username: string, password: string, birthdate: string, phone: string){
+    let adminData: UpdateProfile;
+    adminData = {
+      _id: _id,
+      email: email,
+      username: username,
+      password: password,
+      birthdate: birthdate,
+      phone: phone
+    };
+    this.http.put<any>(`${environment.baseUrl}/admin/update/${_id}`, adminData)
+    .subscribe(response => {
+      this.router.navigate([`/admin/layout/adminProfile/${_id}`]).then(()=>  {window.location.reload();});
+    });
+  }
+
+  //============================================
+
+  // Lurah
+  
+  getAllDataLurahProfile(_id: string){
+    return this.http.get(`${environment.baseUrl}/lurah/get/${_id}`, { headers: this.headers })
+  }
+
   dataTournamentByDistrict(): Observable<any>{
     return this.http.get(`${environment.baseUrl}/lurah/allbaseondistrict`, { headers: this.headers })
+  }
+  
+  getAllDataPanitia(): Observable<any>{
+    return this.http.get(`${environment.baseUrl}/lurah/data-panitia`, { headers: this.headers })
+  }
+
+  updateLurahProfile(_id: string, email: string, username: string, password: string, birthdate: string, phone: string){
+    let lurahData: UpdateProfile;
+    lurahData = {
+      _id: _id,
+      email: email,
+      username: username,
+      password: password,
+      birthdate: birthdate,
+      phone: phone
+    };
+    this.http.put<any>(`${environment.baseUrl}/lurah/update/${_id}`, lurahData)
+    .subscribe(response => {
+      this.router.navigate([`/lurah/lurahLayout/getLurah/${_id}`]).then(()=>  {window.location.reload();});
+    });
   }
 
   //======================================================================
@@ -201,7 +265,7 @@ export class UserService {
 
   updatePanitiaProfile(_id: string, email: string, username: string, password: string, birthdate: string, phone: string){
     let endpoint = `${environment.baseUrl}/panitia/update/${_id}`;
-    let panitiaData: UpdatePanitia;
+    let panitiaData: UpdateProfile;
     panitiaData = {
       _id: _id,
       email: email,

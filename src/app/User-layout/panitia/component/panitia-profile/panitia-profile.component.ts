@@ -18,7 +18,6 @@ export class PanitiaProfileComponent implements OnInit {
   constructor(public route: ActivatedRoute, public userService: UserService) {
     this.panitiaProfileForm = new FormGroup({
       email: new FormControl({value: '', disabled: true}, [Validators.required],),
-      // password: new FormControl(),
       username: new FormControl(),
       birthdate: new FormControl(null, [Validators.required],),
       phone: new FormControl(),
@@ -29,14 +28,11 @@ export class PanitiaProfileComponent implements OnInit {
     
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
           this.panitiaId = paramMap.get('id');
-          let birth: any = {};
           this.userService.getPanitiaProfile(this.panitiaId).subscribe(userData => {
-            // console.log("panitiaData", panitiaData);
             this.data = userData.data;
-            this.panitiaProfileForm.setValue({ 
+            this.panitiaProfileForm.patchValue({ 
               email: this.data.email, 
               username: this.data.username,
-              // password: this.data.data.password, 
               birthdate: this.data.birthdate,
               phone: this.data.phone
             });

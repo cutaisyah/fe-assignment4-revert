@@ -27,8 +27,7 @@
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Tanggal lahir :</label>
     <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
-      <input formControlName="birthdate" type="date" class="form-control mb-3" placeholder="Tanggal lahir"
-      (focus)="focus1=true" (blur)="focus1=false">
+      <span>{{user?.birthdate | date: 'yyyy-MM-dd'}}</span>
     </div>
   </div>
 
@@ -36,23 +35,6 @@
     <label class="col-sm-2 col-form-label">No telefon :</label>
     <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
       <input formControlName="phone" type="text" class="form-control mb-3" placeholder="No telefon" (focus)="focus=true"
-      (blur)="focus=false">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">roles :</label>
-    <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
-      <input formControlName="roles" type="text" class="form-control mb-3" placeholder="roles" (focus)="focus=true"
-      (blur)="focus=false">
-    </div>
-  </div>
-
-
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Distrik :</label>
-    <div class="col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
-      <input formControlName="districts" type="text" class="form-control mb-3" placeholder="distrik" (focus)="focus=true"
       (blur)="focus=false">
     </div>
   </div>

@@ -15,6 +15,9 @@ export interface User {
   tournament_approved: string;
 }
 
+export interface createDistrict{
+  districts: string;
+}
 
 export class UpdateUser {
   username: string
@@ -25,7 +28,7 @@ export class UpdateUserPassword {
   old_password: string;
 }
 
-export interface UpdatePanitia {
+export interface UpdateProfile {
   _id: string;
   username: string;
   email: string;

@@ -1,5 +1,6 @@
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-create-district',
@@ -9,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class CreateDistrictComponent implements OnInit {
   focus;
   focus1;
-  user: any;
+  disctrict: any;
   createDistrictForm: FormGroup;
-  constructor(public fb: FormBuilder) {
+  constructor(public userService: UserService) {
     this.createDistrictForm = new FormGroup({
       district: new FormControl(),
     });
@@ -19,5 +20,8 @@ export class CreateDistrictComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  createDistrict() {}
+  createDistrict() {
+    this.disctrict = this.createDistrictForm.value;
+    this.userService.createDistrict(this.disctrict);
+  }
 }
