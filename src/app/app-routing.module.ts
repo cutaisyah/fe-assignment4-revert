@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './services/auth.guard';
 import { Role } from './models/Role';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,14 @@ const routes: Routes = [
       canActivate: [AuthGuard],
       data: { roles: Role.peserta }
 
+  },
+  {
+    path: '404',
+    component: NotfoundComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/404'
   },
 ];
 

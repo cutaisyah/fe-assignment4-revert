@@ -1,4 +1,4 @@
-<table class="table text-center" style="width:100%">
+<table style="width:100%">
   
   <thead>
     <tr>
@@ -10,8 +10,7 @@
       <th>Maksimum</th>
       <th>Umur</th>
       <th>Status</th>
-      <th>Change Status</th>
-      <th>Edit Data</th>
+      <th>Manage Game</th>
     </tr>
   </thead>
   <tbody>
@@ -25,11 +24,8 @@
     <td>{{tournament.max_total_participant}}</td>
     <td>{{tournament.age_minimum}}</td>
     <td>{{tournament.is_started}}</td>
-    <td><button type="button" class="btn btn-success" aria-label="Change"
-      [routerLink]="['/panitia/panitiaLayout/dataTournament/', tournament._id ]">change
-     </button></td>
-    <td><button type="button" class="btn btn-success" aria-label="Edit" *ngIf="tournament.is_started == 'pending'"
-      [routerLink]="['/panitia/panitiaLayout/dataTournament/edit', tournament._id ]">edit
+    <td><button type="button" class="btn btn-success" aria-label="Edit"
+      [routerLink]="['/panitia/panitiaLayout/manageGame/', tournament._id, tournament.match_round ]" [disabled]="tournament.is_started == 'completed'">manage
      </button></td>
   </tr>
 </tbody>

@@ -17,6 +17,8 @@ import { DataTournamentComponent } from './component/data-tournament/data-tourna
 import { ChangeDataTournamentComponent } from './component/change-data-tournament/change-data-tournament.component';
 import { ChangeStatusTournamentComponent } from './component/change-status-tournament/change-status-tournament.component';
 import { ChangeStatusApprovedComponent } from './component/change-status-approved/change-status-approved.component';
+import { ManageGameComponent } from './component/manage-game/manage-game.component';
+import { ManageGameScoreComponent } from './component/manage-game-score/manage-game-score.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { ChangeStatusApprovedComponent } from './component/change-status-approve
     ChangeStatusTournamentComponent,
     ChangeDataTournamentComponent,
     ChangeStatusApprovedComponent,
+    ManageGameComponent,
+    ManageGameScoreComponent
   ],
   imports: [
     CommonModule,

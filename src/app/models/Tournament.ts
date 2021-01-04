@@ -21,6 +21,7 @@ export interface Tournament {
   second_prize: string;  
   third_prize: string; 
   game: Game;
+  match_round: number;
 }
 
 export interface UpdateTournament{
@@ -32,6 +33,13 @@ export interface UpdateTournament{
   first_prize: string;  
   second_prize: string;  
   third_prize: string; 
+}
+
+export interface setWinnerTournament{
+  _id: string;
+  first_winner: string;
+  second_winner: string;
+  third_winner: string;
 }
 
 export class UpdateIsStarted {

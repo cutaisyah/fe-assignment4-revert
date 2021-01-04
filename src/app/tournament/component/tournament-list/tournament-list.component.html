@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-4" *ngFor="let tournament of tournamentData | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
     <div class="row">
-      <div class="card shadow-sm mx-2 my-3" [routerLink]="['../detail/',tournament.permalink]">
+      <div class="card shadow-sm mx-2 my-3" [routerLink]="['../detail/',tournament.permalink,tournament._id]">
         <img
           [src]="tournament.image"
           alt=""
@@ -15,6 +15,7 @@
           </div>
           <div class="card-body text-left">
             <p class="card-text"><b>Game</b>: {{tournament.game}}</p>
+            <p class="card-text"><b>Kategori</b>: {{tournament.categories}}</p>
             <p class="card-text"><b>Kapasitas</b>: {{tournament.register_total_participant}}/{{tournament.max_total_participant}}</p>
             <p class="card-text"><b>Status</b>: {{tournament.is_started}}</p>
             <p class="card-text"><b>Umur diatas</b>: {{tournament.age_minimum}}+</p>
