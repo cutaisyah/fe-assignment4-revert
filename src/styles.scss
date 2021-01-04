@@ -1,3 +1,38 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$akhiran-primary: mat-palette($mat-indigo);
+$akhiran-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$akhiran-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$akhiran-theme: mat-light-theme((
+  color: (
+    primary: $akhiran-primary,
+    accent: $akhiran-accent,
+    warn: $akhiran-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($akhiran-theme);
+
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
@@ -13,4 +48,65 @@
   background-color: #f1f1f1;
 }
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.container-custom{
+  margin: 2.25em 2.25em;
+  background-color: white;
+  box-shadow: 1px 5px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.form-padding{
+  padding: 3.125em;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.sidenav {
+  width: 200px;
+  background-color:#fde8cd;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.span {
+  margin: auto;
+}
+
+.table-container{
+  margin: 2.25em 6.25em 6.25em;
+  background-color: white;
+  box-shadow: 1px 5px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.table-padding{
+  padding: 0 1.125em 1.125em;
+}
+
+.table-responsive{
+  margin-top:3.125em ;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+  .container-custom{
+    margin: 2.25em 6.25em 6.25em;
+
+  }
+
+  .btn-custom{
+    width: 50%;
+  }
+
+  .sidenav-container{
+    height:  100%;
+  }
+}

@@ -35,10 +35,10 @@ export class AdminProfileComponent implements OnInit {
         this.userService.getAdminProfile(this.adminId).subscribe(userData => {
           this.user = userData.data;
           console.log(this.user);
-          this.adminProfileForm.patchValue({ 
-            email: this.user.email, 
+          this.adminProfileForm.patchValue({
+            email: this.user.email,
             username: this.user.username,
-            // password: this.user.password, 
+            // password: this.user.password,
             birthdate: this.user.birthdate,
             phone: this.user.phone,
             districts: this.user.districts.district_name
@@ -53,7 +53,7 @@ export class AdminProfileComponent implements OnInit {
     if (this.adminProfileForm.invalid) {
       return;
     }
-    this.userService.updatePanitiaProfile(
+    this.userService.updateAdminProfile(
       this.adminId,
       this.adminProfileForm.value.email,
       this.adminProfileForm.value.username,

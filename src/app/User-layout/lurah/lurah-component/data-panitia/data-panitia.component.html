@@ -1,23 +1,25 @@
-<div class="container">
-  <h3 class="title mt-0 pt-3">Tabel panitia</h3>
-  <table class="table table-hover ">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">No</th>
-        <th scope="col">Email</th>
-        <th scope="col">Nama Pengguna</th>
-        <th scope="col">Distrik</th>
-        <th scope="col">No telefon</th>
-      </tr>
-    </thead>
-    <tbody class="table-light">
-      <tr *ngFor="let user of panitia; let i = index">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{user.email}}</td>
-        <td>{{user.username}}</td>
-        <td>{{user.districts.district_name}}</td>
-        <td>{{user.phone}}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container-custom table-padding">
+  <h3 class="title mt-0 pt-3 text-center mb-0s">Tabel Panitia</h3>
+  <div class="table-responsive">
+    <table class="table table-hover text-center">
+      <thead class="bg-danger">
+        <tr>
+          <th class="align-middle" scope="col">No</th>
+          <th class="align-middle" scope="col">Email</th>
+          <th class="align-middle" scope="col">Nama Pengguna</th>
+          <th class="align-middle" scope="col">Distrik</th>
+          <th class="align-middle" scope="col">No telefon</th>
+        </tr>
+      </thead>
+      <tbody class="table-light">
+        <tr *ngFor="let user of panitia; let i = index">
+          <th class="align-middle" scope="row">{{ i + 1 }}</th>
+          <td class="align-middle">{{user.email}}</td>
+          <td class="align-middle">{{user.username}}</td>
+          <td class="align-middle">{{user.districts.district_name}}</td>
+          <td class="align-middle">{{user.phone}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

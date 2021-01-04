@@ -19,6 +19,12 @@ import { ChangeStatusTournamentComponent } from './component/change-status-tourn
 import { ChangeStatusApprovedComponent } from './component/change-status-approved/change-status-approved.component';
 import { ManageGameComponent } from './component/manage-game/manage-game.component';
 import { ManageGameScoreComponent } from './component/manage-game-score/manage-game-score.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -44,7 +50,13 @@ import { ManageGameScoreComponent } from './component/manage-game-score/manage-g
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    AngularEditorModule
+    AngularEditorModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ]
 })
 export class PanitiaModule {}
