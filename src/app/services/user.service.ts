@@ -66,7 +66,7 @@ export class UserService {
 
   signIn(login: Login) {
     return this.http
-      .post<any>(`${environment.baseUrl}/auth/signin`, login)
+      .post<any>(`${environment.baseUrl}/auth/test`, login)
       .subscribe(
         (success) => {
           // console.log(success);
@@ -86,6 +86,7 @@ export class UserService {
           Swal.fire('Anda sudah login');
         },
         (err) => {
+          console.log(err)
           Swal.fire('Maaf ada yang salah dengan proses login anda');
         }
       );
@@ -532,7 +533,7 @@ export class UserService {
       .subscribe(
         response => {
           Swal.fire('Terimakasih sudah Mendaftar Tournament');
-          this.router.navigate([`/detail/${game}/${_id}`]).then(()=>  {window.location.reload();});
+          this.router.navigate([`tournament/detail/${game}/${_id}`]).then(()=> {window.location.reload();});
         },
         err => {
           console.log(err);

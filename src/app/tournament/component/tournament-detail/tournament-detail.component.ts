@@ -31,6 +31,7 @@ export class TournamentDetailComponent implements OnInit {
       this.permalink = paramMap.get('permalink');
       this.userService.getDetailTournament(this.permalink).subscribe(data => {
         this.tournamentData = data;
+        console.log(this.tournamentData)
         this.htmldescription = this.sanitizer.bypassSecurityTrustHtml(this.tournamentData.description);
         // console.log(this.htmldescription)
       });

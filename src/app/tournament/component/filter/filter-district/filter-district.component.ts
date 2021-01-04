@@ -22,9 +22,9 @@ export class FilterDistrictComponent implements OnInit {
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.districtId = paramMap.get('districtId');
-      console.log(this.districtId);
+      // console.log(this.districtId);
       this.userService.getAllTournamentBasedOnDistrict(this.districtId).subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.tournamentData = data;
       });
     });

@@ -24,7 +24,7 @@ export class FilterGameComponent implements OnInit {
       this.gameId = paramMap.get('gamename');
       // console.log(this.gameId);
       this.userService.getAllTournamentBasedOnGame(this.gameId).subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.tournamentData = data;
       });
     });
