@@ -98,12 +98,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-top:3.125em ;
 }
 
-
+.sidenav-container{
+  height:  100%;
+}
 
 @media only screen and (min-width: 768px) {
   .container-custom{
     margin: 2.25em 6.25em 6.25em;
-
   }
 
   .btn-custom{
@@ -112,9 +113,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
   .tournament-container{
     margin: 50px;
-  }
-
-  .sidenav-container{
-    height:  100%;
   }
 }

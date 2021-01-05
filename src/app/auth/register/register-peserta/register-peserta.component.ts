@@ -1,6 +1,7 @@
 import { UserService } from './../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-register-peserta',
@@ -13,7 +14,7 @@ export class RegisterPesertaComponent implements OnInit {
   focus1;
   user: any;
   signUpForm: FormGroup;
-  constructor(public fb: FormBuilder, public userService: UserService) {
+  constructor(private spinner: NgxSpinnerService,public fb: FormBuilder, public userService: UserService) {
     this.signUpForm = new FormGroup({
       username: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
       email: new FormControl(null, { validators: [Validators.required,] }),
@@ -24,7 +25,15 @@ export class RegisterPesertaComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 1200);
+ }
 
   signUp() {
     this.user = this.signUpForm.value;
