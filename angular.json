@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/aos/dist/aos.css",
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/sass/paper-kit.scss",
@@ -35,6 +36,7 @@
               "@ng-select/ng-select/themes/material.theme.css"
             ],
             "scripts": [
+              "node_modules/aos/dist/aos.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/jquery-bracket/dist/jquery.bracket.min.js"
             ]

@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MatIconModule,
     MatListModule,
     NgSelectModule,
+    NgxSpinnerModule,
     FormsModule
   ],
 })
