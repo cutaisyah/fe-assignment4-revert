@@ -19,6 +19,8 @@ import { ChangeStatusTournamentComponent } from './component/change-status-tourn
 import { ChangeStatusApprovedComponent } from './component/change-status-approved/change-status-approved.component';
 import { ManageGameComponent } from './component/manage-game/manage-game.component';
 import { ManageGameScoreComponent } from './component/manage-game-score/manage-game-score.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { ManageGameScoreComponent } from './component/manage-game-score/manage-g
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    AngularEditorModule
+    AngularEditorModule,
+    NgSelectModule,
+    NgbModule,
   ]
 })
 export class PanitiaModule {}
