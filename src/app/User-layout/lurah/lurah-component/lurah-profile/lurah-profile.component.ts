@@ -1,7 +1,9 @@
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import Swal from 'sweetalert2';
+import { UpdateUser, UpdateUserPassword } from 'src/app/models/User';
 
 @Component({
   selector: 'app-lurah-profile',
@@ -14,6 +16,7 @@ export class LurahProfileComponent implements OnInit {
   user: any;
   lurahId: any;
   lurahProfileForm: FormGroup;
+  lurahPasswordForm: FormGroup;
   constructor(public route: ActivatedRoute, public userService: UserService) {
     this.lurahProfileForm = new FormGroup({
       email: new FormControl(),
@@ -21,6 +24,11 @@ export class LurahProfileComponent implements OnInit {
       username: new FormControl(),
       birthdate: new FormControl(),
       phone: new FormControl(),
+    });
+
+    this.lurahPasswordForm = new FormGroup({
+      password: new FormControl(null,[Validators.required]),
+      old_password: new FormControl(null,[Validators.required]),
     });
   }
 
@@ -43,15 +51,32 @@ export class LurahProfileComponent implements OnInit {
     if (this.lurahProfileForm.invalid) {
       return;
     }
-    this.userService.updateLurahProfile(
-      this.lurahId,
-      this.lurahProfileForm.value.email,
-      this.lurahProfileForm.value.username,
-      this.lurahProfileForm.value.password,
-      this.lurahProfileForm.value.birthdate,
-      this.lurahProfileForm.value.phone,
-    );
+    const usernameProfile : UpdateUser = {
+      username : this.lurahProfileForm.get('username').value,
+      birthdate : this.lurahProfileForm.get('birthdate').value,
+      phone : this.lurahProfileForm.get('phone').value,
+      email : this.lurahProfileForm.get('email').value
+    };
+    this.userService.updateLurahProfile(usernameProfile).subscribe(res => {
+      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
+      console.log(res);
+    })
     this.lurahProfileForm.reset();
 
   }
+
+  updatePassword() {
+    if (this.lurahPasswordForm.invalid) {
+      return;
+    }
+    const userPassword : UpdateUserPassword = {
+      password : this.lurahPasswordForm.get('password').value,
+      old_password : this.lurahPasswordForm.get('old_password').value
+    };
+    this.userService.updatePesertaPassword(userPassword).subscribe(res => {
+      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
+      console.log(res);
+    })
+  }
+
 }

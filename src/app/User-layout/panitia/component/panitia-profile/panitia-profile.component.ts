@@ -2,6 +2,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { UpdateUser, UpdateUserPassword } from 'src/app/models/User';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-panitia-profile',
@@ -13,6 +15,7 @@ export class PanitiaProfileComponent implements OnInit {
   focus1;
   data: any;
   panitiaProfileForm: FormGroup;
+  panitiaPasswordForm: FormGroup;
   private panitiaId: string;
 
   constructor(public route: ActivatedRoute, public userService: UserService) {
@@ -21,6 +24,11 @@ export class PanitiaProfileComponent implements OnInit {
       username: new FormControl(),
       birthdate: new FormControl(null, [Validators.required],),
       phone: new FormControl(),
+    });
+
+    this.panitiaPasswordForm = new FormGroup({
+      password: new FormControl(null,[Validators.required]),
+      old_password: new FormControl(null,[Validators.required]),
     });
   }
 
@@ -44,14 +52,31 @@ export class PanitiaProfileComponent implements OnInit {
     if (this.panitiaProfileForm.invalid) {
       return;
     }
-    this.userService.updatePanitiaProfile(
-      this.panitiaId,
-      this.panitiaProfileForm.value.email,
-      this.panitiaProfileForm.value.username,
-      this.panitiaProfileForm.value.password,
-      this.panitiaProfileForm.value.birthdate,
-      this.panitiaProfileForm.value.phone,
-    );
+    const usernameProfile : UpdateUser = {
+      username : this.panitiaProfileForm.get('username').value,
+      birthdate : this.panitiaProfileForm.get('birthdate').value,
+      phone : this.panitiaProfileForm.get('phone').value,
+      email : this.panitiaProfileForm.get('email').value
+    };
+    this.userService.updatePanitiaProfile(usernameProfile).subscribe(res => {
+      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
+      console.log(res);
+    })
     this.panitiaProfileForm.reset();
   }
+
+  updatePassword() {
+    if (this.panitiaPasswordForm.invalid) {
+      return;
+    }
+    const userPassword : UpdateUserPassword = {
+      password : this.panitiaPasswordForm.get('password').value,
+      old_password : this.panitiaPasswordForm.get('old_password').value
+    };
+    this.userService.updatePesertaPassword(userPassword).subscribe(res => {
+      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
+      console.log(res);
+    })
+  }
+
 }

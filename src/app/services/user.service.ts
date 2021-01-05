@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
-import { createDistrict, RegisterOtherMember, RegisterTournament, UpdateApproved, UpdateProfile, UpdateUser, UpdateUserPassword, User } from '../models/User';
+import { createDistrict, RegisterOtherMember, RegisterTournament, UpdateApproved, UpdateUser, UpdateUserPassword, User } from '../models/User';
 import { setWinnerTournament, Tournament, UpdateIsStarted, UpdateTournament } from '../models/Tournament';
 
 import jwt_decode from "jwt-decode";
@@ -184,20 +184,14 @@ export class UserService {
 
   }
 
-  updateAdminProfile(_id: string, email: string, username: string, password: string, birthdate: string, phone: string){
-    let adminData: UpdateProfile;
-    adminData = {
-      _id: _id,
-      email: email,
-      username: username,
-      password: password,
-      birthdate: birthdate,
-      phone: phone
-    };
-    this.http.put<any>(`${environment.baseUrl}/admin/update/${_id}`, adminData)
-    .subscribe(response => {
-      this.router.navigate([`/admin/layout/adminProfile/${_id}`]).then(()=>  {window.location.reload();});
-    });
+  updateAdminProfile(user: UpdateUser) {
+    let endpoint = `${environment.baseUrl}/admin/update`;
+    return this.http.put<any>(endpoint, user).pipe(map(result => true))
+  }
+
+  updateAdminPassword(password: UpdateUserPassword) {
+    let endpoint = `${environment.baseUrl}/admin/update-password`;
+    return this.http.put<any>(endpoint, password).pipe(map(result => true))
   }
 
   //============================================
@@ -216,20 +210,14 @@ export class UserService {
     return this.http.get(`${environment.baseUrl}/lurah/data-panitia`, { headers: this.headers })
   }
 
-  updateLurahProfile(_id: string, email: string, username: string, password: string, birthdate: string, phone: string){
-    let lurahData: UpdateProfile;
-    lurahData = {
-      _id: _id,
-      email: email,
-      username: username,
-      password: password,
-      birthdate: birthdate,
-      phone: phone
-    };
-    this.http.put<any>(`${environment.baseUrl}/lurah/update/${_id}`, lurahData)
-    .subscribe(response => {
-      this.router.navigate([`/lurah/lurahLayout/getLurah/${_id}`]).then(()=>  {window.location.reload();});
-    });
+  updateLurahProfile(user: UpdateUser) {
+    let endpoint = `${environment.baseUrl}/lurah/update`;
+    return this.http.put<any>(endpoint, user).pipe(map(result => true))
+  }
+
+  updateLurahPassword(password: UpdateUserPassword) {
+    let endpoint = `${environment.baseUrl}/lurah/update-password`;
+    return this.http.put<any>(endpoint, password).pipe(map(result => true))
   }
 
   //======================================================================
@@ -263,22 +251,16 @@ export class UserService {
       })
     );
   }
+  
 
-  updatePanitiaProfile(_id: string, email: string, username: string, password: string, birthdate: string, phone: string){
-    let endpoint = `${environment.baseUrl}/panitia/update/${_id}`;
-    let panitiaData: UpdateProfile;
-    panitiaData = {
-      _id: _id,
-      email: email,
-      username: username,
-      password: password,
-      birthdate: birthdate,
-      phone: phone
-    };
-    this.http.put<any>(endpoint, panitiaData)
-    .subscribe(response => {
-      this.router.navigate([`/panitia/panitiaLayout/getPanitia/${_id}`]).then(()=>  {window.location.reload();});
-    });
+  updatePanitiaProfile(user: UpdateUser) {
+    let endpoint = `${environment.baseUrl}/panitia/update`;
+    return this.http.put<any>(endpoint, user).pipe(map(result => true))
+  }
+
+  updatePanitiaPassword(password: UpdateUserPassword) {
+    let endpoint = `${environment.baseUrl}/panitia/update-password`;
+    return this.http.put<any>(endpoint, password).pipe(map(result => true))
   }
 
   //------------------------------- panitia - tournament
@@ -303,9 +285,17 @@ export class UserService {
         endpoint,
         tournamentData
       )
-      .subscribe(responseData => {
-        console.log(responseData)
-        // this.router.navigate(["/"]);
+      .subscribe((success) => {
+        // console.log(success);
+        Swal.fire('Good','Tournament berhasil dibuat!','success');
+      },
+      (err) => {
+        console.log(err);
+        Swal.fire(
+          'Maaf ada yang salah dengan proses registrasi',
+          err.message,
+          'error'
+        );
       });
   }
 
@@ -652,13 +642,11 @@ export class UserService {
   //--------------------------- other -----------------------------
 
   getallDistrict(): Observable<any>{
-    let endpoint = environment.baseUrl + '/tournament/getalldistrict';
-    return this.http.get(endpoint, { headers: this.headers });
+    return this.http.get(`${environment.baseUrl}/tournament/getalldistrict`, { headers: this.headers });
   }
 
   getallGame(): Observable<any>{
-    let endpoint = environment.baseUrl + '/tournament/getallgame';
-    return this.http.get(endpoint, { headers: this.headers });
+    return this.http.get(`${environment.baseUrl}/tournament/getallgame`, { headers: this.headers });
   }
 
 }

@@ -20,21 +20,15 @@ export interface createDistrict{
 }
 
 export class UpdateUser {
-  username: string
+  username: string;
+  birthdate: string;
+  email: string;
+  phone: string;
 }
 
 export class UpdateUserPassword {
   password: string;
   old_password: string;
-}
-
-export interface UpdateProfile {
-  _id: string;
-  username: string;
-  email: string;
-  password: string;
-  birthdate: string;
-  phone: string;
 }
 
 export interface UpdateApproved{

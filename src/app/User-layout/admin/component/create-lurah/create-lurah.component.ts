@@ -11,20 +11,44 @@ export class CreateLurahComponent implements OnInit {
   focus;
   focus1;
   user: any;
+  selectedDistrict: number;
+  districtData: any;
   createLurahForm: FormGroup;
   constructor(public fb: FormBuilder, public userService: UserService) {
-    this.createLurahForm = new FormGroup({
+    // this.createLurahForm = new FormGroup({
+    //   email: new FormControl(),
+    //   password: new FormControl(),
+    //   username: new FormControl(),
+    //   birthdate: new FormControl(),
+    //   phone: new FormControl(),
+    //   // roles: new FormControl(),
+    //   districts: new FormControl(),
+    // });
+    this.createLurahForm = fb.group({
       email: new FormControl(),
       password: new FormControl(),
       username: new FormControl(),
       birthdate: new FormControl(),
       phone: new FormControl(),
-      // roles: new FormControl(),
       districts: new FormControl(),
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.showAllDistrict();
+  }
+
+  showAllDistrict(){
+    this.userService.getallDistrict().subscribe(
+      (data) => {
+        this.districtData = data;
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
   createLurah() {
     this.user = this.createLurahForm.value;

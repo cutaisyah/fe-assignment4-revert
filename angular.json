@@ -31,7 +31,8 @@
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/sass/paper-kit.scss",
-              "node_modules/jquery-bracket/dist/jquery.bracket.min.css"
+              "node_modules/jquery-bracket/dist/jquery.bracket.min.css",
+              "@ng-select/ng-select/themes/material.theme.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -98,7 +99,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/jquery-bracket/dist/jquery.bracket.min.css"
+              "node_modules/jquery-bracket/dist/jquery.bracket.min.css",
+              "@ng-select/ng-select/themes/material.theme.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgSelectConfig } from '@ng-select/ng-select';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,9 +9,23 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TournamentSidebarComponent implements OnInit {
   public districtData: any;
+  selectedDistrict: number;
+  selectedGame: number;
+  tournamentData: any;
+  uniqTournament: any;
   public gameData: any;
   public userData: any;
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, private config: NgSelectConfig) {
+    this.config.notFoundText = 'Pencarian tidak ditemukan';
+      this.config.appendTo = 'body';
+      this.config.placeholder = 'Search...'
+      // set the bindValue to global config when you use the same 
+      // bindValue in most of the place. 
+      // You can also override bindValue for the specified template 
+      // by defining `bindValue` as property
+      // Eg : <ng-select bindValue="some-new-value"></ng-select>
+      this.config.bindValue = 'value';
+   }
 
   ngOnInit() {
     this.userData = this.userService.userPayloadValue;
