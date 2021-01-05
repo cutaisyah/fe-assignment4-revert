@@ -36,7 +36,7 @@ export class UserService {
     } catch (error) {
       console.log('👾 invalid token format', error);
     }
-    
+
     this.userPayload = new BehaviorSubject<any>(
       this.authDecoded
     );
@@ -86,7 +86,8 @@ export class UserService {
           Swal.fire('Anda sudah login');
         },
         (err) => {
-          Swal.fire('Maaf ada yang salah dengan proses login anda');
+          Swal.fire('Maaf ada yang salah dengan proses login anda',
+          err.message);
         }
       );
   }
@@ -95,6 +96,42 @@ export class UserService {
     localStorage.removeItem('access_token');
     this.router.navigate(['/']);
   }
+
+  sendEmail(user: User) {
+    return this.http
+      .put<any>(`${environment.baseUrl}/auth/forgot-password`, user)
+      .subscribe(
+        (success) => {
+          console.log(success);
+          Swal.fire('Silahkan cek email anda');
+          this.router.navigate([`/home`])
+        },
+        (err) => {
+          console.log(err);
+          Swal.fire(
+            'Maaf ada yang salah dengan pengiriman email anda',
+            err.message,
+          );
+        }
+      );
+  }
+
+  resetPassword(password: string,oldPassword: string,old_password:string){
+    let endpoint = `${environment.baseUrl}/auth/reset-password/${old_password}`;
+    let user: UpdateUserPassword;
+    user = {
+      password: password,
+      old_password: oldPassword
+    };
+    this.http.put<any>(endpoint, user)
+    .subscribe(response => {
+      console.log(response);
+      // this.router.navigate(["/home"]);
+    });
+  }
+
+
+
 
   // admin
   signUpAdmin(user: User) {
@@ -136,11 +173,6 @@ export class UserService {
     //   environment.baseUrl + '/admin/get/' + `${_id}`
     // );
   }
-
-  getAllDataLurah() {
-
-  }
-
   //============================================
 
   // Lurah
@@ -257,7 +289,7 @@ export class UserService {
       _id: _id,
       is_started: "ongoing",
     };
-    
+
     this.http
       .put(endpoint, tournamentData)
       .subscribe(response => {
@@ -272,7 +304,7 @@ export class UserService {
       _id: _id,
       is_started: "completed",
     };
-    
+
     this.http
       .put(endpoint, tournamentData)
       .subscribe(response => {
@@ -297,7 +329,7 @@ export class UserService {
     .subscribe(response => {
       this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
     });
-    
+
   }
 
   getTournamentById(_id: string): Observable<any>{
@@ -321,7 +353,7 @@ export class UserService {
     userData = {
       _id: _id
     };
-    
+
     this.http
       .put(endpoint, userData)
       .subscribe(response => {
@@ -407,7 +439,6 @@ export class UserService {
     return this.http.put<any>(endpoint, password).pipe(map(result => true))
   }
 
-
   getPesertaProfile(_id: string): Observable<any> {
     let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
     return this.http.get(endpoint, { headers: this.headers }).pipe(
@@ -424,7 +455,7 @@ export class UserService {
     userData = {
       game: game
     };
-    
+
     return this.http.put(endpoint, userData)
       .subscribe(
         response => {

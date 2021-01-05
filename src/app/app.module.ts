@@ -2,8 +2,6 @@ import {
   AuthInterceptorService,
   ErrorInterceptor,
 } from './services/auth.interceptor';
-import { LurahModule } from './User-layout/lurah/lurah.module';
-import { AdminModule } from './User-layout/admin/admin.module';
 import { TournamentModule } from './tournament/tournament.module';
 import { RegisterModule } from './auth/register/register.module';
 import { RouterModule } from '@angular/router';

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 import { TournamentRoutingModule } from './tournament-routing.module';
 import { TournamentListComponent } from './component/tournament-list/tournament-list.component';
@@ -31,6 +32,7 @@ import { MatListModule } from '@angular/material/list';
   ],
   imports: [
     CommonModule,
+    NgScrollbarModule,
     TournamentRoutingModule,
     RouterModule,
     NgbModule,

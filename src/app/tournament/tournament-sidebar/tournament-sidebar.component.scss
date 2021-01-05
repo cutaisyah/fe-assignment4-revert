@@ -1,15 +1,42 @@
+// ::-webkit-scrollbar {
+//   width: 10px;
+// }
+
+// /* Track */
+// ::-webkit-scrollbar-track {
+//   background: #f1f1f1;
+// }
+
+// /* Handle */
+// ::-webkit-scrollbar-thumb {
+//   background:white;
+// }
+
+// /* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover {
+//   background: #555;
+// }
+
+// div {
+//   height: 100px;
+//   width: 100%;
+//   margin: 0 auto;
+//   overflow: hidden;
+// }
+
+// div:hover {
+//   overflow-y: scroll;
+//   overflow-x: scroll;
+// }
+
 .dropdown-container{
-    overflow: scroll;
-    height: 200px;
+    height: 500px;
 }
 
 .dropdown .dropdown-menu {
     position: relative;
 }
 
-.dropdown .dropdown-menu:last-child {
-    position: relative !important;
-}
 .dropdown .dropdown-menu .dropdown-item {
     font-size: 12px;
 }

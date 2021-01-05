@@ -46,7 +46,6 @@ export class RegisterTeamComponent implements OnInit {
     this.userService.pesertaRegisterOtherPesertaToTeam(
       this.registerTeamForm.value.username
     );
-    
   }
 
 }

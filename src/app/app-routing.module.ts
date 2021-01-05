@@ -21,6 +21,11 @@ const routes: Routes = [
       import('./auth/register/register.module').then((m) => m.RegisterModule),
   },
   {
+    path: 'forgot',
+    loadChildren: () =>
+      import('./auth/forgot-password/forgot-password.module').then((m) => m.ForgotPasswordModule),
+  },
+  {
     path: 'tournament',
     loadChildren: () =>
       import('./tournament/tournament.module').then((m) => m.TournamentModule),
@@ -53,7 +58,6 @@ const routes: Routes = [
       import('./User-layout/peserta/peserta.module').then((m) => m.PesertaModule),
       canActivate: [AuthGuard],
       data: { roles: Role.peserta }
-
   },
 ];
 

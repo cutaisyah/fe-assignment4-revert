@@ -7,6 +7,10 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./tournament-sidebar.component.scss']
 })
 export class TournamentSidebarComponent implements OnInit {
+  trackY;
+  trackX;
+  compact;
+
   public districtData: any;
   public gameData: any;
   public userData: any;
@@ -43,6 +47,4 @@ export class TournamentSidebarComponent implements OnInit {
       }
     );
   }
-
-
 }
