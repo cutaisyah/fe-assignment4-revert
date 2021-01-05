@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody class="table-light">
-      <tr *ngFor="let peserta of userData; let i = index">
+      <tr *ngFor="let peserta of userData | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;  let i = index">
         <th scope="row">{{i+1}}</th>
         <!-- <td>{{peserta.email}}</td> -->
         <td>{{peserta.username}}</td>
@@ -32,3 +32,5 @@
     </tbody>
   </table>
 </div>
+
+<ngb-pagination [collectionSize]="userData?.length" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>

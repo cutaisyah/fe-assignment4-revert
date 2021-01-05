@@ -13,6 +13,9 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class DataPesertaComponent implements OnInit {
 
+  page = 1;
+  totalpage: any;
+  pageSize = 10;
   userData: any;
   public authDecoded: any;
   token;
@@ -21,10 +24,8 @@ export class DataPesertaComponent implements OnInit {
 
   ngOnInit() {
     this.showAllDataPeserta();
-
     this.token = this.tokenService.getToken();
     this.authDecoded = jwt_decode(this.token);
-
   }
 
   showAllDataPeserta(){
