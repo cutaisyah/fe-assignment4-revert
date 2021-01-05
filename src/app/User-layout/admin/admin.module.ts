@@ -11,7 +11,8 @@ import { AdminProfileComponent } from './component/admin-profile/admin-profile.c
 import { CreateDistrictComponent } from './component/create-district/create-district.component';
 import { GetDistrictComponent } from './component/get-district/get-district.component';
 import { GetAllUsersComponent } from './component/get-all-users/get-all-users.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AdminRoutingModule,
     RouterModule,
     ReactiveFormsModule,
+    NgSelectModule,
+    FormsModule
   ],
 })
 export class AdminModule {}
