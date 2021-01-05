@@ -2,6 +2,8 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import Swal from 'sweetalert2';
+import { UpdateUserPassword } from 'src/app/models/User';
 
 @Component({
   selector: 'app-lurah-profile',
@@ -14,6 +16,7 @@ export class LurahProfileComponent implements OnInit {
   user: any;
   lurahId: any;
   lurahProfileForm: FormGroup;
+  lurahPasswordForm: FormGroup;
   constructor(public route: ActivatedRoute, public userService: UserService) {
     this.lurahProfileForm = new FormGroup({
       email: new FormControl(),
@@ -21,6 +24,11 @@ export class LurahProfileComponent implements OnInit {
       username: new FormControl(),
       birthdate: new FormControl(),
       phone: new FormControl(),
+    });
+
+    this.lurahPasswordForm = new FormGroup({
+      password: new FormControl(),
+      old_password: new FormControl(),
     });
   }
 
@@ -47,11 +55,22 @@ export class LurahProfileComponent implements OnInit {
       this.lurahId,
       this.lurahProfileForm.value.email,
       this.lurahProfileForm.value.username,
-      this.lurahProfileForm.value.password,
       this.lurahProfileForm.value.birthdate,
       this.lurahProfileForm.value.phone,
     );
     this.lurahProfileForm.reset();
 
   }
+
+  updatePassword() {
+    const userPassword : UpdateUserPassword = {
+      password : this.lurahPasswordForm.get('password').value,
+      old_password : this.lurahPasswordForm.get('old_password').value
+    };
+    this.userService.updatePesertaPassword(userPassword).subscribe(res => {
+      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
+      console.log(res);
+    })
+  }
+
 }

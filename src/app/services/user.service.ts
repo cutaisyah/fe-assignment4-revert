@@ -190,7 +190,6 @@ export class UserService {
       _id: _id,
       email: email,
       username: username,
-      password: password,
       birthdate: birthdate,
       phone: phone
     };
@@ -198,6 +197,11 @@ export class UserService {
     .subscribe(response => {
       this.router.navigate([`/admin/layout/adminProfile/${_id}`]).then(()=>  {window.location.reload();});
     });
+  }
+
+  updateAdminPassword(password: UpdateUserPassword) {
+    let endpoint = `${environment.baseUrl}/admin/update-password`;
+    return this.http.put<any>(endpoint, password).pipe(map(result => true))
   }
 
   //============================================
@@ -216,13 +220,12 @@ export class UserService {
     return this.http.get(`${environment.baseUrl}/lurah/data-panitia`, { headers: this.headers })
   }
 
-  updateLurahProfile(_id: string, email: string, username: string, password: string, birthdate: string, phone: string){
+  updateLurahProfile(_id: string, email: string, username: string, birthdate: string, phone: string){
     let lurahData: UpdateProfile;
     lurahData = {
       _id: _id,
       email: email,
       username: username,
-      password: password,
       birthdate: birthdate,
       phone: phone
     };
@@ -230,6 +233,11 @@ export class UserService {
     .subscribe(response => {
       this.router.navigate([`/lurah/lurahLayout/getLurah/${_id}`]).then(()=>  {window.location.reload();});
     });
+  }
+
+  updateLurahPassword(password: UpdateUserPassword) {
+    let endpoint = `${environment.baseUrl}/lurah/update-password`;
+    return this.http.put<any>(endpoint, password).pipe(map(result => true))
   }
 
   //======================================================================
@@ -264,14 +272,13 @@ export class UserService {
     );
   }
 
-  updatePanitiaProfile(_id: string, email: string, username: string, password: string, birthdate: string, phone: string){
+  updatePanitiaProfile(_id: string, email: string, username: string, birthdate: string, phone: string){
     let endpoint = `${environment.baseUrl}/panitia/update/${_id}`;
     let panitiaData: UpdateProfile;
     panitiaData = {
       _id: _id,
       email: email,
       username: username,
-      password: password,
       birthdate: birthdate,
       phone: phone
     };
@@ -279,6 +286,11 @@ export class UserService {
     .subscribe(response => {
       this.router.navigate([`/panitia/panitiaLayout/getPanitia/${_id}`]).then(()=>  {window.location.reload();});
     });
+  }
+
+  updatePanitiaPassword(password: UpdateUserPassword) {
+    let endpoint = `${environment.baseUrl}/panitia/update-password`;
+    return this.http.put<any>(endpoint, password).pipe(map(result => true))
   }
 
   //------------------------------- panitia - tournament
@@ -652,13 +664,11 @@ export class UserService {
   //--------------------------- other -----------------------------
 
   getallDistrict(): Observable<any>{
-    let endpoint = environment.baseUrl + '/tournament/getalldistrict';
-    return this.http.get(endpoint, { headers: this.headers });
+    return this.http.get(`${environment.baseUrl}/tournament/getalldistrict`, { headers: this.headers });
   }
 
   getallGame(): Observable<any>{
-    let endpoint = environment.baseUrl + '/tournament/getallgame';
-    return this.http.get(endpoint, { headers: this.headers });
+    return this.http.get(`${environment.baseUrl}/tournament/getallgame`, { headers: this.headers });
   }
 
 }

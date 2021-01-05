@@ -2,7 +2,8 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/User';
+import { UpdateUserPassword, User } from 'src/app/models/User';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-profile',
@@ -15,6 +16,7 @@ export class AdminProfileComponent implements OnInit {
   focus1;
   user: User;
   adminProfileForm: FormGroup;
+  adminPasswordForm: FormGroup;
   private adminId: string;
   constructor(public route: ActivatedRoute, public userService: UserService) {
     this.adminProfileForm = new FormGroup({
@@ -25,6 +27,10 @@ export class AdminProfileComponent implements OnInit {
       phone: new FormControl(),
       // roles: new FormControl(),
       districts: new FormControl(),
+    });
+    this.adminPasswordForm = new FormGroup({
+      password: new FormControl(),
+      old_password: new FormControl(),
     });
   }
 
@@ -57,10 +63,21 @@ export class AdminProfileComponent implements OnInit {
       this.adminId,
       this.adminProfileForm.value.email,
       this.adminProfileForm.value.username,
-      this.adminProfileForm.value.password,
       this.adminProfileForm.value.birthdate,
       this.adminProfileForm.value.phone,
     );
     this.adminProfileForm.reset();
   }
+
+  updatePassword() {
+    const userPassword : UpdateUserPassword = {
+      password : this.adminPasswordForm.get('password').value,
+      old_password : this.adminPasswordForm.get('old_password').value
+    };
+    this.userService.updatePesertaPassword(userPassword).subscribe(res => {
+      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
+      console.log(res);
+    })
+  }
+
 }

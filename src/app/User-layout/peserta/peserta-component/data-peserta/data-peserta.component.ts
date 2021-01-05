@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UpdateUser, UpdateUserPassword } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-data-peserta',
@@ -62,10 +63,13 @@ export class DataPesertaComponent implements OnInit {
 
   updateProfile() {
     const usernameProfile : UpdateUser = {
-      username : this.pesertaProfileForm.get('username').value
+      username : this.pesertaProfileForm.get('username').value,
+      birthdate : this.pesertaProfileForm.get('birthdate').value,
+      phone : this.pesertaProfileForm.get('phone').value,
+      email : this.pesertaProfileForm.get('email').value
     };
     this.userService.updatePesertaProfile(usernameProfile).subscribe(res => {
-      // Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
+      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
       console.log(res);
     })
   }
@@ -76,7 +80,7 @@ export class DataPesertaComponent implements OnInit {
       old_password : this.pesertaPasswordForm.get('old_password').value
     };
     this.userService.updatePesertaPassword(userPassword).subscribe(res => {
-      // Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
+      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
       console.log(res);
     })
   }
