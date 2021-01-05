@@ -11,6 +11,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilterGameComponent } from './component/filter/filter-game/filter-game.component';
 import { FilterDistrictComponent } from './component/filter/filter-district/filter-district.component';
 import { FilterAvailableComponent } from './component/filter/filter-available/filter-available.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { FilterAvailableComponent } from './component/filter/filter-available/fi
     TournamentRoutingModule,
     RouterModule,
     NgbModule,
+    NgSelectModule,
+    FormsModule
   ],
 })
 export class TournamentModule { }

@@ -11,20 +11,17 @@
       <a [routerLink]="['available']">Available to Join</a>
     </li>
     <li class="dropdown-container m-3">
-      <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Pilih Game</button>
-        <div ngbDropdownMenu *ngFor="let game of gameData" aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem [routerLink]="['game/', game.game_name]">{{game.game_name}}</button>
-        </div>
-      </div>
+      <label>Filter by Tipe Game</label>
+      <ng-select [(ngModel)]="selectedGame">
+        <ng-option *ngFor="let game of gameData"><a class="link-dropdown" [routerLink]="['game/', game.game_name]">{{game.game_name}}</a></ng-option>
+      </ng-select>
     </li>
     <li class="dropdown-container m-3">
-      <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Pilih District</button>
-        <div ngbDropdownMenu *ngFor="let district of districtData" aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem [routerLink]="['district/', district._id]">{{district.district_name}}</button>
-        </div>
-      </div>
+      <label>Filter by District</label>
+      <ng-select [(ngModel)]="selectedDistrict">
+        <ng-option *ngFor="let district of districtData"><a class="link-dropdown" [routerLink]="['district/', district._id]">{{district.district_name}}</a></ng-option>
+      </ng-select>
+
     </li>
   </ul>
 </div>
