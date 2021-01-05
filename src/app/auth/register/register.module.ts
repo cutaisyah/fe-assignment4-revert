@@ -5,9 +5,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { RegisterRoutingModule } from './register-routing.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [RegisterPesertaComponent, RegisterAdminComponent],
-  imports: [CommonModule, RegisterRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, RegisterRoutingModule, ReactiveFormsModule,NgxSpinnerModule,],
 })
 export class RegisterModule {}
