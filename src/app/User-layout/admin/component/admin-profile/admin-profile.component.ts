@@ -1,8 +1,8 @@
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { UpdateUserPassword, User } from 'src/app/models/User';
+import { UpdateUser, UpdateUserPassword, User } from 'src/app/models/User';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -29,8 +29,8 @@ export class AdminProfileComponent implements OnInit {
       districts: new FormControl(),
     });
     this.adminPasswordForm = new FormGroup({
-      password: new FormControl(),
-      old_password: new FormControl(),
+      password: new FormControl(null,[Validators.required]),
+      old_password: new FormControl(null,[Validators.required]),
     });
   }
 
@@ -59,17 +59,23 @@ export class AdminProfileComponent implements OnInit {
     if (this.adminProfileForm.invalid) {
       return;
     }
-    this.userService.updatePanitiaProfile(
-      this.adminId,
-      this.adminProfileForm.value.email,
-      this.adminProfileForm.value.username,
-      this.adminProfileForm.value.birthdate,
-      this.adminProfileForm.value.phone,
-    );
+    const usernameProfile : UpdateUser = {
+      username : this.adminProfileForm.get('username').value,
+      birthdate : this.adminProfileForm.get('birthdate').value,
+      phone : this.adminProfileForm.get('phone').value,
+      email : this.adminProfileForm.get('email').value
+    };
+    this.userService.updateAdminProfile(usernameProfile).subscribe(res => {
+      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
+      console.log(res);
+    })
     this.adminProfileForm.reset();
   }
 
   updatePassword() {
+    if (this.adminPasswordForm.invalid) {
+      return;
+    }
     const userPassword : UpdateUserPassword = {
       password : this.adminPasswordForm.get('password').value,
       old_password : this.adminPasswordForm.get('old_password').value

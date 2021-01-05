@@ -29,8 +29,8 @@ export class DataPesertaComponent implements OnInit {
     });
 
     this.pesertaPasswordForm = new FormGroup({
-      password: new FormControl(),
-      old_password: new FormControl(),
+      password: new FormControl(null, [Validators.required]),
+      old_password: new FormControl(null, [Validators.required]),
     });
 
 
@@ -75,6 +75,9 @@ export class DataPesertaComponent implements OnInit {
   }
 
   updatePassword() {
+    if (this.pesertaPasswordForm.invalid) {
+      return;
+    }
     const userPassword : UpdateUserPassword = {
       password : this.pesertaPasswordForm.get('password').value,
       old_password : this.pesertaPasswordForm.get('old_password').value

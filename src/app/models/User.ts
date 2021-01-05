@@ -31,14 +31,6 @@ export class UpdateUserPassword {
   old_password: string;
 }
 
-export interface UpdateProfile {
-  _id: string;
-  username: string;
-  email: string;
-  birthdate: string;
-  phone: string;
-}
-
 export interface UpdateApproved{
   _id: string;
 }
