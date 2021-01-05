@@ -43,11 +43,9 @@
   <form class="register-form" [formGroup]="updateMatchForm" (ngSubmit)="submitScore()">
     <div class="form-group row">
       <div class="col-sm-3">
-        <select formControlName="team">
-          <option *ngFor="let match of dataTeamMatch" [ngValue]="match.team?._id">
-            {{ match.team?.team_name }}
-          </option>
-        </select>
+        <ng-select formControlName="teamr" [(ngModel)]="selectedTeam">
+          <ng-option *ngFor="let match of dataTeamMatch" [value]="match.team?._id">{{ match.team?.team_name }}</ng-option>
+        </ng-select>
       </div>
       <div class="col-sm-3" [ngClass]="{ 'input-group-focus': focus === true }"
         *ngIf="datatournament?.categories == 'single elimination'">
@@ -83,27 +81,21 @@
     <div class="row">
       <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
         <label>First Winner</label>
-        <select formControlName="first_winner">
-          <option *ngFor="let match of dataTeamMatch" [ngValue]="match.team?._id">
-            {{ match.team?.team_name }}
-          </option>
-        </select>
+        <ng-select formControlName="first_winner" [(ngModel)]="selectedTeam">
+          <ng-option *ngFor="let match of dataTeamMatch" [value]="match.team?._id">{{ match.team?.team_name }}</ng-option>
+        </ng-select>
       </div>
       <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
         <label>Second Winner</label>
-        <select formControlName="second_winner">
-          <option *ngFor="let match of dataTeamMatch" [ngValue]="match.team?._id">
-            {{ match.team?.team_name }}
-          </option>
-        </select>
+          <ng-select formControlName="second_winner" [(ngModel)]="selectedTeam">
+            <ng-option *ngFor="let match of dataTeamMatch" [value]="match.team?._id">{{ match.team?.team_name }}</ng-option>
+          </ng-select>
       </div>
       <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
         <label>Third Winner</label>
-        <select formControlName="third_winner">
-          <option *ngFor="let match of dataTeamMatch" [ngValue]="match.team?._id">
-            {{ match.team?.team_name }}
-          </option>
-        </select>
+        <ng-select formControlName="third_winner" [(ngModel)]="selectedTeam">
+          <ng-option *ngFor="let match of dataTeamMatch" [value]="match.team?._id">{{ match.team?.team_name }}</ng-option>
+        </ng-select>
       </div>
     </div>
 

@@ -17,6 +17,7 @@ export class ManageGameScoreComponent implements OnInit {
   lastround: any;
   updateMatchForm: FormGroup;
   winnerForm: FormGroup;
+  selectedTeam: any;
   private tournamentId: string;
   private match_round: string;
 
