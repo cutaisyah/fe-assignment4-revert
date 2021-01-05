@@ -1,53 +1,48 @@
-<h3 class="title mt-0 pt-3">Buat Tournamen</h3>
-<form
-  class="register-form"
-  [formGroup]="createTournamentForm"
-  (ngSubmit)="createTournament()"
->
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Nama tournament :</label>
-    <div class="col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
-      <input
-        formControlName="tournament_name"
-        type="text"
-        class="form-control mb-3"
-        placeholder="Tournament name"
-        (focus)="focus = true"
-        (blur)="focus = false"
-      />
+<div class="container-custom">
+  <h3 class="title mt-0 pt-3 text-center mb-0">Buat Tournamen</h3>
+  <form
+    class="form-padding"
+    [formGroup]="createTournamentForm"
+    (ngSubmit)="createTournament()"
+  >
+    <div class="form-group row">
+      <label class="col-md-4 col-sm-2 col-form-label">Nama tournament :</label>
+      <div class="col-md-8 col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
+        <input
+          formControlName="tournament_name"
+          type="text"
+          class="form-control mb-3"
+          placeholder="Tournament name"
+          (focus)="focus = true"
+          (blur)="focus = false"
+        />
+      </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Permalink :</label>
-    <div class="col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
-      <input
-        formControlName="permalink"
-        type="text"
-        class="form-control mb-3"
-        placeholder="Deskripsi"
-        (focus)="focus = true"
-        (blur)="focus = false"
-      />
+    <div class="form-group row">
+      <label class="col-md-4 col-sm-2 col-form-label">Permalink :</label>
+      <div class="col-md-8 col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
+        <input
+          formControlName="permalink"
+          type="text"
+          class="form-control mb-3"
+          placeholder="Deskripsi"
+          (focus)="focus = true"
+          (blur)="focus = false"
+        />
+      </div>
     </div>
-  </div>
+
 
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Game :</label>
     <div class="col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
-      <!-- <input
-        formControlName="game"
-        type="text"
-        class="form-control mb-3"
-        placeholder="game"
-        (focus)="focus = true"
-        (blur)="focus = false"
-      /> -->
       <ng-select formControlName="game" [(ngModel)]="selectedGame">
         <ng-option *ngFor="let game of gameData" [value]="game.game_name">{{game.game_name}}</ng-option>
       </ng-select>
     </div>
   </div>
+
 
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Kategori :</label>
@@ -58,115 +53,114 @@
     </div>
   </div>
 
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Maksimum pendaftar :</label>
-    <div class="col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
-      <input
-        formControlName="max_total_participant"
-        type="text"
-        class="form-control mb-3"
-        placeholder="maksimum total participant"
-        (focus)="focus1 = true"
-        (blur)="focus1 = false"
-      />
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Umur minimal :</label>
-    <div class="col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
-      <input
-        formControlName="age_minimum"
-        type="text"
-        class="form-control mb-3"
-        placeholder="age_minimum"
-        (focus)="focus = true"
-        (blur)="focus = false"
-      />
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Deskripsi :</label>
-    <div class="col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
-      <angular-editor
-        formControlName="description"
-        type="text"
-        class="mb-3"
-        placeholder="Deskripsi"
-        (focus)="focus = true"
-        (blur)="focus = false"
-        [config]="editorConfig"
-      ></angular-editor>
-    </div>
-  </div>
-  
-
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Upload gambar :</label>
-    <div class="col-sm-10">
-      <button type="button" (click)="filePicker.click()">Pick Image</button>
-      <input type="file" #filePicker (change)="onImagePicked($event)" />
-      <div
-        class="image-preview"
-        *ngIf="
-          imagePreview !== '' &&
-          imagePreview &&
-          createTournamentForm.get('image').valid
-        "
-      >
-
-        <img [src]="imagePreview" [alt]="createTournamentForm.value.title" />
+    <div class="form-group row">
+      <label class="col-md-4 col-sm-2 col-form-label">Maksimum pendaftar :</label>
+      <div class="col-md-8 col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
+        <input
+          formControlName="max_total_participant"
+          type="text"
+          class="form-control mb-3"
+          placeholder="maksimum total participant"
+          (focus)="focus1 = true"
+          (blur)="focus1 = false"
+        />
       </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">First Prize :</label>
-    <div class="col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
-      <input
-        formControlName="first_prize"
-        type="text"
-        class="form-control mb-3"
-        placeholder="first prize"
-        (focus)="focus = true"
-        (blur)="focus = false"
-      />
+    <div class="form-group row">
+      <label class="col-md-4 col-sm-2 col-form-label">Umur minimal :</label>
+      <div class="col-md-8 col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
+        <input
+          formControlName="age_minimum"
+          type="text"
+          class="form-control mb-3"
+          placeholder="age_minimum"
+          (focus)="focus = true"
+          (blur)="focus = false"
+        />
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Second Prize :</label>
-    <div class="col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
-      <input
-        formControlName="second_prize"
-        type="text"
-        class="form-control mb-3"
-        placeholder="second_prize"
-        (focus)="focus = true"
-        (blur)="focus = false"
-      />
-    </div>
-  </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Third Prize :</label>
-    <div class="col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
-      <input
-        formControlName="third_prize"
-        type="text"
-        class="form-control mb-3"
-        placeholder="third_prize"
-        (focus)="focus = true"
-        (blur)="focus = false"
-      />
-    </div>
-  </div>
 
-  <div class="d-flex justify-content-center">
-    <button
-      type="submit"
-      class="btn btn-primary margin-custom btn-block btn-round mt-3 btn-custom justify-content-center"
-    >
-      Buat Tournament Baru
-    </button>
-  </div>
-</form>
+    <div class="form-group row">
+      <label class="col-md-4 col-sm-2 col-form-label">Deskripsi :</label>
+      <div class="col-md-8 col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
+        <angular-editor
+          formControlName="description"
+          type="text"
+          class="mb-3"
+          placeholder="Deskripsi"
+          (focus)="focus = true"
+          (blur)="focus = false"
+          [config]="editorConfig"
+        ></angular-editor>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-4 col-sm-2 col-form-label">Unggah gambar :</label>
+      <div class="col-md-8 col-sm-10">
+        <button type="button" (click)="filePicker.click()">Pilih Gambar</button>
+        <input type="file" #filePicker (change)="onImagePicked($event)" />
+        <div
+          class="image-preview"
+          *ngIf="
+            imagePreview !== '' &&
+            imagePreview &&
+            createTournamentForm.get('image').valid
+          "
+        >
+          <img [src]="imagePreview" [alt]="createTournamentForm.value.title" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-4 col-sm-2 col-form-label">Hadiah Juara Pertama :</label>
+      <div class="col-md-8 col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
+        <input
+          formControlName="first_prize"
+          type="text"
+          class="form-control mb-3"
+          placeholder="Hadiah Juara Pertama"
+          (focus)="focus = true"
+          (blur)="focus = false"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-4 col-sm-2 col-form-label">Hadiah Juara Kedua :</label>
+      <div class="col-md-8 col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
+        <input
+          formControlName="second_prize"
+          type="text"
+          class="form-control mb-3"
+          placeholder="Hadiah Juara Kedua"
+          (focus)="focus = true"
+          (blur)="focus = false"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-4 col-sm-2 col-form-label">Hadiah Juara Ketiga :</label>
+      <div class="col-md-8 col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
+        <input
+          formControlName="third_prize"
+          type="text"
+          class="form-control mb-3"
+          placeholder="Hadiah Juara Ketiga"
+          (focus)="focus = true"
+          (blur)="focus = false"
+        />
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <button
+        type="submit"
+        class="btn btn-danger margin-custom btn-block btn-round mt-3 btn-custom justify-content-center"
+      >
+        Buat Tournament Baru
+      </button>
+    </div>
+  </form>
+</div>

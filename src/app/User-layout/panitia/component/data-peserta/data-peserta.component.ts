@@ -3,8 +3,9 @@ import { User } from 'src/app/models/User';
 import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 
+import Swal from 'sweetalert2';
 import jwt_decode from "jwt-decode";
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-data-peserta',
@@ -20,9 +21,10 @@ export class DataPesertaComponent implements OnInit {
   public authDecoded: any;
   token;
 
-  constructor(public userService: UserService, public tokenService: TokenService) { }
+  constructor(private router:Router, public userService: UserService, public tokenService: TokenService) { }
 
   ngOnInit() {
+
     this.showAllDataPeserta();
     this.token = this.tokenService.getToken();
     this.authDecoded = jwt_decode(this.token);
@@ -40,7 +42,25 @@ export class DataPesertaComponent implements OnInit {
       }
     );
   }
+    approve(id){
+      Swal.fire({
+        title: 'Anda Yakin Ingin Menyetujui Peserta Ini ?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'setujui'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.changeStatusApproved(id)
+        }
+      })
+    }
 
-
-
+    changeStatusApproved(id){
+      this.userService.changeStatusApproved(
+        id
+      );
+      this.ngOnInit()
+    }
 }

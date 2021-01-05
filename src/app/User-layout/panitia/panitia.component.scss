@@ -1,0 +1,15 @@
+// .custom-image{
+//   width: 100px;
+//   height: 100px;
+//   margin-top: 2em;
+// }
+
+// .sidenav-container {
+//   height: 100%;
+// }
+
+@media only screen and (min-width: 768px) {
+  mat-sidenav-content>mat-toolbar{
+    display: none;
+  }
+}

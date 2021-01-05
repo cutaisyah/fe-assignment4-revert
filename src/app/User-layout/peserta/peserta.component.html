@@ -1,10 +1,30 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>  <span class="span white-text">Menu</span></mat-toolbar>
+    <!-- <div class="image-margin">
+      <img class="mt-5 img-fluid custom-image" src="assets/img/round-account-button-with-user-inside.png" alt="">
+      <h4>{{this.userData.username}}</h4>
+      <h6>{{this.userData.districts.district_name}}</h6>
+      <h5>{{user?.teams?.team_name}}</h5>
+    </div> -->
+    <mat-nav-list >
       <app-peserta-sidebar></app-peserta-sidebar>
-    </div>
-    <div class="col-md-9 custom-bg mt-5 mb-5">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

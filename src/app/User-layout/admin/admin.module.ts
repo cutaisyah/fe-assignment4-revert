@@ -11,6 +11,13 @@ import { AdminProfileComponent } from './component/admin-profile/admin-profile.c
 import { CreateDistrictComponent } from './component/create-district/create-district.component';
 import { GetDistrictComponent } from './component/get-district/get-district.component';
 import { GetAllUsersComponent } from './component/get-all-users/get-all-users.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -30,6 +37,12 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AdminRoutingModule,
     RouterModule,
     ReactiveFormsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
     NgSelectModule,
     FormsModule
   ],

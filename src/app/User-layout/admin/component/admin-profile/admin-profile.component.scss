@@ -1,7 +1,5 @@
-.btn-custom{
-  width: 25%;
-}
-
-.margin-custom{
-  margin-bottom: 2em;
+@media only screen and (min-width: 768px) {
+  .btn-custom{
+    width: 50%;
+  }
 }

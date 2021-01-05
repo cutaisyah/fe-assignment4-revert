@@ -1,30 +1,35 @@
-<div class="row">
-  <div class="col-md-4" *ngFor="let tournament of tournamentData | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-    <div class="row">
-      <div class="card shadow-sm mx-2 my-3" [routerLink]="['../detail/',tournament.permalink,tournament._id]">
-        <img
-          [src]="tournament.image"
-          alt=""
-          width="200px"
-          class="card-img-top"
-          style="cursor: pointer"
-        />
-        <div class="card-header bg-custom">
-          <div class="card-title text-center border-bottom border-white">
-            <h5>{{tournament.tournament_name}}</h5>
-          </div>
-          <div class="card-body text-left">
-            <p class="card-text"><b>Game</b>: {{tournament.game}}</p>
-            <p class="card-text"><b>Kategori</b>: {{tournament.categories}}</p>
-            <p class="card-text"><b>Kapasitas</b>: {{tournament.register_total_participant}}/{{tournament.max_total_participant}}</p>
-            <p class="card-text"><b>Status</b>: {{tournament.is_started}}</p>
-            <p class="card-text"><b>Umur diatas</b>: {{tournament.age_minimum}}+</p>
+<div class="tournament-container">
+  <div class="row text-center">
+    <h3 class="mb-3 ml-auto mr-auto">Semua Turnamen</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let tournament of tournamentData | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+      <div class="row">
+        <div class="card shadow-sm mx-2 my-3" [routerLink]="['../detail/',tournament.permalink,tournament._id]">
+          <img
+            [src]="tournament.image"
+            alt=""
+            width="200px"
+            class="card-img-top"
+            style="cursor: pointer"
+          />
+          <div class="card-header bg-card-custom">
+            <div class="card-title text-center border-bottom border-white">
+              <h5><strong>{{tournament.tournament_name}}</strong></h5>
+            </div>
+            <div class="card-body text-left">
+              <p class="card-text"><b>Game</b>: {{tournament.game}}</p>
+              <p class="card-text"><b>Kategori</b>: {{tournament.categories}}</p>
+              <p class="card-text"><b>Kapasitas</b>: {{tournament.register_total_participant}}/{{tournament.max_total_participant}}</p>
+              <p class="card-text"><b>Status</b>: {{tournament.is_started}}</p>
+              <p class="card-text"><b>Umur diatas</b>: {{tournament.age_minimum}}+</p>
+            </div>
           </div>
         </div>
+        <!-- <p>{{tournament.Name}}</p> -->
       </div>
-      <!-- <p>{{tournament.Name}}</p> -->
     </div>
   </div>
-</div>
 
-<ngb-pagination [collectionSize]="tournamentData.length" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+  <ngb-pagination class="d-flex justify-content-center pt-2" [collectionSize]="tournamentData.length" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+</div>

@@ -1,44 +1,43 @@
-<table class="table text-center" style="width:100%">
-  
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Name</th>
-      <th>Categories</th>
-      <th>Tipe Game</th>
-      <th>Terdaftar</th>
-      <th>Maksimum</th>
-      <th>Umur</th>
-      <th>Status</th>
-      <th>Change Status</th>
-      <th>Edit Data</th>
-    </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let tournament of allTournament; let i = index" >
-    <td>{{i+1}}</td>
-    <td>{{tournament.tournament_name}}</td>
-    <td *ngIf="tournament.categories == 'single elimination'">S. Elimination</td>
-    <td *ngIf="tournament.categories == 'free for all'">FFA</td>
-    <td>{{tournament.game}}</td>
-    <td>{{tournament.register_total_participant}}</td>
-    <td>{{tournament.max_total_participant}}</td>
-    <td>{{tournament.age_minimum}}</td>
-    <td>{{tournament.is_started}}</td>
-    <td><button type="button" class="btn btn-success" aria-label="Change"
-      [routerLink]="['/panitia/panitiaLayout/dataTournament/', tournament._id ]">change
-     </button></td>
-    <td><button type="button" class="btn btn-success" aria-label="Edit" *ngIf="tournament.is_started == 'pending'"
-      [routerLink]="['/panitia/panitiaLayout/dataTournament/edit', tournament._id ]">edit
-     </button></td>
-  </tr>
-</tbody>
-  <!-- <tr>
-    <td>2</td>
-    <td>basket01</td>
-    <td>free for all</td>
-    <td>basket</td>
-    <td>P. PANGGANG</td>
-    <td>pending</td>
-  </tr> -->
-</table> 
+<div class="container-custom table-padding">
+  <h3 class="title mt-0 pt-3 text-center mb-0s">Tabel Tournamen</h3>
+  <div class="table-responsive">
+    <table class="table table-hover text-center">
+      <thead class="bg-danger">
+        <tr>
+          <th class="align-middle">No</th>
+          <th class="align-middle">Nama</th>
+          <th class="align-middle">Kategori</th>
+          <th class="align-middle">Tipe Game</th>
+          <th class="align-middle">Terdaftar</th>
+          <th class="align-middle">Maksimum</th>
+          <th class="align-middle">Umur</th>
+          <th class="align-middle">Status</th>
+          <th class="align-middle">Ubah Status</th>
+          <th class="align-middle">Ubah Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tournament of allTournament; let i = index">
+          <td class="align-middle">{{i+1}}</td>
+          <td class="align-middle">{{tournament.tournament_name}}</td>
+          <td class="align-middle" *ngIf="tournament.categories == 'single elimination'">S. Elimination</td>
+          <td class="align-middle" *ngIf="tournament.categories == 'free for all'">FFA</td>
+          <td class="align-middle">{{tournament.game}}</td>
+          <td class="align-middle">{{tournament.register_total_participant}}</td>
+          <td class="align-middle">{{tournament.max_total_participant}}</td>
+          <td class="align-middle">{{tournament.age_minimum}}</td>
+          <td class="align-middle">{{tournament.is_started}}</td>
+          <!-- <td class="align-middle"><button type="button" class="btn btn-success" aria-label="Change"
+              [routerLink]="['/panitia/panitiaLayout/dataTournament/', tournament._id ]">change
+            </button></td> -->
+            <td class="align-middle"><button type="button" class="btn btn-success" aria-label="Change"
+              (click)="status(tournament._id)">change
+            </button></td>
+          <td class="align-middle"><button type="button" class="btn btn-success" aria-label="Edit" *ngIf="tournament.is_started == 'pending'"
+              [routerLink]="['/panitia/panitiaLayout/dataTournament/edit', tournament._id ]">edit
+            </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

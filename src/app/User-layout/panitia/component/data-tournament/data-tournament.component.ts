@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Tournament } from 'src/app/models/Tournament';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-data-tournament',
@@ -31,6 +32,37 @@ export class DataTournamentComponent implements OnInit {
     );
   }
 
+  status(id){
+    Swal.fire({
+      title: 'Apakah Anda Ingin Mengubah Status Turnamen ?',
+      text:"Pilih apakah 'sedang berjalan' atau 'selesai'",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: `Sedang Berjalan`,
+      denyButtonText: `Selesai`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.changeToOngoing(id)
+      } else if (result.isDenied) {
+        this.changeToCompleted(id)
+      }
+    })
+  }
+
+  changeToOngoing(id){
+    this.userService.changeTournamentStatusOngoing(
+      id
+    );
+    this.ngOnInit()
+  }
+
+  changeToCompleted(id){
+    this.userService.changeTournamentStatusCompleted(
+      id
+    );
+    this.ngOnInit()
+  }
 
 
 }

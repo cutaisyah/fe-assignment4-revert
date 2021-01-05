@@ -1,54 +1,49 @@
-<h4>Total Participant Registered: {{ countTournamentParticipant }}</h4>
-
-<a class="export-btn mb-4" style="cursor: pointer" (click)="exportexcel()">
-  <button class="btn">Export to Excel</button>
-</a>
-<table id="excel-table" class="table text-center mt-2" style="width: 100%">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Name</th>
-      <th>Categories</th>
-      <th>Tipe Game</th>
-      <th>Terdaftar</th>
-      <th>Maksimum</th>
-      <th>Umur</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
-      *ngFor="
+<div class="container-custom table-padding">
+  <h3 class="title mt-0 pt-3 text-center mb-0">Tabel Tournamen</h3>
+  <a class="export-btn mb-4" style="cursor: pointer" (click)="exportexcel()">
+    <button class="btn">Export to Excel</button>
+  </a>
+  <div class="table-responsive">
+    <table class="table table-hover text-center" id="excel-table" style="width: 100%">
+      <thead class="bg-danger">
+        <tr>
+          <th class="align-middle">No</th>
+          <th class="align-middle">Name</th>
+          <th class="align-middle">Categories</th>
+          <th class="align-middle">Tipe Game</th>
+          <th class="align-middle">Terdaftar</th>
+          <th class="align-middle">Maksimum</th>
+          <th class="align-middle">Umur</th>
+          <th class="align-middle">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="
         let tournament of alltournament
           | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize;
         let i = index
-      "
-    >
-      <td>{{ i + 1 }}</td>
-      <td>{{ tournament.tournament_name }}</td>
-      <td *ngIf="tournament.categories == 'single elimination'">
-        S. Elimination
-      </td>
-      <td *ngIf="tournament.categories == 'free for all'">FFA</td>
-      <td>{{ tournament.game }}</td>
-      <td class="bgnormal" *ngIf="tournament.register_total_participant != 0">
-        {{ tournament.register_total_participant }}
-      </td>
-      <td class="bgred" *ngIf="tournament.register_total_participant == 0">
-        {{ tournament.register_total_participant }}
-      </td>
-      <td>{{ tournament.max_total_participant }}</td>
-      <td>{{ tournament.age_minimum }}</td>
-      <td>{{ tournament.is_started }}</td>
-    </tr>
-  </tbody>
-</table>
-
-<ngb-pagination
-  [collectionSize]="alltournament.length"
-  [(page)]="page"
-  [maxSize]="5"
-  [rotate]="true"
-  [ellipses]="false"
-  [boundaryLinks]="true"
-></ngb-pagination>
+      ">
+          <td class="align-middle">{{ i + 1 }}</td>
+          <td class="align-middle">{{ tournament.tournament_name }}</td>
+          <td class="align-middle" *ngIf="tournament.categories == 'single elimination'">
+            S. Elimination
+          </td>
+          <td class="align-middle" *ngIf="tournament.categories == 'free for all'">FFA</td>
+          <td class="align-middle">{{ tournament.game }}</td>
+          <td class="align-middle bgnormal" *ngIf="tournament.register_total_participant != 0">
+            {{ tournament.register_total_participant }}
+          </td>
+          <td class="align-middle" class="bgred" *ngIf="tournament.register_total_participant == 0">
+            {{ tournament.register_total_participant }}
+          </td>
+          <td class="align-middle">{{ tournament.max_total_participant }}</td>
+          <td class="align-middle">{{ tournament.age_minimum }}</td>
+          <td class="align-middle">{{ tournament.is_started }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h5 class="mt-2">Total Participant Registered: {{ countTournamentParticipant }}</h5>
+  <ngb-pagination [collectionSize]="alltournament.length" [(page)]="page" [maxSize]="5" [rotate]="true"
+    [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+</div>

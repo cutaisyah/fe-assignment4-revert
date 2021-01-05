@@ -25,7 +25,6 @@ export class AdminProfileComponent implements OnInit {
       username: new FormControl(),
       birthdate: new FormControl(),
       phone: new FormControl(),
-      // roles: new FormControl(),
       districts: new FormControl(),
     });
     this.adminPasswordForm = new FormGroup({
@@ -35,26 +34,22 @@ export class AdminProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
         this.adminId = paramMap.get('id');
         this.userService.getAdminProfile(this.adminId).subscribe(userData => {
           this.user = userData.data;
           console.log(this.user);
-          this.adminProfileForm.patchValue({ 
-            email: this.user.email, 
+          this.adminProfileForm.patchValue({
+            email: this.user.email,
             username: this.user.username,
-            // password: this.user.password, 
             birthdate: this.user.birthdate,
             phone: this.user.phone,
             districts: this.user.districts.district_name
           });
         });
     });
-
-
   }
-
+  
   updateAdmin() {
     if (this.adminProfileForm.invalid) {
       return;
@@ -85,5 +80,4 @@ export class AdminProfileComponent implements OnInit {
       console.log(res);
     })
   }
-
 }
