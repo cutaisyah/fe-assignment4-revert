@@ -285,9 +285,17 @@ export class UserService {
         endpoint,
         tournamentData
       )
-      .subscribe(responseData => {
-        console.log(responseData)
-        // this.router.navigate(["/"]);
+      .subscribe((success) => {
+        // console.log(success);
+        Swal.fire('Good','Tournament berhasil dibuat!','success');
+      },
+      (err) => {
+        console.log(err);
+        Swal.fire(
+          'Maaf ada yang salah dengan proses registrasi',
+          err.message,
+          'error'
+        );
       });
   }
 

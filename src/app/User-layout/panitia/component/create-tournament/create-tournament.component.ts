@@ -10,12 +10,20 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   styleUrls: ['./create-tournament.component.scss'],
 })
 export class CreateTournamentComponent implements OnInit {
+  gameData: any;
   focus;
   focus1;
+  selectedGame: number;
+  selectedKategori: number;
   user: any;
+  permalinkchanged: any;
   createTournamentForm: FormGroup;
   imagePreview: string;
   isImageError = false;
+  kategori = [
+    {kategori_name: "single elimination"},
+    {kategori_name: "free for all"},
+  ]
 
   constructor(public userService: UserService) {
     this.createTournamentForm = new FormGroup({
@@ -33,7 +41,10 @@ export class CreateTournamentComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(){
+    this.showAllGame();
+    this.kategori;
+  }
 
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
@@ -53,9 +64,10 @@ export class CreateTournamentComponent implements OnInit {
     if (this.createTournamentForm.get('image').invalid) {
       this.isImageError = true;
     }
+    
       this.userService.createTournament(
         this.createTournamentForm.value.tournament_name,
-        this.createTournamentForm.value.permalink,
+        this.createTournamentForm.value.permalink.toLowerCase().split(' ').join('-'),
         this.createTournamentForm.value.categories,
         this.createTournamentForm.value.max_total_participant,
         this.createTournamentForm.value.age_minimum,
@@ -67,6 +79,17 @@ export class CreateTournamentComponent implements OnInit {
         this.createTournamentForm.value.game,
       );
     this.createTournamentForm.reset();
+  }
+
+  showAllGame(){
+    this.userService.getallGame().subscribe(
+      (data) => {
+        this.gameData = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   editorConfig: AngularEditorConfig = {
