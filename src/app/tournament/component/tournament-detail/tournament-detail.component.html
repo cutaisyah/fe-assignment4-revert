@@ -88,51 +88,43 @@
     <table class="table table-bordered table-hover text-center" style="width: 100%;">
       <thead class="thead-light">
         <tr>
-          <th class="align-middle" scope="col">No</th>
           <th class="align-middle" scope="col">Juara Ke-</th>
           <th class="align-middle" scope="col">Nama Pemenang</th>
-          <th class="align-middle" scope="col">Hadiah untuk Juara Ke-</th>
           <th class="align-middle" scope="col">Hadiah</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>1</td>
-          <td>1</td>
-        <td class="text-center" *ngIf="tournamentData?.third_winner == null">
+        <td class="text-center" *ngIf="tournamentData?.first_winner == null">
           -
         </td>
-        <td class="text-center" *ngIf="tournamentData?.third_winner !== null">
+        <td class="text-center" *ngIf="tournamentData?.first_winner !== null">
           {{ tournamentData?.first_winner.team_name }}
         </td>
-        <td>1</td>
         <td class="text-center">{{ tournamentData?.first_prize }}</td>
         </tr>
 
         <tr>
           <td>2</td>
-          <td>2</td>
-        <td class="text-center" *ngIf="tournamentData?.third_winner == null">
+        <td class="text-center" *ngIf="tournamentData?.second_winner == null">
           -
         </td>
-        <td class="text-center" *ngIf="tournamentData?.third_winner !== null">
-          {{ tournamentData?.first_winner.team_name }}
+        <td class="text-center" *ngIf="tournamentData?.second_winner !== null">
+          {{ tournamentData?.second_winner.team_name }}
         </td>
-        <td>2</td>
-        <td class="text-center">{{ tournamentData?.first_prize }}</td>
+        <td class="text-center">{{ tournamentData?.second_prize }}</td>
         </tr>
 
         <tr>
           <td>3</td>
-          <td>3</td>
         <td class="text-center" *ngIf="tournamentData?.third_winner == null">
           -
         </td>
         <td class="text-center" *ngIf="tournamentData?.third_winner !== null">
-          {{ tournamentData?.first_winner.team_name }}
+          {{ tournamentData?.third_winner.team_name }}
         </td>
-        <td>3</td>
-        <td class="text-center">{{ tournamentData?.first_prize }}</td>
+        <td class="text-center">{{ tournamentData?.third_prize }}</td>
         </tr>
       </tbody>
     </table>

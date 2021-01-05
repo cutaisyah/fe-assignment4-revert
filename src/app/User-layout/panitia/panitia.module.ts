@@ -58,7 +58,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
     NgSelectModule,
     NgbModule,
   ]
