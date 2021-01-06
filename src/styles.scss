@@ -57,6 +57,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   box-shadow: 1px 5px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
+.fa-eye,.fa-eye-slash{
+  color: black;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-right: 20px;
+  padding-left: 2px;
+}
+
+.contoh.form-control{
+  width: 92%;
+display: inline-block;
+}
+
+
 .form-padding{
   padding: 3.125em;
 }
@@ -73,7 +87,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .sidenav {
   width: 200px;
-  background-color:#fde8cd;
+  background-color:#fbbaaf;
 }
 
 .sidenav .mat-toolbar {
@@ -100,6 +114,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .sidenav-container{
   height:  100%;
+}
+
+.white-text{
+  color: white;
 }
 
 @media only screen and (min-width: 768px) {

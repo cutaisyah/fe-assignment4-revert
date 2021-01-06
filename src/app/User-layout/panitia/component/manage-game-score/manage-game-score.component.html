@@ -1,5 +1,5 @@
 <div class="container-custom table-padding">
-  <h3 class="title mt-0 pt-3 text-center mb-0">Edit Tournament</h3>
+  <h3 class="title mt-0 pt-3 text-center mb-0">Pengaturan Perlombaan</h3>
   <h4 *ngIf="datatournament?.categories == 'single elimination'">
     Single Elimination
   </h4>
@@ -40,76 +40,81 @@
     </table>
   </div>
 
-  <form class="register-form" [formGroup]="updateMatchForm" (ngSubmit)="submitScore()">
-    <div class="form-group row">
-      <div class="col-sm-3">
-        <select formControlName="team">
-          <option *ngFor="let match of dataTeamMatch" [ngValue]="match.team?._id">
-            {{ match.team?.team_name }}
-          </option>
-        </select>
-      </div>
-      <div class="col-sm-3" [ngClass]="{ 'input-group-focus': focus === true }"
-        *ngIf="datatournament?.categories == 'single elimination'">
-        <input formControlName="score" type="text" class="form-control mb-3" placeholder="Input score here.."
-          (focus)="focus = true" (blur)="focus = false" />
-      </div>
-      <div class="col-sm-3" *ngIf="datatournament?.categories == 'single elimination'">
-        <a class="btn" (click)="updateScore()">update score</a>
-      </div>
+  <ul ngbNav #nav="ngbNav" class="nav-tabs mt-5">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Ubah Status Team</a>
+      <ng-template ngbNavContent>
+        <form class="register-form" [formGroup]="updateMatchForm" (ngSubmit)="submitScore()">
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <ng-select formControlName="team">
+                <ng-option *ngFor="let match of dataTeamMatch" [value]="match.team?._id">{{ match.team?.team_name }}</ng-option>
+              </ng-select>
+            </div>
+            <div class="col-sm-3" [ngClass]="{ 'input-group-focus': focus === true }"
+              *ngIf="datatournament?.categories == 'single elimination'">
+              <input formControlName="score" type="text" class="form-control mb-3" placeholder="Masukkan Nilai Disini"
+                (focus)="focus = true" (blur)="focus = false" />
+            </div>
+            <div class="col-sm-3" *ngIf="datatournament?.categories == 'single elimination'">
+              <a class="btn" (click)="updateScore()">Perbarui Nilai</a>
+            </div>
 
-      <div class="col-sm-3" *ngIf="datatournament?.categories == 'free for all'">
-        <a class="btn" (click)="changeStatus()">Change Status</a>
-      </div>
-    </div>
+            <div class="col-sm-3" *ngIf="datatournament?.categories == 'free for all'">
+              <a class="btn" (click)="changeStatus()">Ubah Status Team</a>
+            </div>
+          </div>
 
-    <div class="d-flex justify-content-center">
-      <button type="submit" *ngIf="
-        datatournament?.categories == 'single elimination' &&
-        lastround?.length > 2
-      " class="btn btn-primary margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">
-        Update Manage Score
-      </button>
-      <a (click)="createThirdWinner()" *ngIf="
-        datatournament?.categories == 'single elimination' &&
-        dataTeamMatch?.length == 2
-      " class="btn btn-primary margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">
-        Buat Juara 3
-      </a>
-    </div>
-  </form>
+          <div class="d-flex justify-content-center">
+            <button type="submit" *ngIf="
+              datatournament?.categories == 'single elimination' &&
+              lastround?.length > 2
+            " class="btn btn-primary margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">
+              Perbarui Pengaturan Nilai
+            </button>
+            <a (click)="createThirdWinner()" *ngIf="
+              datatournament?.categories == 'single elimination' &&
+              dataTeamMatch?.length == 2
+            " class="btn btn-primary margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">
+              Buat Juara 3
+            </a>
+          </div>
+        </form>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Menentukan Pemenang Lomba</a>
+      <ng-template ngbNavContent>
+        <form class="register-form" [formGroup]="winnerForm" (ngSubmit)="winner()">
+          <div class="row">
+            <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
+              <label>Juara Pertama</label>
+              <ng-select formControlName="first_winner">
+                <ng-option *ngFor="let match of dataTeamMatch" [value]="match.team?._id">{{ match.team?.team_name }}</ng-option>
+              </ng-select>
+            </div>
+            <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
+              <label>Juara Kedua</label>
+                <ng-select formControlName="second_winner">
+                  <ng-option *ngFor="let match of dataTeamMatch" [value]="match.team?._id">{{ match.team?.team_name }}</ng-option>
+                </ng-select>
+            </div>
+            <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
+              <label>Juara Ketiga</label>
+              <ng-select formControlName="third_winner">
+                <ng-option *ngFor="let match of dataTeamMatch" [value]="match.team?._id">{{ match.team?.team_name }}</ng-option>
+              </ng-select>
+            </div>
+          </div>
 
-  <form class="register-form" [formGroup]="winnerForm" (ngSubmit)="winner()">
-    <div class="row">
-      <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
-        <label>First Winner</label>
-        <select formControlName="first_winner">
-          <option *ngFor="let match of dataTeamMatch" [ngValue]="match.team?._id">
-            {{ match.team?.team_name }}
-          </option>
-        </select>
-      </div>
-      <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
-        <label>Second Winner</label>
-        <select formControlName="second_winner">
-          <option *ngFor="let match of dataTeamMatch" [ngValue]="match.team?._id">
-            {{ match.team?.team_name }}
-          </option>
-        </select>
-      </div>
-      <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
-        <label>Third Winner</label>
-        <select formControlName="third_winner">
-          <option *ngFor="let match of dataTeamMatch" [ngValue]="match.team?._id">
-            {{ match.team?.team_name }}
-          </option>
-        </select>
-      </div>
-    </div>
+          <button type="submit"
+            class="btn btn-danger margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">
+            Perbarui Pemenang
+          </button>
+        </form>
+      </ng-template>
+    </li>
+  </ul>
 
-    <button type="submit"
-      class="btn btn-primary margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">
-      Update Winner
-    </button>
-  </form>
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
 </div>

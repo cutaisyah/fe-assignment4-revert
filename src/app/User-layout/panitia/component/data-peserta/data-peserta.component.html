@@ -1,18 +1,18 @@
 <div class="container-custom table-padding">
   <h3 class="title mt-0 pt-3 text-center mb-0s">Tabel Peserta {{authDecoded?.districts.district_name}}</h3>
   <div class="table-responsive">
-    <table class="table table-hover text-center">
+    <table class="table table-striped table-hover text-center">
       <thead class="bg-danger">
       <tr>
         <th class="align-middle" scope="col">No</th>
         <!-- <th scope="col">Email</th> -->
         <th class="align-middle" scope="col">Nama Pengguna</th>
-        <th class="align-middle" scope="col">Tanggal lahir</th>
-        <th class="align-middle" scope="col">No telefon</th>
-        <th class="align-middle" scope="col">Team</th>
-        <th class="align-middle" scope="col">Reg. Tournament</th>
+        <th class="align-middle" scope="col">Tanggal Lahir</th>
+        <th class="align-middle" scope="col">No Telefon</th>
+        <th class="align-middle" scope="col">Nama Team</th>
+        <th class="align-middle" scope="col">Perlombaan yang Diikuti</th>
         <!-- <th scope="col">Tournament Aprroved</th> -->
-        <th class="align-middle" scope="col">Approved</th>
+        <th class="align-middle" scope="col">Status Verifikasi</th>
       </tr>
     </thead>
     <tbody class="table-light">
@@ -31,12 +31,12 @@
           [routerLink]="['/panitia/panitiaLayout/dataPeserta/edit/', peserta._id ]" [disabled]="peserta.tournament_approved !== null">APPROVE
          </button></td> -->
          <td class="align-middle"  *ngIf="peserta.tournament_approved == null"><button type="button" class="btn btn-success" aria-label="approve"
-          (click)="approve(peserta._id)" [disabled]="peserta.tournament_approved !== null">APPROVE
+          (click)="approve(peserta._id)" [disabled]="peserta.tournament_approved !== null">VERIFIKASI
          </button></td>
       </tr>
     </tbody>
   </table>
   </div>
+  <ngb-pagination class="d-flex justify-content-center mt-4" [collectionSize]="userData?.length" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
 </div>
 
-<ngb-pagination [collectionSize]="userData?.length" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>

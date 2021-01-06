@@ -26,9 +26,9 @@ export class ManageGameScoreComponent implements OnInit {
       score: new FormControl(null, [Validators.required], ),
     });
     this.winnerForm = new FormGroup({
-      first_winner:new FormControl(null, { validators: [Validators.required] }),  
-      second_winner:new FormControl(null, { validators: [Validators.required] }),  
-      third_winner: new FormControl(null, { validators: [Validators.required] }), 
+      first_winner:new FormControl(null, { validators: [Validators.required] }),
+      second_winner:new FormControl(null, { validators: [Validators.required] }),
+      third_winner: new FormControl(null, { validators: [Validators.required] }),
     });
   }
 
@@ -38,7 +38,6 @@ export class ManageGameScoreComponent implements OnInit {
       this.match_round = paramMap.get('matchRound');
       this.userService.getTheMatch(this.tournamentId).subscribe(matchData => {
         this.datamatch = matchData.match;
-        console.log(this.datamatch)
       });
       this.userService.getTheTeamMatch(this.tournamentId, this.match_round).subscribe(teamMatchData => {
         this.dataTeamMatch = teamMatchData.match;
@@ -46,10 +45,9 @@ export class ManageGameScoreComponent implements OnInit {
       });
       this.userService.getTournamentById(this.tournamentId).subscribe(tournamentData => {
         this.datatournament = tournamentData.tournament;
-        // console.log(this.datatournament)
       });
-      this.winnerForm.patchValue({ 
-        first_winner: this.datatournament?.first_winner, 
+      this.winnerForm.patchValue({
+        first_winner: this.datatournament?.first_winner,
         second_winner: this.datatournament?.second_winner,
         third_winner: this.datatournament?.third_winner,
       });
@@ -87,10 +85,6 @@ export class ManageGameScoreComponent implements OnInit {
   }
 
   winner(){
-    // console.log("YUH")
-    // if (this.winnerForm.invalid) {
-    //   return;
-    // }
     this.userService.setWinner(
       this.tournamentId,
       this.winnerForm.value.first_winner,
@@ -98,17 +92,11 @@ export class ManageGameScoreComponent implements OnInit {
       this.winnerForm.value.third_winner
     );
   }
-  
+
   createThirdWinner(){
-    // if (this.updateMatchForm.invalid) {
-    //   return;
-    // }
     this.userService.thirdWinnerMatch(
       this.tournamentId,
       this.datatournament.match_round
     );
   }
-  
-
-
 }
