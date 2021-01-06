@@ -4,11 +4,6 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>  <span class="span white-text">Menu</span></mat-toolbar>
-    <!-- <div class="image-margin">
-      <img class="mt-5 img-fluid custom-image" src="assets/img/round-account-button-with-user-inside.png" alt="">
-      <h4>{{this.userData.username}}</h4>
-      <h6>{{this.userData.districts.district_name}}</h6>
-    </div> -->
     <mat-nav-list >
       <app-panitia-sidebar></app-panitia-sidebar>
     </mat-nav-list>

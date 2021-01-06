@@ -17,7 +17,7 @@ export class PanitiaComponent {
       shareReplay()
     );
 
-  constructor(private spinner: NgxSpinnerService,private breakpointObserver: BreakpointObserver) {}
+  constructor(private spinner: NgxSpinnerService, private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
     /** spinner starts on init */
@@ -27,5 +27,5 @@ export class PanitiaComponent {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 1200);
- }
+  }
 }
