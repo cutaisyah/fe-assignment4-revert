@@ -43,7 +43,7 @@
   <form class="register-form" [formGroup]="updateMatchForm" (ngSubmit)="submitScore()">
     <div class="form-group row">
       <div class="col-sm-3">
-        <ng-select formControlName="teamr" [(ngModel)]="selectedTeam">
+        <ng-select formControlName="team">
           <ng-option *ngFor="let match of dataTeamMatch" [value]="match.team?._id">{{ match.team?.team_name }}</ng-option>
         </ng-select>
       </div>
@@ -81,19 +81,19 @@
     <div class="row">
       <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
         <label>First Winner</label>
-        <ng-select formControlName="first_winner" [(ngModel)]="selectedTeam">
+        <ng-select formControlName="first_winner">
           <ng-option *ngFor="let match of dataTeamMatch" [value]="match.team?._id">{{ match.team?.team_name }}</ng-option>
         </ng-select>
       </div>
       <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
         <label>Second Winner</label>
-          <ng-select formControlName="second_winner" [(ngModel)]="selectedTeam">
+          <ng-select formControlName="second_winner">
             <ng-option *ngFor="let match of dataTeamMatch" [value]="match.team?._id">{{ match.team?.team_name }}</ng-option>
           </ng-select>
       </div>
       <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
         <label>Third Winner</label>
-        <ng-select formControlName="third_winner" [(ngModel)]="selectedTeam">
+        <ng-select formControlName="third_winner">
           <ng-option *ngFor="let match of dataTeamMatch" [value]="match.team?._id">{{ match.team?.team_name }}</ng-option>
         </ng-select>
       </div>

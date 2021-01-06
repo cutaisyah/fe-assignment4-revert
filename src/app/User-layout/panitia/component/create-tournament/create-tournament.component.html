@@ -37,7 +37,7 @@
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Game :</label>
     <div class="col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
-      <ng-select formControlName="game" [(ngModel)]="selectedGame">
+      <ng-select formControlName="game">
         <ng-option *ngFor="let game of gameData" [value]="game.game_name">{{game.game_name}}</ng-option>
       </ng-select>
     </div>
@@ -47,7 +47,7 @@
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Kategori :</label>
     <div class="col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
-      <ng-select formControlName="categories" [(ngModel)]="selectedKategori">
+      <ng-select formControlName="categories">
         <ng-option *ngFor="let kategori of kategori" [value]="kategori.kategori_name">{{kategori.kategori_name}}</ng-option>
       </ng-select>
     </div>

@@ -11,7 +11,6 @@ export class CreateLurahComponent implements OnInit {
   focus;
   focus1;
   user: any;
-  selectedDistrict: number;
   districtData: any;
   createLurahForm: FormGroup;
   constructor(public fb: FormBuilder, public userService: UserService) {

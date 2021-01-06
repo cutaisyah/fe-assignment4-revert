@@ -17,7 +17,6 @@ export class ManageGameScoreComponent implements OnInit {
   lastround: any;
   updateMatchForm: FormGroup;
   winnerForm: FormGroup;
-  selectedTeam: any;
   private tournamentId: string;
   private match_round: string;
 
@@ -39,7 +38,6 @@ export class ManageGameScoreComponent implements OnInit {
       this.match_round = paramMap.get('matchRound');
       this.userService.getTheMatch(this.tournamentId).subscribe(matchData => {
         this.datamatch = matchData.match;
-        console.log(this.datamatch)
       });
       this.userService.getTheTeamMatch(this.tournamentId, this.match_round).subscribe(teamMatchData => {
         this.dataTeamMatch = teamMatchData.match;
@@ -47,7 +45,6 @@ export class ManageGameScoreComponent implements OnInit {
       });
       this.userService.getTournamentById(this.tournamentId).subscribe(tournamentData => {
         this.datatournament = tournamentData.tournament;
-        // console.log(this.datatournament)
       });
       this.winnerForm.patchValue({ 
         first_winner: this.datatournament?.first_winner, 
@@ -88,10 +85,6 @@ export class ManageGameScoreComponent implements OnInit {
   }
 
   winner(){
-    // console.log("YUH")
-    // if (this.winnerForm.invalid) {
-    //   return;
-    // }
     this.userService.setWinner(
       this.tournamentId,
       this.winnerForm.value.first_winner,
@@ -101,9 +94,6 @@ export class ManageGameScoreComponent implements OnInit {
   }
   
   createThirdWinner(){
-    // if (this.updateMatchForm.invalid) {
-    //   return;
-    // }
     this.userService.thirdWinnerMatch(
       this.tournamentId,
       this.datatournament.match_round
