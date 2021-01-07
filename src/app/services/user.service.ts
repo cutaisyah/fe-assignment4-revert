@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
-import { createDistrict, RegisterOtherMember, RegisterTournament, UpdateApproved, UpdateUser, UpdateUserPassword, User } from '../models/User';
+import { createDistrict, RegisterOtherMember, RegisterTournament, ResetUserPassword, UpdateApproved, UpdateUser, UpdateUserPassword, User } from '../models/User';
 import { setWinnerTournament, Tournament, UpdateIsStarted, UpdateTournament } from '../models/Tournament';
 
 import jwt_decode from "jwt-decode";
@@ -123,11 +123,15 @@ export class UserService {
       );
   }
 
-  resetPassword(password: string,old_password:string){
-    let endpoint = `${environment.baseUrl}/auth/reset-password/${old_password}`;
-    this.http.put<any>(endpoint, password)
+  resetPassword(password: string, reset_link:string){
+    let userData: ResetUserPassword;
+    userData = {
+      password: password,
+      reset_link: reset_link,
+    }
+    this.http.put<any>(`${environment.baseUrl}/auth/reset-password/${reset_link}`, userData)
     .subscribe((response) => {
-      console.log("response",response);
+      console.log("response", response);
       // this.router.navigate(["/home"]);
     });
   }

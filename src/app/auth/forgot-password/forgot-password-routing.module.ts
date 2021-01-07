@@ -5,7 +5,7 @@ import { SendEmailComponent } from './send-email/send-email.component';
 
 const routes: Routes = [
   { path: 'sendEmail', component: SendEmailComponent },
-  { path: 'resetPass/:oldPassword', component: ResetPasswordComponent },
+  { path: 'resetPass/:resetLink', component: ResetPasswordComponent },
 ];
 
 @NgModule({

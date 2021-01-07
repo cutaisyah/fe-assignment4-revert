@@ -15,7 +15,7 @@ export class ResetPasswordComponent implements OnInit {
   focus1;
   user: any;
   resetPasswordForm: FormGroup;
-  private oldPassword: string;
+  private resetLink: string;
   constructor(public route: ActivatedRoute, public userService: UserService) {
     this.resetPasswordForm = new FormGroup({
       password: new FormControl(),
@@ -24,16 +24,17 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      this.oldPassword = paramMap.get('oldPassword');
-      console.log(this.oldPassword);
+      this.resetLink = paramMap.get('resetLink');
+      // console.log(this.oldPassword);
     });
   }
 
   resetPassword() {
+    // console.log(this.resetPasswordForm.value.password);
     this.userService.resetPassword(
-      this.oldPassword,
       this.resetPasswordForm.value.password,
+      this.resetLink,
     );
-    console.log(this.resetPassword());
+    // console.log(this.resetPassword());
   }
 }

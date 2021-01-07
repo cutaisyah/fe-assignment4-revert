@@ -19,16 +19,21 @@ export interface createDistrict{
   districts: string;
 }
 
-export class UpdateUser {
+export interface UpdateUser {
   username: string;
   birthdate: string;
   email: string;
   phone: string;
 }
 
-export class UpdateUserPassword {
+export interface UpdateUserPassword {
   password: string;
   old_password: string;
+}
+
+export interface ResetUserPassword {
+  password: string;
+  reset_link: string;
 }
 
 export interface UpdateApproved{
