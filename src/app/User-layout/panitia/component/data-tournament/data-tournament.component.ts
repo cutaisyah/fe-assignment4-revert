@@ -35,11 +35,16 @@ export class DataTournamentComponent implements OnInit {
   status(id){
     Swal.fire({
       title: 'Apakah Anda Ingin Mengubah Status Turnamen ?',
-      text:"Pilih apakah 'sedang berjalan' atau 'selesai'",
+      text:"Pilih 'sedang berjalan' atau 'selesai'",
+      icon: 'question',
       showDenyButton: true,
       showCancelButton: true,
+      cancelButtonText: 'Batal',
       confirmButtonText: `Sedang Berjalan`,
       denyButtonText: `Selesai`,
+      confirmButtonColor: '#6BD098',
+      denyButtonColor:'#FCD27B',
+      cancelButtonColor: '#d33',
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {

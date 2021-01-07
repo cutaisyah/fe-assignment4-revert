@@ -1,23 +1,23 @@
-<div class=" container container-border">
-  <div class="text-center mt-10">
+<div class=" container-border">
+  <div class="text-center">
     <h4>Filter</h4>
   </div>
 
   <ul class="list-unstyled">
-    <li class="m-3">
-      <a [routerLink]="['list']">Semua Tournament</a>
+    <li [routerLinkActive]="['is-active']" class="m-3 p-2">
+      <a  [routerLink]="['list']">Semua Perlombaan</a>
     </li>
-    <li class="m-3">
-      <a [routerLink]="['available']">Available to Join</a>
+    <li [routerLinkActive]="['is-active']" class="m-3 p-2">
+      <a [routerLink]="['available']">Perlombaan yang Masih Dibuka</a>
     </li>
-    <li class="dropdown-container m-3">
-      <label>Filter by Tipe Game</label>
+    <li class="m-3 p-2">
+      <label [routerLinkActive]="['is-active']">Filter Berdasarkan Tipe Game</label>
       <ng-select [(ngModel)]="selectedGame">
         <ng-option *ngFor="let game of gameData"><a class="link-dropdown" [routerLink]="['game/', game.game_name]">{{game.game_name}}</a></ng-option>
       </ng-select>
     </li>
-    <li class="dropdown-container m-3">
-      <label>Filter by District</label>
+    <li class="m-3 p-2">
+      <label>Filter Berdasarkan Distrik</label>
       <ng-select [(ngModel)]="selectedDistrict">
         <ng-option *ngFor="let district of districtData"><a class="link-dropdown" [routerLink]="['district/', district._id]">{{district.district_name}}</a></ng-option>
       </ng-select>

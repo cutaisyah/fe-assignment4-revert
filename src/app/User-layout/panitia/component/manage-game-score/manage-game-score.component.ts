@@ -26,9 +26,9 @@ export class ManageGameScoreComponent implements OnInit {
       score: new FormControl(null, [Validators.required], ),
     });
     this.winnerForm = new FormGroup({
-      first_winner:new FormControl(null, { validators: [Validators.required] }),  
-      second_winner:new FormControl(null, { validators: [Validators.required] }),  
-      third_winner: new FormControl(null, { validators: [Validators.required] }), 
+      first_winner:new FormControl(null, { validators: [Validators.required] }),
+      second_winner:new FormControl(null, { validators: [Validators.required] }),
+      third_winner: new FormControl(null, { validators: [Validators.required] }),
     });
   }
 
@@ -46,8 +46,8 @@ export class ManageGameScoreComponent implements OnInit {
       this.userService.getTournamentById(this.tournamentId).subscribe(tournamentData => {
         this.datatournament = tournamentData.tournament;
       });
-      this.winnerForm.patchValue({ 
-        first_winner: this.datatournament?.first_winner, 
+      this.winnerForm.patchValue({
+        first_winner: this.datatournament?.first_winner,
         second_winner: this.datatournament?.second_winner,
         third_winner: this.datatournament?.third_winner,
       });
@@ -92,14 +92,11 @@ export class ManageGameScoreComponent implements OnInit {
       this.winnerForm.value.third_winner
     );
   }
-  
+
   createThirdWinner(){
     this.userService.thirdWinnerMatch(
       this.tournamentId,
       this.datatournament.match_round
     );
   }
-  
-
-
 }

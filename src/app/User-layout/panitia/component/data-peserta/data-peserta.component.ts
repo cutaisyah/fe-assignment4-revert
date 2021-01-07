@@ -45,11 +45,13 @@ export class DataPesertaComponent implements OnInit {
     approve(id){
       Swal.fire({
         title: 'Anda Yakin Ingin Menyetujui Peserta Ini ?',
+        text:"Anda tidak bisa lagi mengubah pilihan anda",
         icon: 'question',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        cancelButtonText: 'Batal',
+        confirmButtonColor: '#6BD098',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'setujui'
+        confirmButtonText: 'Setujui'
       }).then((result) => {
         if (result.isConfirmed) {
           this.changeStatusApproved(id)

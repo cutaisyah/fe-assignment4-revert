@@ -1,5 +1,5 @@
 .sidenav {
-  width: 200px;
+  width: 12.5em;
   background-color: white;
 }
 
@@ -11,4 +11,14 @@
   mat-sidenav-content>mat-toolbar{
     display: none;
   }
+
+  .change{
+    height: 0;
+    width: 0;
+  }
+
+  .sidenav {
+    width: 250px;
+  }
+
 }

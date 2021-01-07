@@ -1,4 +1,4 @@
-<a mat-list-item [routerLink]="['getPeserta/', this.userData?.id]">Profil Peserta</a>
-<a *ngIf="user?.teams == null" mat-list-item routerLink='createTeam'>Membuat Team</a>
-<a *ngIf="user?.teams !== null" mat-list-item [routerLink]="['registerTeam/']">Daftarkan Teman Ke Team</a>
+<a class="white-text" mat-list-item [routerLink]="['getPeserta/', this.userData?.id]">Profil Peserta</a>
+<a class="white-text" *ngIf="user?.teams == null" mat-list-item routerLink='createTeam'>Membuat Team</a>
+<a class="white-text" *ngIf="user?.teams !== null" mat-list-item [routerLink]="['registerTeam/']">Daftarkan Teman Ke Team</a>
 

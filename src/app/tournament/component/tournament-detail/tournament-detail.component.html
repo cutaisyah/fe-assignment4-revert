@@ -42,91 +42,104 @@
   <div class="text-danger" *ngIf="!this.tokenService.isLogin">
     Login Terlebih Dahulu
   </div>
+  <hr class="mb-5">
 
-  <hr>
-  <h5 class="bold mt-3">Deskripsi :</h5>
-  <div id="description" [innerHTML]="htmldescription">
-  </div>
+  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Deskripsi</a>
+      <ng-template ngbNavContent>
+        <div id="description" [innerHTML]="htmldescription">
+        </div>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Detail Perlombaan</a>
+      <ng-template ngbNavContent>
+        <div class="table-responsive mt-0">
+          <table class="table table-bordered table-hover" style="width: 100%;">
+              <tr>
+                <td>Tipe Game</td>
+                <td>{{ tournamentData?.game }}</td>
+              </tr>
+              <tr>
+                <td>Kategori</td>
+                <td>{{ tournamentData?.categories }}</td>
+              </tr>
+              <tr>
+                <td>Batasan Umur (batas bawah)</td>
+                <td>{{ tournamentData?.age_minimum }}</td>
+              </tr>
+              <tr>
+                <td>Kapasitas</td>
+                <td>
+                  {{ tournamentData?.register_total_participant }}/{{
+                tournamentData?.max_total_participant
+              }}
+                </td>
+              </tr>
+              <tr>
+                <td>District</td>
+                <td>{{ tournamentData?.districts.district_name }}</td>
+              </tr>
+              <tr>
+                <td>Status Available</td>
+                <td>{{ tournamentData?.is_started }}</td>
+              </tr>
+          </table>
+        </div>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3">
+      <a ngbNavLink>Pemenang dan Hadiah</a>
+      <ng-template ngbNavContent>
+        <div class="table-responsive mt-0">
+          <table class="table table-bordered table-hover text-center" style="width: 100%;">
+            <thead class="thead-light">
+              <tr>
+                <th class="align-middle" scope="col">Juara Ke-</th>
+                <th class="align-middle" scope="col">Nama Pemenang</th>
+                <th class="align-middle" scope="col">Hadiah</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+              <td class="text-center" *ngIf="tournamentData?.first_winner == null">
+                -
+              </td>
+              <td class="text-center" *ngIf="tournamentData?.first_winner !== null">
+                {{ tournamentData?.first_winner.team_name }}
+              </td>
+              <td class="text-center">{{ tournamentData?.first_prize }}</td>
+              </tr>
 
-  <h5 class="bold mt-4">Keterangan :</h5>
-  <p>1. Detail Turnamen</p>
-  <div class="table-responsive mt-0">
-    <table class="table table-bordered table-hover" style="width: 100%;">
-        <tr>
-          <td>Tipe Game</td>
-          <td>{{ tournamentData?.game }}</td>
-        </tr>
-        <tr>
-          <td>Kategori</td>
-          <td>{{ tournamentData?.categories }}</td>
-        </tr>
-        <tr>
-          <td>Batasan Umur (batas bawah)</td>
-          <td>{{ tournamentData?.age_minimum }}</td>
-        </tr>
-        <tr>
-          <td>Kapasitas</td>
-          <td>
-            {{ tournamentData?.register_total_participant }}/{{
-          tournamentData?.max_total_participant
-        }}
-          </td>
-        </tr>
-        <tr>
-          <td>District</td>
-          <td>{{ tournamentData?.districts.district_name }}</td>
-        </tr>
-        <tr>
-          <td>Status Available</td>
-          <td>{{ tournamentData?.is_started }}</td>
-        </tr>
-    </table>
-  </div>
+              <tr>
+                <td>2</td>
+              <td class="text-center" *ngIf="tournamentData?.second_winner == null">
+                -
+              </td>
+              <td class="text-center" *ngIf="tournamentData?.second_winner !== null">
+                {{ tournamentData?.second_winner.team_name }}
+              </td>
+              <td class="text-center">{{ tournamentData?.second_prize }}</td>
+              </tr>
 
-  <p class="mt-4">2. Pemenang dan Hadiah</p>
-  <div class="table-responsive mt-0">
-    <table class="table table-bordered table-hover text-center" style="width: 100%;">
-      <thead class="thead-light">
-        <tr>
-          <th class="align-middle" scope="col">Juara Ke-</th>
-          <th class="align-middle" scope="col">Nama Pemenang</th>
-          <th class="align-middle" scope="col">Hadiah</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-        <td class="text-center" *ngIf="tournamentData?.first_winner == null">
-          -
-        </td>
-        <td class="text-center" *ngIf="tournamentData?.first_winner !== null">
-          {{ tournamentData?.first_winner.team_name }}
-        </td>
-        <td class="text-center">{{ tournamentData?.first_prize }}</td>
-        </tr>
+              <tr>
+                <td>3</td>
+              <td class="text-center" *ngIf="tournamentData?.third_winner == null">
+                -
+              </td>
+              <td class="text-center" *ngIf="tournamentData?.third_winner !== null">
+                {{ tournamentData?.third_winner.team_name }}
+              </td>
+              <td class="text-center">{{ tournamentData?.third_prize }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
-        <tr>
-          <td>2</td>
-        <td class="text-center" *ngIf="tournamentData?.second_winner == null">
-          -
-        </td>
-        <td class="text-center" *ngIf="tournamentData?.second_winner !== null">
-          {{ tournamentData?.second_winner.team_name }}
-        </td>
-        <td class="text-center">{{ tournamentData?.second_prize }}</td>
-        </tr>
-
-        <tr>
-          <td>3</td>
-        <td class="text-center" *ngIf="tournamentData?.third_winner == null">
-          -
-        </td>
-        <td class="text-center" *ngIf="tournamentData?.third_winner !== null">
-          {{ tournamentData?.third_winner.team_name }}
-        </td>
-        <td class="text-center">{{ tournamentData?.third_prize }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </div>

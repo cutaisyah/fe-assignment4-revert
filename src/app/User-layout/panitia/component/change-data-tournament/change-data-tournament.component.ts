@@ -14,6 +14,11 @@ export class ChangeDataTournamentComponent implements OnInit {
   focus1;
   tournament: any;
   updateTournamentForm: FormGroup;
+  selectedKategori: number;
+  kategori = [
+    {kategori_name: "single elimination"},
+    {kategori_name: "free for all"},
+  ]
   private tournamentId: string;
 
   constructor(public route: ActivatedRoute, public userService: UserService) {
@@ -23,9 +28,9 @@ export class ChangeDataTournamentComponent implements OnInit {
       max_total_participant: new FormControl(null, { validators: [Validators.required] }),
       age_minimum: new FormControl(null, { validators: [Validators.required] }),
       description: new FormControl(null, { validators: [Validators.required] }),
-      first_prize:new FormControl(null, { validators: [Validators.required] }),  
-      second_prize:new FormControl(null, { validators: [Validators.required] }),  
-      third_prize: new FormControl(null, { validators: [Validators.required] }), 
+      first_prize:new FormControl(null, { validators: [Validators.required] }),
+      second_prize:new FormControl(null, { validators: [Validators.required] }),
+      third_prize: new FormControl(null, { validators: [Validators.required] }),
       // game: new FormControl(null, { validators: [Validators.required] }),
     });
   }
@@ -36,10 +41,10 @@ export class ChangeDataTournamentComponent implements OnInit {
       console.log(this.tournamentId);
       this.userService.getTournamentById(this.tournamentId).subscribe(tournamentData => {
         this.tournament = tournamentData.tournament;
-        this.updateTournamentForm.setValue({ 
-          tournament_name: this.tournament.tournament_name, 
+        this.updateTournamentForm.setValue({
+          tournament_name: this.tournament.tournament_name,
           categories: this.tournament.categories,
-          max_total_participant: this.tournament.max_total_participant, 
+          max_total_participant: this.tournament.max_total_participant,
           age_minimum: this.tournament.age_minimum,
           description: this.tournament.description,
           first_prize: this.tournament.first_prize,
@@ -47,8 +52,9 @@ export class ChangeDataTournamentComponent implements OnInit {
           third_prize: this.tournament.third_prize,
         });
       });
-
     });
+
+    this.kategori;
   }
 
   updateTournament(){

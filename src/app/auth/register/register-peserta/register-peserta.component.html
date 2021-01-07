@@ -13,22 +13,23 @@
                   (blur)="focus=false">
               </div>
 
-              <div class="row">
-                <div class="col-md-6">
+
                   <label>Nama Pengguna</label>
                   <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
                     <input formControlName="username" type="text" class="form-control" placeholder="Nama Pengguna"
                       (focus)="focus1=true" (blur)="focus1=false">
                   </div>
-                </div>
-                <div class="col-md-6">
-                  <label>Kata sandi</label>
-                  <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
-                    <input formControlName="password" type="password" class="form-control" placeholder="Kata sandi"
-                      (focus)="focus1=true" (blur)="focus1=false">
-                  </div>
-                </div>
-              </div>
+
+
+                    <label>Kata sandi</label>
+                    <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                      <input #passwordField formControlName="password" type="password" class="form-control"
+                        placeholder="Kata sandi" (focus)="focus1=true" (blur)="focus1=false">
+                      <div (click)="passwordField.type=passwordField.type=='password'?'text':'password'"
+                        class="fa fa-fw field-icon toggle-password"
+                        [ngClass]="(passwordField.type=='password')?' fa-eye':' fa-eye-slash'"></div>
+                    </div>
+
 
               <label>Tanggal Lahir</label>
               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">

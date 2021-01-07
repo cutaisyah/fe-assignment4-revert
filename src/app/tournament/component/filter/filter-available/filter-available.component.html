@@ -1,6 +1,6 @@
 <div class="tournament-container">
   <div class="row text-center">
-    <h3 class="mb-3 ml-auto mr-auto">Turnamen yang Masih Tersedia</h3>
+    <h3 class="mb-3 ml-auto mr-auto">Perlombaan yang Masih Tersedia</h3>
   </div>
   <div class="row">
     <div class="col-md-4" *ngFor="let tournament of tournamentData | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
@@ -14,7 +14,7 @@
             style="cursor: pointer"
           />
           <div class="card-header bg-card-custom">
-            <div class="card-title text-center border-bottom border-white">
+            <div class="card-title text-white text-center border-bottom border-white">
               <h5><strong>{{tournament.tournament_name}}</strong></h5>
             </div>
             <div class="card-body text-left">
