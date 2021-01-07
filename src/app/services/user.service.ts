@@ -36,7 +36,7 @@ export class UserService {
     } catch (error) {
       // console.log('👾 invalid token format', error);
     }
-    
+
     this.userPayload = new BehaviorSubject<any>(
       this.authDecoded
     );
@@ -86,7 +86,10 @@ export class UserService {
         },
         (err) => {
           console.log(err)
-          Swal.fire('Maaf ada yang salah dengan proses login anda');
+          Swal.fire(
+            'Maaf ada yang salah dengan proses login anda',
+            err.message,
+            'error');
         }
       );
   }
@@ -95,6 +98,35 @@ export class UserService {
     localStorage.removeItem('access_token');
     this.router.navigate(['/']);
   }
+
+  sendEmail(email: string) {
+    return this.http
+      .put<any>(`${environment.baseUrl}/auth/forgot-password`, email)
+      .subscribe(
+        (success) => {
+          console.log(success);
+          Swal.fire('Silahkan cek email anda');
+          this.router.navigate([`/home`])
+        },
+        (err) => {
+          console.log(err);
+          Swal.fire(
+            'Maaf ada yang salah dengan pengiriman email anda',
+            err.message,
+          );
+        }
+      );
+  }
+
+  resetPassword(password: string,old_password:string){
+    let endpoint = `${environment.baseUrl}/auth/reset-password/${old_password}`;
+    this.http.put<any>(endpoint, password)
+    .subscribe((response) => {
+      console.log("response",response);
+      // this.router.navigate(["/home"]);
+    });
+  }
+
 
   // admin
   signUpAdmin(user: User) {
@@ -196,7 +228,7 @@ export class UserService {
   //============================================
 
   // Lurah
-  
+
   getAllDataLurahProfile(_id: string){
     return this.http.get(`${environment.baseUrl}/lurah/get/${_id}`, { headers: this.headers })
   }
@@ -204,7 +236,7 @@ export class UserService {
   dataTournamentByDistrict(): Observable<any>{
     return this.http.get(`${environment.baseUrl}/lurah/allbaseondistrict`, { headers: this.headers })
   }
-  
+
   getAllDataPanitia(): Observable<any>{
     return this.http.get(`${environment.baseUrl}/lurah/data-panitia`, { headers: this.headers })
   }
@@ -250,7 +282,7 @@ export class UserService {
       })
     );
   }
-  
+
 
   updatePanitiaProfile(user: UpdateUser) {
     let endpoint = `${environment.baseUrl}/panitia/update`;
@@ -315,7 +347,7 @@ export class UserService {
       _id: _id,
       is_started: "ongoing",
     };
-    
+
     this.http
       .put(endpoint, tournamentData)
       .subscribe(response => {
@@ -330,7 +362,7 @@ export class UserService {
       _id: _id,
       is_started: "completed",
     };
-    
+
     this.http
       .put(endpoint, tournamentData)
       .subscribe(response => {
@@ -393,7 +425,7 @@ export class UserService {
     userData = {
       _id: _id
     };
-    
+
     this.http
       .put(endpoint, userData)
       .subscribe(response => {
@@ -517,7 +549,7 @@ export class UserService {
     userData = {
       game: game
     };
-    
+
     return this.http.put(endpoint, userData)
       .subscribe(
         response => {

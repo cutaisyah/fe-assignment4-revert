@@ -22,6 +22,11 @@ const routes: Routes = [
       import('./auth/register/register.module').then((m) => m.RegisterModule),
   },
   {
+    path: 'forgot',
+    loadChildren: () =>
+      import('./auth/forgot-password/forgot-password.module').then((m) => m.ForgotPasswordModule),
+  },
+  {
     path: 'tournament',
     loadChildren: () =>
       import('./tournament/tournament.module').then((m) => m.TournamentModule),
