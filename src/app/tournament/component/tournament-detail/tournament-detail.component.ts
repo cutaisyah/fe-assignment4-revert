@@ -92,6 +92,10 @@ export class TournamentDetailComponent implements OnInit {
   
           $(document).ready(() => {
             $('#minimal .demo').bracket({
+              teamWidth: 100,
+              scoreWidth: 40,
+              matchMargin: 60,
+              roundMargin: 40,
               init: minimalData
             })
           })
