@@ -46,7 +46,7 @@
     <li [ngbNavItem]="1">
       <a ngbNavLink>Ubah Status Team</a>
       <ng-template ngbNavContent>
-        <form class="register-form" [formGroup]="updateMatchForm" (ngSubmit)="submitScore()">
+        <form class="" [formGroup]="updateMatchForm" (ngSubmit)="submitScore()">
           <div class="form-group row">
             <div class="col-sm-3">
               <ng-select formControlName="team">
@@ -86,7 +86,7 @@
     <li [ngbNavItem]="2">
       <a ngbNavLink>Menentukan Pemenang Lomba</a>
       <ng-template ngbNavContent>
-        <form class="register-form" [formGroup]="winnerForm" (ngSubmit)="winner()">
+        <form class="" [formGroup]="winnerForm" (ngSubmit)="winner()">
           <div class="row">
             <div class="col-sm-4" [ngClass]="{ 'input-group-focus': focus === true }">
               <label>Juara Pertama</label>
