@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -11,11 +12,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class LoginComponent implements OnInit {
   @Input() id: number;
   myForm: FormGroup;
-  constructor(
-    public activeModal: NgbActiveModal,
-    private formBuilder: FormBuilder,
-    private spinner: NgxSpinnerService
-  ) {
+  constructor(public activeModal: NgbActiveModal, private router: Router, private formBuilder: FormBuilder, private spinner: NgxSpinnerService) {}
+
+  ngOnInit(){
     this.createForm();
   }
 
@@ -30,16 +29,15 @@ export class LoginComponent implements OnInit {
     this.spinner.show();
  
     setTimeout(() => {
-      /** spinner ends after 5 seconds */
       this.activeModal.close(this.myForm.value);
       this.spinner.hide();
     }, 3000);
     
   }
 
-  ngOnInit(): void {}
-
-  closeModal() {
-    this.activeModal.close('Modal Closed');
+  forgetPass(){
+    this.router.navigate(['/forgot/sendEmail']);
+    this.activeModal.dismiss('Cross click');
   }
+
 }
