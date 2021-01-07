@@ -13,6 +13,7 @@ export class RegisterPesertaComponent implements OnInit {
   focus;
   focus1;
   user: any;
+  districtData: any;
   signUpForm: FormGroup;
   constructor(private spinner: NgxSpinnerService,public fb: FormBuilder, public userService: UserService) {
     this.signUpForm = new FormGroup({
@@ -26,14 +27,24 @@ export class RegisterPesertaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /** spinner starts on init */
+    this.showAllDistrict();
     this.spinner.show();
-
     setTimeout(() => {
-      /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 1200);
  }
+
+ showAllDistrict(){
+  this.userService.getallDistrict().subscribe(
+    (data) => {
+      this.districtData = data;
+      console.log(data);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+}
 
   signUp() {
     this.user = this.signUpForm.value;

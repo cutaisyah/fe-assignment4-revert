@@ -54,7 +54,6 @@ export class UserService {
           Swal.fire('Terimakasih sudah mendaftar');
         },
         (err) => {
-          console.log(err);
           Swal.fire(
             'Maaf ada yang salah dengan proses registrasi',
             err.message,

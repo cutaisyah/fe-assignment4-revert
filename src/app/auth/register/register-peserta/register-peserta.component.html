@@ -45,9 +45,10 @@
 
 
               <label>Distrik</label>
-              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
-                <input formControlName="districts" type="text" class="form-control" placeholder="Distrik"
-                  (focus)="focus1=true" (blur)="focus1=false">
+              <div [ngClass]="{'input-group-focus':focus1===true}">
+                  <ng-select formControlName="districts">
+                    <ng-option *ngFor="let district of districtData" [value]="district.district_name">{{district.district_name}}</ng-option>
+                  </ng-select>
               </div>
 
               <button class="btn btn-danger btn-block btn-round">Daftar</button>
