@@ -21,8 +21,8 @@ export class CreateTournamentComponent implements OnInit {
   imagePreview: string;
   isImageError = false;
   kategori = [
-    {kategori_name: "single elimination"},
-    {kategori_name: "free for all"},
+    { kategori_name: "single elimination" },
+    { kategori_name: "free for all" },
   ]
 
   constructor(public userService: UserService) {
@@ -34,14 +34,14 @@ export class CreateTournamentComponent implements OnInit {
       age_minimum: new FormControl(null, { validators: [Validators.required] }),
       description: new FormControl(null, { validators: [Validators.required] }),
       image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] }),
-      first_prize:new FormControl(null, { validators: [Validators.required] }),  
-      second_prize:new FormControl(null, { validators: [Validators.required] }),  
-      third_prize: new FormControl(null, { validators: [Validators.required] }), 
+      first_prize: new FormControl(null, { validators: [Validators.required] }),
+      second_prize: new FormControl(null, { validators: [Validators.required] }),
+      third_prize: new FormControl(null, { validators: [Validators.required] }),
       game: new FormControl(null, { validators: [Validators.required] }),
     });
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.showAllGame();
     this.kategori;
   }
@@ -64,24 +64,24 @@ export class CreateTournamentComponent implements OnInit {
     if (this.createTournamentForm.get('image').invalid) {
       this.isImageError = true;
     }
-    
-      this.userService.createTournament(
-        this.createTournamentForm.value.tournament_name,
-        this.createTournamentForm.value.permalink.toLowerCase().split(' ').join('-'),
-        this.createTournamentForm.value.categories,
-        this.createTournamentForm.value.max_total_participant,
-        this.createTournamentForm.value.age_minimum,
-        this.createTournamentForm.value.description,
-        this.createTournamentForm.value.image,
-        this.createTournamentForm.value.first_prize,
-        this.createTournamentForm.value.second_prize,
-        this.createTournamentForm.value.third_prize,
-        this.createTournamentForm.value.game,
-      );
+
+    this.userService.createTournament(
+      this.createTournamentForm.value.tournament_name,
+      this.createTournamentForm.value.permalink.toLowerCase().split(' ').join('-'),
+      this.createTournamentForm.value.categories,
+      this.createTournamentForm.value.max_total_participant,
+      this.createTournamentForm.value.age_minimum,
+      this.createTournamentForm.value.description,
+      this.createTournamentForm.value.image,
+      this.createTournamentForm.value.first_prize,
+      this.createTournamentForm.value.second_prize,
+      this.createTournamentForm.value.third_prize,
+      this.createTournamentForm.value.game,
+    );
     this.createTournamentForm.reset();
   }
 
-  showAllGame(){
+  showAllGame() {
     this.userService.getallGame().subscribe(
       (data) => {
         this.gameData = data;
@@ -91,7 +91,7 @@ export class CreateTournamentComponent implements OnInit {
       }
     );
   }
-
+  
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -102,7 +102,7 @@ export class CreateTournamentComponent implements OnInit {
     defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
     toolbarHiddenButtons: [
-      ],
+    ],
     customClasses: [
       {
         name: "quote",

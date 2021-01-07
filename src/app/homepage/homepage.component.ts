@@ -10,18 +10,16 @@ import * as AOS from 'aos';
 
 export class HomepageComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService) { }
+  constructor(private spinner: NgxSpinnerService) {}
 
-  ngOnInit(): void {
-     /** spinner starts on init */
-     this.spinner.show();
-
-     setTimeout(() => {
-       /** spinner ends after 5 seconds */
-       this.spinner.hide();
-     }, 1000);
-
-     AOS.init();
+  ngOnInit(){
+    this.spinner.show();
+    
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);
+    
+    AOS.init();
   }
 
 }

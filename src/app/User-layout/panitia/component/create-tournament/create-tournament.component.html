@@ -35,14 +35,14 @@
 
   <div class="form-group row">
     <label class="col-md-4 col-sm-2 col-form-label">Game :</label>
-    <ng-select class="col-md-8 col-sm-10" formControlName="game" [(ngModel)]="selectedGame">
+    <ng-select class="col-md-8 col-sm-10" formControlName="game">
       <ng-option *ngFor="let game of gameData" [value]="game.game_name">{{game.game_name}}</ng-option>
     </ng-select>
   </div>
 
   <div class="form-group row">
     <label class="col-md-4 col-sm-2 col-form-label">Kategori :</label>
-    <ng-select class="col-md-8 col-sm-10" formControlName="categories" [(ngModel)]="selectedKategori">
+    <ng-select class="col-md-8 col-sm-10" formControlName="categories">
       <ng-option *ngFor="let kategori of kategori" [value]="kategori.kategori_name">{{kategori.kategori_name}}</ng-option>
     </ng-select>
   </div>

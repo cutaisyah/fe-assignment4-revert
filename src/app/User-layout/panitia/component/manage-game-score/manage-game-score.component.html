@@ -40,7 +40,9 @@
     </table>
   </div>
 
+
   <ul ngbNav #nav="ngbNav" class="nav-tabs mt-5">
+    
     <li [ngbNavItem]="1">
       <a ngbNavLink>Ubah Status Team</a>
       <ng-template ngbNavContent>
@@ -59,12 +61,10 @@
             <div class="col-sm-3" *ngIf="datatournament?.categories == 'single elimination'">
               <a class="btn" (click)="updateScore()">Perbarui Nilai</a>
             </div>
-
             <div class="col-sm-3" *ngIf="datatournament?.categories == 'free for all'">
               <a class="btn" (click)="changeStatus()">Ubah Status Team</a>
             </div>
           </div>
-
           <div class="d-flex justify-content-center">
             <button type="submit" *ngIf="
               datatournament?.categories == 'single elimination' &&
@@ -82,6 +82,7 @@
         </form>
       </ng-template>
     </li>
+    
     <li [ngbNavItem]="2">
       <a ngbNavLink>Menentukan Pemenang Lomba</a>
       <ng-template ngbNavContent>
@@ -107,6 +108,7 @@
             </div>
           </div>
 
+
           <button type="submit"
             class="btn btn-danger margin-custom btn-block btn-round mt-3 btn-custom justify-content-center">
             Perbarui Pemenang
@@ -114,6 +116,7 @@
         </form>
       </ng-template>
     </li>
+    
   </ul>
 
   <div [ngbNavOutlet]="nav" class="mt-2"></div>

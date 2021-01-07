@@ -34,7 +34,7 @@ export class UserService {
     try {
       this.authDecoded = jwt_decode(this.token);
     } catch (error) {
-      console.log('👾 invalid token format', error);
+      // console.log('👾 invalid token format', error);
     }
     
     this.userPayload = new BehaviorSubject<any>(
