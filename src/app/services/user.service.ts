@@ -51,7 +51,12 @@ export class UserService {
       .post<any>(`${environment.baseUrl}/auth/signup`, user)
       .subscribe(
         (success) => {
-          Swal.fire('Terimakasih sudah mendaftar');
+          Swal.fire({
+            title: 'Terimakasih sudah mendaftar',
+            icon: 'success',
+            timer: 2000,
+          });
+          this.router.navigate([`/home`]);
         },
         (err) => {
           Swal.fire(
