@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { UpdateUserPassword } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -29,7 +28,6 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   resetPassword() {
-    // console.log(this.resetPasswordForm.value.password);
     this.userService.resetPassword(
       this.resetPasswordForm.value.password,
       this.reset_link,
