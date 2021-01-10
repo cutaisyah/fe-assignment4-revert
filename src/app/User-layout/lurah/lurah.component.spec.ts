@@ -8,6 +8,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { LurahComponent } from './lurah.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LurahComponent', () => {
   let component: LurahComponent;
@@ -24,6 +27,10 @@ describe('LurahComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HttpClientModule
+
       ]
     }).compileComponents();
   }));

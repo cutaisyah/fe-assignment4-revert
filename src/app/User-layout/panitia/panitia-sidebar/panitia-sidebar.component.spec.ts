@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { PanitiaSidebarComponent } from './panitia-sidebar.component';
 
@@ -8,7 +11,12 @@ describe('PanitiaSidebarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PanitiaSidebarComponent ]
+      declarations: [ PanitiaSidebarComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HttpClientModule
+      ],
     })
     .compileComponents();
   });

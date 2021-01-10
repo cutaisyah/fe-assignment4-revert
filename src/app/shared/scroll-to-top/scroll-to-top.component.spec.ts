@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ScrollToTopComponent } from './scroll-to-top.component';
 
@@ -8,7 +11,12 @@ describe('ScrollToTopComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ScrollToTopComponent ]
+      declarations: [ ScrollToTopComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HttpClientModule
+      ],
     })
     .compileComponents();
   });

@@ -4,6 +4,9 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { PesertaSidebarComponent } from './peserta-sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PesertaSidebarComponent', () => {
   let component: PesertaSidebarComponent;
@@ -11,7 +14,12 @@ describe('PesertaSidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PesertaSidebarComponent ]
+      declarations: [ PesertaSidebarComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HttpClientModule
+      ],
     })
     .compileComponents();
   }));

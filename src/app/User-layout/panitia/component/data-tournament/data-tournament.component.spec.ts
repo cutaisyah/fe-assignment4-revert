@@ -4,6 +4,9 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { DataTournamentComponent } from './data-tournament.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('DataTournamentComponent', () => {
   let component: DataTournamentComponent;
@@ -11,7 +14,12 @@ describe('DataTournamentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DataTournamentComponent ]
+      declarations: [ DataTournamentComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HttpClientModule
+      ],
     })
     .compileComponents();
   }));

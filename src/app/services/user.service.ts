@@ -34,7 +34,7 @@ export class UserService {
     try {
       this.authDecoded = jwt_decode(this.token);
     } catch (error) {
-      // console.log('👾 invalid token format', error);
+      console.log('invalid token format', error);
     }
 
     this.userPayload = new BehaviorSubject<any>(
@@ -130,10 +130,19 @@ export class UserService {
       reset_link: reset_link,
     }
     this.http.put<any>(`${environment.baseUrl}/auth/reset-password/${reset_link}`, userData)
-    .subscribe((response) => {
+    .subscribe(
+      (response) => {
       console.log("response", response);
-      // this.router.navigate(["/home"]);
-    });
+      this.router.navigate(["/home"]);
+    },
+    (err) => {
+      console.log(err);
+      Swal.fire(
+        'Maaf ada yang salah dengan pembuatan kata sandi baru anda',
+        err.message,
+      );
+    }
+    );
   }
 
 
@@ -156,14 +165,6 @@ export class UserService {
         }
       );
   }
-
-  // updateAdminProfile(user: User) {
-  //   return this.http
-  //     .put<any>(`${environment.baseUrl}/admin/update/${user._id}`, user)
-  //     .subscribe((res: any) => {
-  //       Swal.fire('Berhasil memperbarui profil');
-  //     });
-  // }
 
   //============================================
 
@@ -220,18 +221,38 @@ export class UserService {
     );
   }
 
-  getAllDataLurah() {
-
-  }
-
   updateAdminProfile(user: UpdateUser) {
     let endpoint = `${environment.baseUrl}/admin/update`;
-    return this.http.put<any>(endpoint, user).pipe(map(result => true))
+    return this.http.put<any>(endpoint, user).pipe(map(
+      (result) => {
+        result = true
+        Swal.fire('Profil admin berhasil diperbarui !');
+      },
+      (err)=>{
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembahuruan profil admin',
+          err.message,
+          'error'
+        );
+      }
+    ))
   }
 
   updateAdminPassword(password: UpdateUserPassword) {
     let endpoint = `${environment.baseUrl}/admin/update-password`;
-    return this.http.put<any>(endpoint, password).pipe(map(result => true))
+    return this.http.put<any>(endpoint, password).pipe(map(
+      (result) => {
+        result = true
+        Swal.fire('Kata sandi admin berhasil diperbarui !');
+    },
+      (err)=>{
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembahuruan kata sandi admin',
+          err.message,
+          'error'
+        );
+      }
+    ))
   }
 
   //============================================
@@ -252,12 +273,36 @@ export class UserService {
 
   updateLurahProfile(user: UpdateUser) {
     let endpoint = `${environment.baseUrl}/lurah/update`;
-    return this.http.put<any>(endpoint, user).pipe(map(result => true))
+    return this.http.put<any>(endpoint, user).pipe(map(
+      (result) => {
+        result = true
+        Swal.fire('Profil admin berhasil diperbarui !');
+      },
+      (err)=>{
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembahuruan profil admin',
+          err.message,
+          'error'
+        );
+      }
+    ))
   }
 
   updateLurahPassword(password: UpdateUserPassword) {
     let endpoint = `${environment.baseUrl}/lurah/update-password`;
-    return this.http.put<any>(endpoint, password).pipe(map(result => true))
+    return this.http.put<any>(endpoint, password).pipe(map(
+      (result) => {
+        result = true
+        Swal.fire('Kata sandi lurah berhasil diperbarui !');
+    },
+      (err)=>{
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembahuruan kata sandi lurah',
+          err.message,
+          'error'
+        );
+      }
+    ))
   }
 
   //======================================================================
@@ -274,7 +319,7 @@ export class UserService {
         (err) => {
           console.log(err);
           Swal.fire(
-            'Maaf ada yang salah dengan proses registrasi',
+            'Maaf ada yang salah dengan proses pembuatan panitia',
             err.message,
             'error'
           );
@@ -295,12 +340,36 @@ export class UserService {
 
   updatePanitiaProfile(user: UpdateUser) {
     let endpoint = `${environment.baseUrl}/panitia/update`;
-    return this.http.put<any>(endpoint, user).pipe(map(result => true))
+    return this.http.put<any>(endpoint, user).pipe(map(
+      (result) => {
+        result = true
+        Swal.fire('Profil panitia berhasil diperbarui !');
+      },
+      (err)=>{
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembahuruan profil panitia',
+          err.message,
+          'error'
+        );
+      }
+    ))
   }
 
   updatePanitiaPassword(password: UpdateUserPassword) {
     let endpoint = `${environment.baseUrl}/panitia/update-password`;
-    return this.http.put<any>(endpoint, password).pipe(map(result => true))
+    return this.http.put<any>(endpoint, password).pipe(map(
+      (result) => {
+        result = true
+        Swal.fire('Kata sandi lurah berhasil diperbarui !');
+      },
+      (err)=>{
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembahuruan kata sandi lurah',
+          err.message,
+          'error'
+        );
+      }
+    ))
   }
 
   //------------------------------- panitia - tournament
@@ -326,13 +395,13 @@ export class UserService {
         tournamentData
       )
       .subscribe((success) => {
-        // console.log(success);
-        Swal.fire('Good','Tournament berhasil dibuat!','success');
+        console.log(success);
+        Swal.fire('Good','Perlombaan berhasil dibuat!','success');
       },
       (err) => {
         console.log(err);
         Swal.fire(
-          'Maaf ada yang salah dengan proses registrasi',
+          'Maaf ada yang salah dengan proses pembuatan perlombaan',
           err.message,
           'error'
         );
@@ -359,9 +428,15 @@ export class UserService {
 
     this.http
       .put(endpoint, tournamentData)
-      .subscribe(response => {
-        this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
-      });
+      .subscribe(
+        (response) => {
+          Swal.fire('Good','Status perlombaan berhasil diubah menjadi ongoing !','success');
+          this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
+        },
+        (err) => {
+          console.log(err)
+        }
+      );
   }
 
   changeTournamentStatusCompleted(_id: string){
@@ -374,9 +449,15 @@ export class UserService {
 
     this.http
       .put(endpoint, tournamentData)
-      .subscribe(response => {
-        this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
-      });
+      .subscribe(
+        (response) => {
+          Swal.fire('Good','Status perlombaan berhasil diubah menjadi completed !','success');
+          this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
+        },
+        (err) => {
+          console.log(err)
+        }
+      );
   }
 
   updateTournament(_id: string, categories: string, max_total_participant: number, age_minimum: number, description: string, first_prize: string, second_prize: string, third_prize: string){
@@ -393,9 +474,15 @@ export class UserService {
       third_prize: third_prize,
     };
     this.http.put<any>(endpoint, tournamentData)
-    .subscribe(response => {
-      this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
-    });
+    .subscribe(
+      (response) => {
+        Swal.fire('Good','Status perlombaan berhasil diubah menjadi completed !','success');
+        this.router.navigate(["/panitia/panitiaLayout/dataTournament"]);
+      },
+      (err) => {
+        console.log(err)
+      }
+    );
   }
 
   setWinner(_id: string, first_winner: string, second_winner: string, third_winner: string){
@@ -480,9 +567,20 @@ export class UserService {
       match_round: match_round
     };
     this.http.put<any>(endpoint, matchData)
-    .subscribe(response => {
-      window.location.reload();
-    });
+    .subscribe(
+      response => {
+        Swal.fire('Berhasil memasukkan nilai !');
+        window.location.reload();
+      },
+      err => {
+        console.log(err);
+        Swal.fire(
+          'Maaf, Proses memasukkan nilai gagal',
+          err.message,
+          'error'
+        );
+    }
+    );
   }
 
   changeStatusEliminate(team: string){
@@ -492,9 +590,12 @@ export class UserService {
       team: team
     };
     this.http.put<any>(endpoint, matchData)
-    .subscribe(response => {
-      window.location.reload();
-    });
+    .subscribe(
+      response => {
+        Swal.fire('Berhasil mengubah status eliminasi !');
+        window.location.reload();
+      }
+    );
   }
 
   checkEliminate(_id: string, match_round: string){
@@ -624,15 +725,6 @@ export class UserService {
     let endpoint = `${environment.baseUrl}/peserta/getTeamPeserta`;
     return this.http.get(endpoint, { headers: this.headers });
   }
-
-  // getUserProfile(_id): Observable<any> {
-  //   let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
-  //   return this.http.get(endpoint, { headers: this.headers }).pipe(
-  //     map((res: Response) => {
-  //       return res || {};
-  //     })
-  //   );
-  // }
 
   getAllProfile(): Observable<any> {
     let endpoint = `${environment.baseUrl}/admin/data-user`;
