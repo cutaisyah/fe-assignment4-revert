@@ -73,19 +73,16 @@ export class UserService {
       .post<any>(`${environment.baseUrl}/auth/test`, login)
       .subscribe(
         (success) => {
-          // console.log(success);
           localStorage.setItem('access_token', success.access_token);
-          // localStorage.setItem('Payload_Token', JSON.stringify(success));
           this.userPayload.next(success);
-          // console.log(success);
           if (success.roles === 'admin') {
-            this.router.navigate(['/admin/layout/adminProfile/' + success.id]);
+            this.router.navigate(['/admin/layout/adminProfile/' + success.id]).then(()=>  {window.location.reload()} );
           } else if (success.roles === 'peserta') {
-            this.router.navigate(['/peserta/pesertaLayout/getPeserta/' + success.id]);
+            this.router.navigate(['/peserta/pesertaLayout/getPeserta/' + success.id]).then(()=>  {window.location.reload()} );
           } else if (success.roles === 'lurah') {
-            this.router.navigate(['/lurah/lurahLayout/getLurah/'+ success.id]);
+            this.router.navigate(['/lurah/lurahLayout/getLurah/'+ success.id]).then(()=>  {window.location.reload()} );
           } else if (success.roles === 'panitia') {
-            this.router.navigate(['/panitia/panitiaLayout/getPanitia/' + success.id]);
+            this.router.navigate(['/panitia/panitiaLayout/getPanitia/' + success.id]).then(()=>  {window.location.reload()} );
           }
           Swal.fire('Anda sudah login');
         },
