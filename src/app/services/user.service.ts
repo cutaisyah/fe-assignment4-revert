@@ -73,11 +73,8 @@ export class UserService {
       .post<any>(`${environment.baseUrl}/auth/test`, login)
       .subscribe(
         (success) => {
-          // console.log(success);
           localStorage.setItem('access_token', success.access_token);
-          // localStorage.setItem('Payload_Token', JSON.stringify(success));
           this.userPayload.next(success);
-          // console.log(success);
           if (success.roles === 'admin') {
             this.router.navigate(['/admin/layout/adminProfile/' + success.id]).then(()=>  {window.location.reload()} );
           } else if (success.roles === 'peserta') {
