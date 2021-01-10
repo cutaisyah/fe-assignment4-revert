@@ -28,7 +28,7 @@ export class RegisterTeamComponent implements OnInit {
     this.user = this.userService.userPayloadValue;
     // console.log(this.user)
 
-    this.userService.getPesertaProfile(this.user.id).subscribe(userData =>{
+    this.userService.getPesertaProfile(this.user?.id).subscribe(userData =>{
       this.peserta = userData.data;
       console.log(this.peserta)
     })

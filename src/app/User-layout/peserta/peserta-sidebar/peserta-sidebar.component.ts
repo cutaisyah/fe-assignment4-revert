@@ -16,7 +16,7 @@ export class PesertaSidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = this.userService.userPayloadValue;
-    this.userService.getPesertaProfile(this.userData.id).subscribe(userData => {
+    this.userService.getPesertaProfile(this.userData?.id).subscribe(userData => {
       this.user = userData.data;
       // console.log(this.user)
     });
