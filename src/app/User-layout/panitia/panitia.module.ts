@@ -8,7 +8,6 @@ import { PanitiaSidebarComponent } from './panitia-sidebar/panitia-sidebar.compo
 import { PanitiaProfileComponent } from './component/panitia-profile/panitia-profile.component';
 import { DataPesertaComponent } from './component/data-peserta/data-peserta.component';
 import { CreateTournamentComponent } from './component/create-tournament/create-tournament.component';
-import { UpdateTournamentComponent } from './component/update-tournament/update-tournament.component';
 import { CreateWinnerComponent } from './component/create-winner/create-winner.component';
 import { CreatePrizesComponent } from './component/create-prizes/create-prizes.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
@@ -38,7 +37,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     DataPesertaComponent,
     DataTournamentComponent,
     CreateTournamentComponent,
-    UpdateTournamentComponent,
     CreateWinnerComponent,
     CreatePrizesComponent,
     ChangeStatusTournamentComponent,
