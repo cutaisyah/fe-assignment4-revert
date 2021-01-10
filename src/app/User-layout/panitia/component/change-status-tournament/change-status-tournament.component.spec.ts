@@ -4,6 +4,9 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ChangeStatusTournamentComponent } from './change-status-tournament.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ChangeStatusTournamentComponent', () => {
   let component: ChangeStatusTournamentComponent;
@@ -11,7 +14,12 @@ describe('ChangeStatusTournamentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChangeStatusTournamentComponent ]
+      declarations: [ ChangeStatusTournamentComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HttpClientModule
+      ],
     })
     .compileComponents();
   }));

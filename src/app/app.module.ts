@@ -28,7 +28,7 @@ import { ScrollToTopComponent } from './shared/scroll-to-top/scroll-to-top.compo
 import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
