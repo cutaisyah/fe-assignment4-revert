@@ -1,5 +1,5 @@
 <div class="modal-header bg-danger pt-0">
-  <h2 class="modal-title text-center text-white display">Login</h2>
+  <h2 class="modal-title text-center text-white display">Masuk</h2>
   <button type="button" class="close custom mt-1" aria-label="Close"
    (click)="activeModal.dismiss('Cross click')">
    <i class="fas fa-times fa-1x"></i>
@@ -24,17 +24,17 @@
         formControlName="password">
         <span (click)="passwordField.type=passwordField.type=='password'?'text':'password'"
           class="fa fa-fw field-icon toggle-password"
-          [ngClass]="(passwordField.type=='password')?' fa-eye':' fa-eye-slash'"></span>
+          [ngClass]="(passwordField.type=='password')?'fa-eye-slash':' fa-eye'"></span>
       </div>
     </div>
   </div>
   <div class="modal-footer">
     <button class="btn btn-success ml-3 mr-auto mb-3 mt-3"
       [disabled]="!myForm.valid">
-      Masuk
+      Kirim
     </button>
     <div class="forgot mr-0">
-      <a (click)="forgetPass()" class="btn btn-link btn-danger">Lupa password?</a>
+      <a (click)="forgetPass()" class="btn btn-link btn-danger">Lupa kata sandi?</a>
     </div>
   </div>
 </form>
