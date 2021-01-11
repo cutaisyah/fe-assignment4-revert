@@ -25,6 +25,7 @@ import { MatListModule } from '@angular/material/list';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CreateGameComponent } from './component/create-game/create-game.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ChangeDataTournamentComponent,
     ChangeStatusApprovedComponent,
     ManageGameComponent,
-    ManageGameScoreComponent
+    ManageGameScoreComponent,
+    CreateGameComponent
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,4 @@
+import { CreateGameComponent } from './component/create-game/create-game.component';
 import { PanitiaProfileComponent } from './component/panitia-profile/panitia-profile.component';
 import { CreateTournamentComponent } from './component/create-tournament/create-tournament.component';
 import { PanitiaComponent } from './panitia.component';
@@ -44,6 +45,10 @@ const routes: Routes = [
       {
         path: 'dataTournament/edit/:tournamentId',
         component: ChangeDataTournamentComponent,
+      },
+      {
+        path: 'createGame',
+        component: CreateGameComponent
       },
       {
         path: 'manageGame',
