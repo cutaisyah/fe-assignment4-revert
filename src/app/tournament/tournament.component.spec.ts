@@ -8,6 +8,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { TournamentComponent } from './tournament.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TournamentComponent', () => {
   let component: TournamentComponent;
@@ -24,6 +27,10 @@ describe('TournamentComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HttpClientModule
+
       ]
     }).compileComponents();
   }));

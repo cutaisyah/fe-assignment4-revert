@@ -20,7 +20,6 @@ export class LurahProfileComponent implements OnInit {
   constructor(public route: ActivatedRoute, public userService: UserService) {
     this.lurahProfileForm = new FormGroup({
       email: new FormControl(),
-      password: new FormControl(),
       username: new FormControl(),
       birthdate: new FormControl(),
       phone: new FormControl(),
@@ -62,7 +61,6 @@ export class LurahProfileComponent implements OnInit {
       console.log(res);
     })
     this.lurahProfileForm.reset();
-
   }
 
   updatePassword() {

@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { PanitiaProfileComponent } from './panitia-profile.component';
 
@@ -8,7 +11,12 @@ describe('PanitiaProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PanitiaProfileComponent ]
+      declarations: [ PanitiaProfileComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HttpClientModule
+      ],
     })
     .compileComponents();
   });

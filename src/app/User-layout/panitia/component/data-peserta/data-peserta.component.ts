@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/User';
 import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 
 import Swal from 'sweetalert2';
 import jwt_decode from "jwt-decode";
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-data-peserta',
@@ -21,21 +19,22 @@ export class DataPesertaComponent implements OnInit {
   public authDecoded: any;
   token;
 
-  constructor(private router:Router, public userService: UserService, public tokenService: TokenService) { }
+  constructor(public userService: UserService, public tokenService: TokenService) { }
 
   ngOnInit() {
 
     this.showAllDataPeserta();
-    this.token = this.tokenService.getToken();
-    this.authDecoded = jwt_decode(this.token);
+    this.token = localStorage.getItem('access_token');
+    if (this.token){
+      this.authDecoded = jwt_decode(this.token);
+    }
   }
 
   showAllDataPeserta(){
-    // this.allTournament = this.userService.getAllDataTournament()
     this.userService.getDataPesertaRegistered().subscribe(
       (userdata) => {
         this.userData = userdata.data;
-        console.log(this.userData)
+        // console.log(this.userData)
       },
       (error) => {
         console.log(error);

@@ -4,6 +4,9 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ChangeDataTournamentComponent } from './change-data-tournament.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ChangeDataTournamentComponent', () => {
   let component: ChangeDataTournamentComponent;
@@ -11,7 +14,12 @@ describe('ChangeDataTournamentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChangeDataTournamentComponent ]
+      declarations: [ ChangeDataTournamentComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HttpClientModule
+      ],
     })
     .compileComponents();
   }));

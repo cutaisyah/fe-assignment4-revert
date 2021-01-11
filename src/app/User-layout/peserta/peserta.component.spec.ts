@@ -8,6 +8,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { PesertaComponent } from './peserta.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PesertaComponent', () => {
   let component: PesertaComponent;
@@ -24,6 +27,10 @@ describe('PesertaComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HttpClientModule
+
       ]
     }).compileComponents();
   }));

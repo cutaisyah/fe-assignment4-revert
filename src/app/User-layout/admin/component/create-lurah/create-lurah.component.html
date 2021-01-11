@@ -44,7 +44,7 @@
     <div class="form-group row">
       <label class="col-md-4 col-sm-2 col-form-label">Distrik :</label>
       <div class="col-md-8 col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
-        <ng-select formControlName="districts">
+        <ng-select formControlName="districts" ngDefaultControl>
           <ng-option *ngFor="let district of districtData" [value]="district.district_name">{{district.district_name}}</ng-option>
         </ng-select>
       </div>
