@@ -1,15 +1,14 @@
 import { Team } from './../models/Team';
 import { Login } from './../models/Login';
 import { Match, MatchEliminate, MatchId } from './../models/Match';
-import { Injectable, OnInit } from '@angular/core';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 import {
   HttpClient,
-  HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 import { createDistrict, RegisterOtherMember, RegisterTournament, ResetUserPassword, UpdateApproved, UpdateUser, UpdateUserPassword, User } from '../models/User';
@@ -17,7 +16,6 @@ import { setWinnerTournament, Tournament, UpdateIsStarted, UpdateTournament } fr
 
 import jwt_decode from "jwt-decode";
 import { TokenService } from './token.service';
-import { IsStarted } from '../models/IsStarted';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +23,6 @@ import { IsStarted } from '../models/IsStarted';
 export class UserService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   private userPayload: BehaviorSubject<any>;
-  // public currentUserValue: Observable<any>;
   public authDecoded: any;
   token;
 
@@ -107,7 +104,7 @@ export class UserService {
       .subscribe(
         (success) => {
           console.log(success);
-          Swal.fire('Silahkan cek email anda');
+          Swal.fire('Silahkan cek email anda','',"success");
           this.router.navigate([`/home`])
         },
         (err) => {
@@ -130,6 +127,7 @@ export class UserService {
     .subscribe(
       (response) => {
       console.log("response", response);
+      Swal.fire('Berhasil Memperbaharui Kata Sandi','',"success");
       this.router.navigate(["/home"]);
     },
     (err) => {
@@ -140,27 +138,6 @@ export class UserService {
       );
     }
     );
-  }
-
-
-  // admin
-  signUpAdmin(user: User) {
-    return this.http
-      .post<any>(`${environment.baseUrl}/admin/signup`, user)
-      .subscribe(
-        (success) => {
-          console.log(success);
-          Swal.fire('Terimakasih sudah mendaftar sebagai admin');
-        },
-        (err) => {
-          console.log(err);
-          Swal.fire(
-            'Maaf ada yang salah dengan proses registrasi',
-            err.message,
-            'error'
-          );
-        }
-      );
   }
 
   //============================================
@@ -194,11 +171,9 @@ export class UserService {
     return this.http.post<any>(`${environment.baseUrl}/admin/create-district`, district)
       .subscribe(
         (success) => {
-          console.log(success);
           Swal.fire('District berhasil dibuat!','','success');
         },
         (err) => {
-          console.log(err);
           Swal.fire(
             'Maaf ada yang salah dengan proses pembuatan distrik',
             err.message,
@@ -584,9 +559,21 @@ export class UserService {
 
   updatePesertaPassword(password: UpdateUserPassword) {
     let endpoint = `${environment.baseUrl}/peserta/update-password`;
-    return this.http.put<any>(endpoint, password).pipe(map(result => true))
+    return this.http.put<any>(endpoint, password).pipe(map(
+      (result) => {
+        result = true
+        Swal.fire('Password berhasil diperbarui !');
+      },
+      (err)=>{
+        console.log(err);
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembaharuan Password',
+          err.message,
+          'error'
+        );
+      }
+    ))
   }
-
 
   getPesertaProfile(_id: string): Observable<any> {
     let endpoint = environment.baseUrl + '/peserta' + '/get/' + `${_id}`;
