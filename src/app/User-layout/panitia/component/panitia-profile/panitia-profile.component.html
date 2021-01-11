@@ -4,17 +4,31 @@
     <div class="form-group row">
       <label class="col-md-4 col-sm-2 col-form-label">Email :</label>
       <div class="col-md-8 col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <p class="mt-1">{{this.data?.email}}</p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-4 col-sm-0"></label>
+      <div class="col-md-8 col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
         <input formControlName="email" type="text" class="form-control mb-3" placeholder="Email" (focus)="focus=true"
           (blur)="focus=false">
       </div>
     </div>
+
     <div class="form-group row">
       <label class="col-md-4 col-sm-2 col-form-label">Nama Pengguna :</label>
+      <div class="col-md-8 col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <p class="mt-1">{{this.data?.username}}</p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-4 col-sm-0"></label>
       <div class="col-md-8 col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
         <input formControlName="username" type="text" class="form-control mb-3" placeholder="Nama Pengguna"
           (focus)="focus1=true" (blur)="focus1=false">
       </div>
     </div>
+
 
     <div class="form-group row">
       <label class="col-md-4 col-sm-2 col-form-label">Tanggal lahir :</label>
@@ -22,7 +36,6 @@
         <p class="mt-1">{{this.data?.birthdate | date: 'yyyy-MM-dd'}}</p>
       </div>
     </div>
-
     <div class="form-group row">
       <label class="col-md-4 col-sm-0"></label>
       <div class="col-md-8 col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
@@ -33,6 +46,12 @@
 
     <div class="form-group row">
       <label class="col-md-4 col-sm-2 col-form-label">No telefon :</label>
+      <div class="col-md-8 col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
+        <p class="mt-1">{{this.data?.phone}}</p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-4 col-sm-0"></label>
       <div class="col-md-8 col-sm-10" [ngClass]="{'input-group-focus':focus===true}">
         <input formControlName="phone" type="text" class="form-control mb-3" placeholder="No telefon"
           (focus)="focus=true" (blur)="focus=false">

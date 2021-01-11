@@ -20,7 +20,7 @@ export class PanitiaProfileComponent implements OnInit {
 
   constructor(public route: ActivatedRoute, public userService: UserService) {
     this.panitiaProfileForm = new FormGroup({
-      email: new FormControl({value: '', disabled: true}, [Validators.required],),
+      email: new FormControl(null, [Validators.required],),
       username: new FormControl(),
       birthdate: new FormControl(null, [Validators.required],),
       phone: new FormControl(),
@@ -39,19 +39,19 @@ export class PanitiaProfileComponent implements OnInit {
           this.userService.getPanitiaProfile(this.panitiaId).subscribe(userData => {
             this.data = userData.data;
             this.panitiaProfileForm.patchValue({
-              email: this.data.email,
-              username: this.data.username,
-              birthdate: this.data.birthdate,
-              phone: this.data.phone
+              // email: "",
+              // username: this.data.username,
+              // birthdate: this.data.birthdate,
+              // phone: this.data.phone
             });
           });
       });
   }
 
   updatePanitia() {
-    if (this.panitiaProfileForm.invalid) {
-      return;
-    }
+    // if (this.panitiaProfileForm.invalid) {
+    //   return;
+    // }
     const usernameProfile : UpdateUser = {
       username : this.panitiaProfileForm.get('username').value,
       birthdate : this.panitiaProfileForm.get('birthdate').value,
