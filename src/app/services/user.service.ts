@@ -235,23 +235,6 @@ export class UserService {
     ))
   }
 
-  updateAdminPassword(password: UpdateUserPassword) {
-    let endpoint = `${environment.baseUrl}/admin/update-password`;
-    return this.http.put<any>(endpoint, password).pipe(map(
-      (result) => {
-        result = true
-        Swal.fire('Kata sandi admin berhasil diperbarui !');
-    },
-      (err)=>{
-        Swal.fire(
-          'Maaf ada yang salah dengan proses pembahuruan kata sandi admin',
-          err.message,
-          'error'
-        );
-      }
-    ))
-  }
-
   //============================================
 
   // Lurah
@@ -278,23 +261,6 @@ export class UserService {
       (err)=>{
         Swal.fire(
           'Maaf ada yang salah dengan proses pembahuruan profil admin',
-          err.message,
-          'error'
-        );
-      }
-    ))
-  }
-
-  updateLurahPassword(password: UpdateUserPassword) {
-    let endpoint = `${environment.baseUrl}/lurah/update-password`;
-    return this.http.put<any>(endpoint, password).pipe(map(
-      (result) => {
-        result = true
-        Swal.fire('Kata sandi lurah berhasil diperbarui !');
-    },
-      (err)=>{
-        Swal.fire(
-          'Maaf ada yang salah dengan proses pembahuruan kata sandi lurah',
           err.message,
           'error'
         );
@@ -345,23 +311,6 @@ export class UserService {
       (err)=>{
         Swal.fire(
           'Maaf ada yang salah dengan proses pembahuruan profil panitia',
-          err.message,
-          'error'
-        );
-      }
-    ))
-  }
-
-  updatePanitiaPassword(password: UpdateUserPassword) {
-    let endpoint = `${environment.baseUrl}/panitia/update-password`;
-    return this.http.put<any>(endpoint, password).pipe(map(
-      (result) => {
-        result = true
-        Swal.fire('Kata sandi lurah berhasil diperbarui !');
-      },
-      (err)=>{
-        Swal.fire(
-          'Maaf ada yang salah dengan proses pembahuruan kata sandi lurah',
           err.message,
           'error'
         );
