@@ -16,6 +16,7 @@ import { setWinnerTournament, Tournament, UpdateIsStarted, UpdateTournament } fr
 
 import jwt_decode from "jwt-decode";
 import { TokenService } from './token.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({
   providedIn: 'root',
@@ -26,12 +27,12 @@ export class UserService {
   public authDecoded: any;
   token;
 
-  constructor(private http: HttpClient, private router: Router, public tokenService: TokenService) {
+  constructor(private http: HttpClient, private router: Router, public tokenService: TokenService, private spinner: NgxSpinnerService) {
     this.token = this.tokenService.getToken();
     try {
       this.authDecoded = jwt_decode(this.token);
     } catch (error) {
-      console.log('invalid token format', error);
+      console.log('invalid token format');
     }
 
     this.userPayload = new BehaviorSubject<any>(
@@ -641,6 +642,11 @@ export class UserService {
     return this.http.post(endpoint, teamData)
       .subscribe((response) => {
           Swal.fire('Team Berhasil Didaftarkan, Silahkan Login Lagi','','success');
+          this.logout();
+          this.spinner.show();
+          setTimeout(() => {
+            this.router.navigate(["/home"]).then(()=> {window.location.reload();});
+          }, 3000);
         },
         err => {
           // console.log(err);
