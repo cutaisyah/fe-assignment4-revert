@@ -4,6 +4,10 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ManageGameScoreComponent } from './manage-game-score.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('ManageGameScoreComponent', () => {
   let component: ManageGameScoreComponent;
@@ -11,7 +15,13 @@ describe('ManageGameScoreComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManageGameScoreComponent ]
+      declarations: [ ManageGameScoreComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HttpClientModule,
+        NgbNavModule
+      ],
     })
     .compileComponents();
   }));

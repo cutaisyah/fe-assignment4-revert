@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { DataPesertaComponent } from './data-peserta.component';
 
@@ -8,7 +11,12 @@ describe('DataPesertaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DataPesertaComponent ]
+      declarations: [ DataPesertaComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HttpClientModule
+      ],
     })
     .compileComponents();
   });
@@ -16,6 +24,7 @@ describe('DataPesertaComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DataPesertaComponent);
     component = fixture.componentInstance;
+    component.authDecoded = component.authDecoded?.id;
     fixture.detectChanges();
   });
 
