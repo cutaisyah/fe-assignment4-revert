@@ -84,12 +84,12 @@ export class UserService {
           } else if (success.roles === 'panitia') {
             this.router.navigate(['/panitia/panitiaLayout/getPanitia/' + success.id]).then(()=>  {window.location.reload()} );
           }
-          Swal.fire('Anda sudah login');
+          Swal.fire('Anda sudah masuk');
         },
         (err) => {
           console.log(err)
           Swal.fire(
-            'Maaf ada yang salah dengan proses login anda',
+            'Maaf ada yang salah dengan proses masuk anda',
             err.message,
             'error');
         }
@@ -173,12 +173,12 @@ export class UserService {
       .subscribe(
         (success) => {
           console.log(success);
-          Swal.fire('Lurah berhasil dibuat!');
+          Swal.fire('Lurah berhasil dibuat!','','success');
         },
         (err) => {
           console.log(err);
           Swal.fire(
-            'Maaf ada yang salah dengan proses registrasi',
+            'Maaf ada yang salah dengan proses pembuatann lurah',
             err.message,
             'error'
           );
@@ -195,12 +195,12 @@ export class UserService {
       .subscribe(
         (success) => {
           console.log(success);
-          Swal.fire('District berhasil dibuat!');
+          Swal.fire('District berhasil dibuat!','','success');
         },
         (err) => {
           console.log(err);
           Swal.fire(
-            'Maaf ada yang salah dengan proses create',
+            'Maaf ada yang salah dengan proses pembuatan distrik',
             err.message,
             'error'
           );
@@ -277,7 +277,7 @@ export class UserService {
       .subscribe(
         (success) => {
           console.log(success);
-          Swal.fire('Panitia berhasil dibuat!');
+          Swal.fire('Panitia berhasil dibuat!','','success');
         },
         (err) => {
           console.log(err);
@@ -341,8 +341,7 @@ export class UserService {
         tournamentData
       )
       .subscribe((success) => {
-        console.log(success);
-        Swal.fire('Good','Perlombaan berhasil dibuat!','success');
+        Swal.fire('Tournament berhasil dibuat!','','success');
       },
       (err) => {
         console.log(err);
@@ -471,7 +470,7 @@ export class UserService {
     this.http
       .put(endpoint, userData)
       .subscribe(response => {
-        Swal.fire('Status berhasil diubah!');
+        Swal.fire('Status berhasil diubah!','','success');
         this.router.navigate(["/panitia/panitiaLayout/dataPeserta"]);
       },
       err => {
@@ -609,7 +608,7 @@ export class UserService {
     return this.http.put(endpoint, userData)
       .subscribe(
         response => {
-          Swal.fire('Terimakasih sudah Mendaftar Tournament');
+          Swal.fire('Terimakasih sudah Mendaftar Tournament','','success');
           this.router.navigate([`tournament/detail/${game}/${_id}`]).then(()=> {window.location.reload();});
         },
         err => {
@@ -632,7 +631,7 @@ export class UserService {
     this.http
       .put(endpoint, userData)
       .subscribe(response => {
-        Swal.fire('Terimakasih sudah Mendaftar Tournament');
+        Swal.fire('Terimakasih sudah Mendaftar Tournament','','success');
           this.router.navigate(["/peserta/pesertaLayout/registerTeam"]).then(()=> {window.location.reload();});
         },
         err => {
@@ -654,7 +653,7 @@ export class UserService {
     };
     return this.http.post(endpoint, teamData)
       .subscribe((response) => {
-          Swal.fire('Team Berhasil Didaftarkan, Silahkan Login Lagi');
+          Swal.fire('Team Berhasil Didaftarkan, Silahkan Login Lagi','','success');
         },
         err => {
           // console.log(err);
