@@ -24,6 +24,7 @@ describe('DataPesertaComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DataPesertaComponent);
     component = fixture.componentInstance;
+    component.authDecoded = component.authDecoded?.id;
     fixture.detectChanges();
   });
 
