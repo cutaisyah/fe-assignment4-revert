@@ -21,7 +21,7 @@ export class DataPesertaComponent implements OnInit {
   private pesertaId: string;
   constructor(public route: ActivatedRoute, public userService: UserService) {
     this.pesertaProfileForm = new FormGroup({
-      email: new FormControl({ disabled: true }, Validators.required),
+      email: new FormControl(null, Validators.required),
       username: new FormControl(),
       birthdate: new FormControl(),
       phone: new FormControl(),
@@ -47,14 +47,14 @@ export class DataPesertaComponent implements OnInit {
         console.log(this.user);
 
 
-        this.pesertaProfileForm.setValue({
-          email: this.user.email,
-          username: this.user.username,
-          // password: this.user.password,
-          birthdate: this.user.birthdate,
-          phone: this.user.phone,
-          districts: this.user.districts.district_name
-        });
+        // this.pesertaProfileForm.setValue({
+        //   email: this.user.email,
+        //   username: this.user.username,
+        //   // password: this.user.password,
+        //   birthdate: this.user.birthdate,
+        //   phone: this.user.phone,
+        //   districts: this.user.districts.district_name
+        // });
       });
       // }
 
@@ -62,6 +62,9 @@ export class DataPesertaComponent implements OnInit {
   }
 
   updateProfile() {
+    if (this.pesertaPasswordForm.invalid) {
+      return;
+    }
     const usernameProfile : UpdateUser = {
       username : this.pesertaProfileForm.get('username').value,
       birthdate : this.pesertaProfileForm.get('birthdate').value,

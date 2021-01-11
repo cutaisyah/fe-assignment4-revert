@@ -49,9 +49,9 @@ export class PanitiaProfileComponent implements OnInit {
   }
 
   updatePanitia() {
-    // if (this.panitiaProfileForm.invalid) {
-    //   return;
-    // }
+    if (this.panitiaProfileForm.invalid) {
+      return;
+    }
     const usernameProfile : UpdateUser = {
       username : this.panitiaProfileForm.get('username').value,
       birthdate : this.panitiaProfileForm.get('birthdate').value,
