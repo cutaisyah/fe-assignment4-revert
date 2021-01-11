@@ -294,6 +294,22 @@ export class UserService {
       });
   }
 
+  createGame(game: string){
+    return this.http.post<any>(`${environment.baseUrl}/panitia/create-game`, game)
+      .subscribe(
+        (success) => {
+          Swal.fire('Game berhasil dibuat!','','success');
+        },
+        (err) => {
+          Swal.fire(
+            'Maaf ada yang salah dengan proses pembuatan game',
+            err.message,
+            'error'
+          );
+        }
+      );
+  }
+
   getAllDataTournamentBasedOnDistrict(): Observable<any> {
     let endpoint = environment.baseUrl + '/panitia/allbaseondistrict';
     return this.http.get(endpoint, { headers: this.headers });
