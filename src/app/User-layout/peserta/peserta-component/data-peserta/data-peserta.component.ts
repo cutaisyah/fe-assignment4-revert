@@ -50,7 +50,7 @@ export class DataPesertaComponent implements OnInit {
         this.pesertaProfileForm.setValue({
           email: this.user.email,
           username: this.user.username,
-          // password: this.user.password, 
+          // password: this.user.password,
           birthdate: this.user.birthdate,
           phone: this.user.phone,
           districts: this.user.districts.district_name
@@ -68,10 +68,19 @@ export class DataPesertaComponent implements OnInit {
       phone : this.pesertaProfileForm.get('phone').value,
       email : this.pesertaProfileForm.get('email').value
     };
-    this.userService.updatePesertaProfile(usernameProfile).subscribe(res => {
-      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
-      console.log(res);
-    })
+    this.userService.updatePesertaProfile(usernameProfile).subscribe(
+      (res) => {
+        Swal.fire('Profil panitia berhasil diperbarui !','','success').then(res =>{location.reload()})
+        console.log(res);
+      },
+      (err)=>{
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembaharuan profil panitia',
+          err.message,
+          'error'
+        );
+      }
+    )
   }
 
   updatePassword() {
@@ -82,10 +91,20 @@ export class DataPesertaComponent implements OnInit {
       password : this.pesertaPasswordForm.get('password').value,
       old_password : this.pesertaPasswordForm.get('old_password').value
     };
-    this.userService.updatePesertaPassword(userPassword).subscribe(res => {
-      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
-      console.log(res);
-    })
+    this.userService.updatePesertaPassword(userPassword).subscribe(
+      (success) => {
+        console.log(success);
+        Swal.fire('Berhasil Memperbaharui kata sandi', '', 'success').then(res => { location.reload() })
+      },
+      (err) => {
+        console.log(err);
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembaharuan kata sandi',
+          err.message,
+          'error'
+        );
+      }
+    )
   }
 
 }

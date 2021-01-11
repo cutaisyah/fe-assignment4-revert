@@ -60,10 +60,19 @@ export class AdminProfileComponent implements OnInit {
       phone: this.adminProfileForm.get('phone').value,
       email: this.adminProfileForm.get('email').value
     };
-    this.userService.updateAdminProfile(usernameProfile).subscribe(res => {
-      Swal.fire('Good', 'Update Success', 'success').then(res => { location.reload() })
-      console.log(res);
-    })
+    this.userService.updateAdminProfile(usernameProfile).subscribe(
+      (res) => {
+        Swal.fire('Profil admin berhasil diperbarui !','','success').then(res => { location.reload() })
+        console.log(res);
+      },
+      (err)=>{
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembaharuan profil panitia',
+          err.message,
+          'error'
+        );
+      }
+    )
     this.adminProfileForm.reset();
   }
 
@@ -83,7 +92,7 @@ export class AdminProfileComponent implements OnInit {
       (err) => {
         console.log(err);
         Swal.fire(
-          'Maaf ada yang salah dengan proses update Password',
+          'Maaf ada yang salah dengan proses pembaharuan kata sandi',
           err.message,
           'error'
         );

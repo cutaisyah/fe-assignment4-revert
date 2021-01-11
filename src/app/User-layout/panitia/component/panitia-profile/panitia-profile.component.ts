@@ -33,13 +33,13 @@ export class PanitiaProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
           this.panitiaId = paramMap.get('id');
           this.userService.getPanitiaProfile(this.panitiaId).subscribe(userData => {
             this.data = userData.data;
-            this.panitiaProfileForm.patchValue({ 
-              email: this.data.email, 
+            this.panitiaProfileForm.patchValue({
+              email: this.data.email,
               username: this.data.username,
               birthdate: this.data.birthdate,
               phone: this.data.phone
@@ -58,10 +58,18 @@ export class PanitiaProfileComponent implements OnInit {
       phone : this.panitiaProfileForm.get('phone').value,
       email : this.panitiaProfileForm.get('email').value
     };
-    this.userService.updatePanitiaProfile(usernameProfile).subscribe(res => {
-      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
-      console.log(res);
-    })
+    this.userService.updatePanitiaProfile(usernameProfile).subscribe(
+      (res) => {
+        Swal.fire('Profil panitia berhasil diperbarui !','','success').then(res =>{location.reload()})
+      },
+      (err)=>{
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembaharuan profil panitia',
+          err.message,
+          'error'
+        );
+      }
+    )
     this.panitiaProfileForm.reset();
   }
 
@@ -73,10 +81,20 @@ export class PanitiaProfileComponent implements OnInit {
       password : this.panitiaPasswordForm.get('password').value,
       old_password : this.panitiaPasswordForm.get('old_password').value
     };
-    this.userService.updatePesertaPassword(userPassword).subscribe(res => {
-      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
-      console.log(res);
-    })
+    this.userService.updatePesertaPassword(userPassword).subscribe(
+      (success) => {
+        console.log(success);
+        Swal.fire('Berhasil Memperbaharui kata sandi', '', 'success').then(res => { location.reload() })
+      },
+      (err) => {
+        console.log(err);
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembaharuan kata sandi',
+          err.message,
+          'error'
+        );
+      }
+    )
   }
 
 }

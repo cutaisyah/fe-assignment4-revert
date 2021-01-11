@@ -36,8 +36,8 @@ export class LurahProfileComponent implements OnInit {
       this.lurahId = paramMap.get('id');
       this.userService.getAllDataLurahProfile(this.lurahId).subscribe(userData => {
         this.user = userData;
-        this.lurahProfileForm.patchValue({ 
-          email: this.user.email, 
+        this.lurahProfileForm.patchValue({
+          email: this.user.email,
           username: this.user.username,
           phone: this.user.phone
         });
@@ -56,10 +56,20 @@ export class LurahProfileComponent implements OnInit {
       phone : this.lurahProfileForm.get('phone').value,
       email : this.lurahProfileForm.get('email').value
     };
-    this.userService.updateLurahProfile(usernameProfile).subscribe(res => {
-      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
-      console.log(res);
-    })
+    this.userService.updateLurahProfile(usernameProfile).subscribe(
+      (success) => {
+        console.log(success);
+        Swal.fire('Berhasil memperbaharui profil lurah', '', 'success').then(res => { location.reload() })
+      },
+      (err) => {
+        console.log(err);
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembaharuan profil lurah',
+          err.message,
+          'error'
+        );
+      }
+    )
     this.lurahProfileForm.reset();
   }
 
@@ -71,10 +81,21 @@ export class LurahProfileComponent implements OnInit {
       password : this.lurahPasswordForm.get('password').value,
       old_password : this.lurahPasswordForm.get('old_password').value
     };
-    this.userService.updatePesertaPassword(userPassword).subscribe(res => {
-      Swal.fire('Good','Update Success','success').then(res =>{location.reload()})
-      console.log(res);
-    })
+    this.userService.updatePesertaPassword(userPassword).subscribe(
+      (success) => {
+        console.log(success);
+        Swal.fire('Berhasil Memperbaharui kata sandi', '', 'success').then(res => { location.reload() })
+      },
+      (err) => {
+        console.log(err);
+        Swal.fire(
+          'Maaf ada yang salah dengan proses pembaharuan kata sandi',
+          err.message,
+          'error'
+        );
+      }
+    )
   }
 
 }
+
