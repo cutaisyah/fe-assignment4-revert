@@ -18,6 +18,7 @@ import { setWinnerTournament, Tournament, UpdateIsStarted, UpdateTournament } fr
 import jwt_decode from "jwt-decode";
 import { TokenService } from './token.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Game } from '../models/Game';
 
 @Injectable({
   providedIn: 'root',
@@ -295,7 +296,11 @@ export class UserService {
       });
   }
 
-  createGame(game: string){
+  createGame(game_name: string){
+    let game: Game;
+    game = {
+      game_name: game_name,
+    }
     return this.http.post<any>(`${environment.baseUrl}/panitia/create-game`, game)
       .subscribe(
         (success) => {

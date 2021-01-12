@@ -36,11 +36,11 @@ export class LurahProfileComponent implements OnInit {
       this.lurahId = paramMap.get('id');
       this.userService.getAllDataLurahProfile(this.lurahId).subscribe(userData => {
         this.user = userData;
-        this.lurahProfileForm.patchValue({
-          email: this.user.email,
-          username: this.user.username,
-          phone: this.user.phone
-        });
+        // this.lurahProfileForm.patchValue({
+        //   email: this.user.email,
+        //   username: this.user.username,
+        //   phone: this.user.phone
+        // });
       })
 
     })

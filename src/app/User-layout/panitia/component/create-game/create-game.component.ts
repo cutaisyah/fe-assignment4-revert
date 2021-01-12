@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,18 +10,22 @@ import { UserService } from 'src/app/services/user.service';
 export class CreateGameComponent implements OnInit {
   focus;
   focus1;
-  game: any;
   createGameForm: FormGroup;
   constructor(public userService: UserService) {
     this.createGameForm = new FormGroup({
-      game_name: new FormControl(),
+      game_name: new FormControl(null, [Validators.required]),
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {}
 
   createGame(){
-    this.game = this.createGameForm.value;
-    this.userService.createGame(this.game);
+    if (this.createGameForm.invalid) {
+      return;
+    }
+    this.userService.createGame(
+      this.createGameForm.value.game_name
+    );
+    this.createGameForm.reset();
   }
 }
