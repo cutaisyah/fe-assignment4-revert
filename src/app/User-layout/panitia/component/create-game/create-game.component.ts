@@ -14,7 +14,7 @@ export class CreateGameComponent implements OnInit {
   createGameForm: FormGroup;
   constructor(public userService: UserService) {
     this.createGameForm = new FormGroup({
-      game: new FormControl(),
+      game_name: new FormControl(),
     });
   }
 

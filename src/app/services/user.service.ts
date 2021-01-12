@@ -1,3 +1,4 @@
+import { PesertaProfile } from './../models/User';
 import { Team } from './../models/Team';
 import { Login } from './../models/Login';
 import { Match, MatchEliminate, MatchId } from './../models/Match';
@@ -568,7 +569,7 @@ export class UserService {
 
   //---------------------------- peserta
 
-  updatePesertaProfile(user: UpdateUser) {
+  updatePesertaProfile(user: PesertaProfile) {
     let endpoint = `${environment.baseUrl}/peserta/update`;
     return this.http.put<any>(endpoint, user).pipe(map(result => true))
   }

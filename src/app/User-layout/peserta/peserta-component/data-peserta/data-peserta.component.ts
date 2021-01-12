@@ -1,7 +1,8 @@
+import { PesertaProfile } from './../../../../models/User';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { UpdateUser, UpdateUserPassword } from 'src/app/models/User';
+import { UpdateUserPassword } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -21,19 +22,13 @@ export class DataPesertaComponent implements OnInit {
   private pesertaId: string;
   constructor(public route: ActivatedRoute, public userService: UserService) {
     this.pesertaProfileForm = new FormGroup({
-      email: new FormControl(null, Validators.required),
       username: new FormControl(),
-      birthdate: new FormControl(),
-      phone: new FormControl(),
-      districts: new FormControl(),
     });
 
     this.pesertaPasswordForm = new FormGroup({
       password: new FormControl(null, [Validators.required]),
       old_password: new FormControl(null, [Validators.required]),
     });
-
-
   }
 
   ngOnInit() {
@@ -62,14 +57,11 @@ export class DataPesertaComponent implements OnInit {
   }
 
   updateProfile() {
-    if (this.pesertaPasswordForm.invalid) {
+    if (this.pesertaProfileForm.invalid) {
       return;
     }
-    const usernameProfile : UpdateUser = {
+    const usernameProfile : PesertaProfile = {
       username : this.pesertaProfileForm.get('username').value,
-      birthdate : this.pesertaProfileForm.get('birthdate').value,
-      phone : this.pesertaProfileForm.get('phone').value,
-      email : this.pesertaProfileForm.get('email').value
     };
     this.userService.updatePesertaProfile(usernameProfile).subscribe(
       (res) => {

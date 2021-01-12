@@ -1,10 +1,10 @@
 <div class="container-custom">
-  <h3 class="title mt-0 pt-3 text-center mb-0">Membuat Distrik</h3>
+  <h3 class="title mt-0 pt-3 text-center mb-0">Membuat tipe game</h3>
   <form class="form-padding" [formGroup]="createGameForm" (ngSubmit)="createGame()">
     <div class="form-group row">
       <label class="col-2 col-form-label">Game :</label>
       <div class="col-10 " [ngClass]="{'input-group-focus':focus===true}">
-        <input formControlName="game" type="text" class="form-control mb-3" placeholder="Game" (focus)="focus=true"
+        <input formControlName="game_name" type="text" class="form-control mb-3" placeholder="Game" (focus)="focus=true"
         (blur)="focus=false">
       </div>
     </div>

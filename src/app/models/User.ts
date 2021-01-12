@@ -26,6 +26,10 @@ export interface UpdateUser {
   phone: string;
 }
 
+export interface PesertaProfile{
+  username:string
+}
+
 export interface UpdateUserPassword {
   password: string;
   old_password: string;

@@ -76,13 +76,13 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-md-4 col-sm-2 col-form-label">Deskripsi :</label>
+      <label class="col-md-4 col-sm-2 col-form-label">RULES :</label>
       <div class="col-md-8 col-sm-10" [ngClass]="{ 'input-group-focus': focus === true }">
         <angular-editor
           formControlName="description"
           type="text"
           class="mb-3"
-          placeholder="Deskripsi"
+          placeholder="RULES"
           (focus)="focus = true"
           (blur)="focus = false"
           [config]="editorConfig"
